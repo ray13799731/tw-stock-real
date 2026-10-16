@@ -85,7 +85,6 @@ def fetch_all_quotes():
     except Exception as e:
         print(f"上櫃行情抓取異常: {e}")
 
-    # 抓取資本額換算總發行張數 (計算投本比)
     capital_dict = {}
     for url in ["https://openapi.twse.com.tw/v1/opendata/t187ap03_L", "https://openapi.twse.com.tw/v1/opendata/t187ap03_O"]:
         try:
@@ -161,7 +160,7 @@ def update_chips_rolling_cache(today_chips):
         try:
             with open(cache_file, "r", encoding="utf-8") as f:
                 history = json.load(f)
-        except Exception as e:
+        except Exception:
             history = {}
 
     history[today_str] = today_chips
@@ -277,40 +276,33 @@ def update_holders_rolling_cache():
     return computed_holders
 
 # -------------------------------------------------------------------------
-# 5. 抓取真實官方本益比 (PE) 與 EPS（嚴格修復「114」民國年份誤判 Bug）
+# 5. 抓取真實官方本益比 (PE) 與 EPS
 # -------------------------------------------------------------------------
 def fetch_financial_metrics():
     pe_dict = {}
     eps_dict = {}
 
-    # 1. 上市本益比 (BWIBBU_d)
     try:
         res = requests.get("https://www.twse.com.tw/rwd/zh/afterTrading/BWIBBU_d?response=json&selectType=ALL", headers=HEADERS, timeout=20)
         if res.status_code == 200:
             data = res.json()
             fields = data.get('fields', [])
-            
-            # 精確定位「本益比」所在的欄位索引
             pe_col_idx = -1
             for idx, f in enumerate(fields):
                 if '本益比' in f:
                     pe_col_idx = idx
                     break
-            
-            if pe_col_idx == -1:
-                pe_col_idx = 4  # 預設第 4 欄
+            if pe_col_idx == -1: pe_col_idx = 4
 
             for row in data.get('data', []):
                 code = str(row[0]).strip()
                 if len(row) > pe_col_idx:
                     raw_val = str(row[pe_col_idx]).replace(',', '').strip()
-                    # 嚴格排除特殊符號、民國年份(112, 113, 114, 115)與季別格式
                     if raw_val in ['-', 'N/A', '', '112', '113', '114', '115'] or '/' in raw_val:
                         pe_dict[code] = 0.0
                     else:
                         try:
                             val = float(raw_val)
-                            # 正常台股本益比在 0 ~ 500 之間，且絕非整數 114
                             if 0 < val < 500 and val != 114.0:
                                 pe_dict[code] = round(val, 2)
                             else:
@@ -320,7 +312,6 @@ def fetch_financial_metrics():
     except Exception as e:
         print(f"上市本益比解析異常: {e}")
 
-    # 2. 上櫃本益比 (TPEx OpenAPI)
     try:
         res = requests.get("https://www.tpex.org.tw/openapi/v1/tpex_mainboard_peratio_analysis", headers=HEADERS, timeout=20)
         if res.status_code == 200:
@@ -341,7 +332,6 @@ def fetch_financial_metrics():
     except Exception as e:
         print(f"上櫃本益比解析異常: {e}")
 
-    # 3. 官方財報 EPS
     for url in ["https://openapi.twse.com.tw/v1/opendata/t187ap14_L", "https://openapi.twse.com.tw/v1/opendata/t187ap14_O"]:
         try:
             res = requests.get(url, headers=HEADERS, timeout=20)
@@ -429,17 +419,10 @@ def main():
         print("未抓取到有效行情，終止流程。")
         return
 
-    # 1. 抓取當日三大法人買賣超，滾動快取計算真實 3 日累買與連買
     today_chips = fetch_today_institutional_chips()
     rolling_chips = update_chips_rolling_cache(today_chips)
-
-    # 2. 抓取 TDCC 官方集保股權分散表，計算真實千張大戶連增週數
     holders_data = update_holders_rolling_cache()
-
-    # 3. 抓取官方真實本益比與 EPS (已過濾 114 異常值)
     pe_data, eps_data = fetch_financial_metrics()
-
-    # 4. 抓取真實歷史日 K 線計算均線與新高
     tech_data = fetch_real_kline_technicals(quotes)
 
     output = []
@@ -449,22 +432,14 @@ def main():
         vol = int(q['yesterdayVol'])
         total_shares = q.get('totalShares', 50000)
 
-        # 取得過濾後的乾淨 PE
         pe = pe_data.get(code, 0.0)
         
-        # 取得官方 EPS，若官方為 0 但 PE 與股價合理則反推；否則為真實 EPS
         if code in eps_data:
             eps = eps_data[code]
         elif pe > 0 and price > 0:
             eps = round(price / pe, 2)
         else:
             eps = 0.0
-
-        # 計算股價：僅在 PE > 0 且 EPS > 0 時具有意義
-        if pe > 0 and eps > 0:
-            calc_price = round(pe * eps, 1)
-        else:
-            calc_price = price
 
         # 近 4 季累計 EPS (TTM EPS)
         if pe > 0 and price > 0:
@@ -480,16 +455,12 @@ def main():
         })
         vol_ratio = round(vol / t['ma20Vol'], 2) if t['ma20Vol'] > 0 else 1.0
 
-        # 法人真實滾動快取統計數據
         c = rolling_chips.get(code, {"foreignNet3d": 0, "trustNet3d": 0, "trustStreak": 0})
         foreign_net_3d = c['foreignNet3d']
         trust_net_3d = c['trustNet3d']
         trust_streak = c['trustStreak']
-
-        # 投本比 (%)
         trust_ratio = round((trust_net_3d / total_shares) * 100, 2) if total_shares > 0 else 0.0
 
-        # TDCC 大戶連增
         h = holders_data.get(code, {"bigHolderRatio": 0.0, "bigHolderDiff": 0.0, "bigHolderStreak": 0})
         big_holder_streak = h['bigHolderStreak']
         big_holder_ratio = h['bigHolderRatio']
@@ -503,7 +474,6 @@ def main():
             "changeRate": float(q['changeRate']),
             "pe": pe,
             "eps": eps,
-            "calculatedPrice": calc_price,
             "eps4Q": eps4q,
             "isEps4QPositive": is_eps4q_pos,
             "ma20": t['ma20'],
