@@ -1920,12 +1920,12 @@
       "foreignNet": 13,
       "trustNet": 0
     },
-    "1315": {
-      "foreignNet": 8,
-      "trustNet": 0
-    },
     "2432": {
       "foreignNet": 13,
+      "trustNet": 0
+    },
+    "1315": {
+      "foreignNet": 8,
       "trustNet": 0
     },
     "2250": {
@@ -2104,6 +2104,10 @@
       "foreignNet": 7,
       "trustNet": 0
     },
+    "1730": {
+      "foreignNet": 7,
+      "trustNet": 0
+    },
     "7736": {
       "foreignNet": 3,
       "trustNet": 0
@@ -2137,10 +2141,6 @@
       "trustNet": 0
     },
     "6581": {
-      "foreignNet": 7,
-      "trustNet": 0
-    },
-    "1730": {
       "foreignNet": 7,
       "trustNet": 0
     },
