@@ -6,7 +6,6 @@ on:
     - cron: '30 8 * * 1-5'
   workflow_dispatch: # 支援在 GitHub 介面上手動一鍵執行
 
-# 明確宣告賦予 GITHUB_TOKEN 寫入內容的權限
 permissions:
   contents: write
 
@@ -21,7 +20,6 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-          cache: 'pip'
 
       - name: 安裝量化依賴套件
         run: |
@@ -36,7 +34,6 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          # 檢查檔案是否存在，避免 git add 報錯中斷
           [ -f market_stocks.json ] && git add market_stocks.json
           [ -f chips_history.json ] && git add chips_history.json
           git diff --staged --quiet || (git commit -m "自動更新: 盤後全市場真實量價與籌碼歷史快取 [skip ci]" && git push)
