@@ -25,9 +25,9 @@
         <div>
           <div class="flex items-center gap-2">
             <h1 class="text-xl font-bold tracking-tight text-white">台股全市場 100% 真實量價籌碼選股系統</h1>
-            <span class="text-xs bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2 py-0.5 rounded-full font-mono">yfinance 真實歷史K線</span>
+            <span class="text-xs bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2 py-0.5 rounded-full font-mono">100% 真實資料庫</span>
           </div>
-          <p class="text-xs text-slate-400">真實三大法人買賣超・真實日K均線計算・官方財報EPS與本益比估值</p>
+          <p class="text-xs text-slate-400">官方三大法人日報・TDCC 集保千張大戶・投信買超佔股本比 (投本比)・yfinance 真實均線計算</p>
         </div>
       </div>
 
@@ -46,14 +46,14 @@
 
   <main class="max-w-7xl mx-auto px-6 py-6 space-y-6">
 
-    <!-- 策略控制看板 (4顆切換按鈕 + 搜尋欄位) -->
+    <!-- 策略控制看板 -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3">
-      <!-- 條件一：主力土洋雙買鎖碼 -->
+      <!-- 條件一：主力土洋雙買鎖碼 (真投本比與TDCC大戶) -->
       <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between space-y-2.5">
         <div>
           <span class="text-[11px] font-semibold uppercase tracking-wider text-indigo-400">條件一</span>
           <h3 class="font-bold text-white text-sm mt-0.5">主力土洋雙買鎖碼</h3>
-          <p class="text-[11px] text-slate-400 mt-0.5">外資與投信當日雙向買超、投信連買、家數差負值</p>
+          <p class="text-[11px] text-slate-400 mt-0.5">外資與投信近3日累買>0、投信連買、TDCC大戶增、投本比>0%</p>
         </div>
         <button id="btn-filter-chips" onclick="toggleFilter('chips')" 
                 class="w-full py-2 px-2.5 rounded-xl font-medium text-xs transition flex items-center justify-center gap-1.5 border bg-indigo-600 hover:bg-indigo-500 text-white border-indigo-500 shadow-lg shadow-indigo-600/20">
@@ -95,7 +95,7 @@
         <div>
           <span class="text-[11px] font-semibold uppercase tracking-wider text-rose-400">風控機制</span>
           <h3 class="font-bold text-white text-sm mt-0.5">排除法人陷阱標的</h3>
-          <p class="text-[11px] text-slate-400 mt-0.5">排除外資大賣壓盤、權值套利標的</p>
+          <p class="text-[11px] text-slate-400 mt-0.5">排除外資近3日大賣超、權值套利標的</p>
         </div>
         <button id="btn-filter-traps" onclick="toggleFilter('traps')" 
                 class="w-full py-2 px-2.5 rounded-xl font-medium text-xs transition flex items-center justify-center gap-1.5 border bg-rose-600 hover:bg-rose-500 text-white border-rose-500 shadow-lg shadow-rose-600/20">
@@ -129,7 +129,7 @@
       </div>
     </div>
 
-    <!-- 表格區塊 -->
+    <!-- 表格區塊 (已刪除近4季EPS年增率、家數差已替換為投本比%) -->
     <div class="bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden shadow-xl">
       <div class="overflow-x-auto">
         <table class="w-full text-left text-xs">
@@ -141,13 +141,12 @@
               <th class="py-3 px-3 cursor-pointer hover:text-emerald-300 text-emerald-400" onclick="sortBy('eps')">官方財報 EPS <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3 px-3 cursor-pointer hover:text-emerald-300 text-emerald-400" onclick="sortBy('calculatedPrice')">計算股價 (PE*EPS) <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3 px-3 text-emerald-400 font-semibold cursor-pointer hover:text-emerald-300" onclick="sortBy('eps4Q')">近4季累計EPS > 0 <i class="fa-solid fa-sort ml-1"></i></th>
-              <th class="py-3 px-3 text-rose-400 font-semibold cursor-pointer hover:text-rose-300" onclick="sortBy('epsGrowthYoY')">近4季EPS年增 > 0 <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3 px-3 cursor-pointer hover:text-white" onclick="sortBy('volumeRatio')">量比 (昨日/MA20) <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3 px-3 cursor-pointer hover:text-white" onclick="sortBy('yesterdayVol')">昨日量 (張) <i class="fa-solid fa-sort ml-1"></i></th>
-              <th class="py-3 px-3 cursor-pointer hover:text-white text-indigo-300 font-semibold" onclick="sortBy('foreignNet3d')">土洋買超 (外資/投信) <i class="fa-solid fa-sort ml-1"></i></th>
+              <th class="py-3 px-3 cursor-pointer hover:text-white text-indigo-300 font-semibold" onclick="sortBy('foreignNet3d')">土洋近3日買超 <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3 px-3 cursor-pointer hover:text-white" onclick="sortBy('trustStreak')">投信連買 <i class="fa-solid fa-sort ml-1"></i></th>
-              <th class="py-3 px-3 cursor-pointer hover:text-white" onclick="sortBy('bigHolderStreak')">大戶連增 <i class="fa-solid fa-sort ml-1"></i></th>
-              <th class="py-3 px-3 cursor-pointer hover:text-white" onclick="sortBy('brokerDiff')">家數差 <i class="fa-solid fa-sort ml-1"></i></th>
+              <th class="py-3 px-3 cursor-pointer hover:text-white text-fuchsia-300 font-semibold" onclick="sortBy('trustRatio')">投本比 (%) <i class="fa-solid fa-sort ml-1"></i></th>
+              <th class="py-3 px-3 cursor-pointer hover:text-white text-indigo-300 font-semibold" onclick="sortBy('bigHolderStreak')">TDCC大戶連增 <i class="fa-solid fa-sort ml-1"></i></th>
             </tr>
           </thead>
           <tbody id="table-body" class="divide-y divide-slate-800/60 font-mono">
@@ -196,10 +195,10 @@
         sanitizeFinancialData();
 
         statusEl.className = "flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-950/60 border border-emerald-800 text-xs text-emerald-300";
-        statusEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span><span>100% 真實數據已就緒 (${rawMarketData.length} 檔)</span>`;
+        statusEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span><span>100% 真實資料庫 (${rawMarketData.length} 檔)</span>`;
       } catch (err) {
         statusEl.className = "flex items-center gap-2 px-3 py-1.5 rounded-lg bg-rose-950/60 border border-rose-800 text-xs text-rose-300";
-        statusEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-rose-400"></span><span>尚未產生 market_stocks.json，請先手動執行 Actions</span>`;
+        statusEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-rose-400"></span><span>載入中或檔案建置中</span>`;
       }
 
       document.getElementById('stat-total').innerText = rawMarketData.length;
@@ -219,13 +218,11 @@
         item.trustStreak = Number(item.trustStreak) || 0;
         item.foreignNet3d = Number(item.foreignNet3d) || 0;
         item.trustNet3d = Number(item.trustNet3d) || 0;
+        item.trustRatio = parseFloat(item.trustRatio) || 0.0;
         item.bigHolderStreak = Number(item.bigHolderStreak) || 0;
-        item.brokerDiff = Number(item.brokerDiff) || 0;
 
         item.eps4Q = parseFloat(item.eps4Q) || (item.pe > 0 && item.price > 0 ? parseFloat((item.price / item.pe).toFixed(2)) : item.eps);
         item.isEps4QPositive = (item.isEps4QPositive !== undefined) ? Boolean(item.isEps4QPositive) : (item.eps4Q > 0);
-        item.epsGrowthYoY = parseFloat(item.epsGrowthYoY) || 0;
-        item.isEpsGrowthPositive = (item.isEpsGrowthPositive !== undefined) ? Boolean(item.isEpsGrowthPositive) : (item.epsGrowthYoY > 0);
 
         item.ma20 = parseFloat(item.ma20) || item.price;
         item.ma60 = parseFloat(item.ma60) || item.price;
@@ -249,13 +246,14 @@
           if (query.length >= 4 && matchCode) return true;
         }
 
-        // 條件一：主力土洋雙買鎖碼
+        // 條件一：土洋雙買鎖碼 (真投本比與TDCC大戶)
         if (filters.chips) {
-          const passTrustStreak = (stock.trustStreak >= 3);
+          const passTrustStreak = (stock.trustStreak >= 2);
           const passDualBuy = (stock.foreignNet3d > 0 && stock.trustNet3d > 0);
-          const passBigHolder = (stock.bigHolderStreak >= 2);
-          const passBroker = (stock.brokerDiff < 0);
-          if (!(passTrustStreak && passDualBuy && passBigHolder && passBroker)) {
+          const passBigHolder = (stock.bigHolderStreak >= 1);
+          const passTrustRatio = (stock.trustRatio > 0);
+
+          if (!(passTrustStreak && passDualBuy && passBigHolder && passTrustRatio)) {
             return false;
           }
         }
@@ -356,7 +354,7 @@
       const pageData = filteredData.slice(startIdx, startIdx + pageSize);
 
       if (filteredData.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="13" class="py-12 text-center text-slate-500">查無符合目前條件的股票。可點擊「重設」查看全市場列表。</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="12" class="py-12 text-center text-slate-500">查無符合目前條件的股票。可點擊「重設」查看全市場列表。</td></tr>`;
         document.getElementById('page-info').innerText = "0 筆";
         return;
       }
@@ -380,14 +378,20 @@
           ? `<span class="text-emerald-400 font-bold bg-emerald-950/80 border border-emerald-800 px-1.5 py-0.5 rounded text-[11px] font-sans">是 ($${item.eps4Q.toFixed(2)})</span>`
           : `<span class="text-slate-500 bg-slate-900 border border-slate-800 px-1.5 py-0.5 rounded text-[11px] font-sans">否</span>`;
 
-        const epsGrowthBadge = item.epsGrowthYoY > 0
-          ? `<span class="text-rose-400 font-bold bg-rose-950/80 border border-rose-800 px-1.5 py-0.5 rounded text-[11px] font-sans">是 (+${item.epsGrowthYoY.toFixed(1)}%)</span>`
-          : `<span class="text-slate-500 bg-slate-900 border border-slate-800 px-1.5 py-0.5 rounded text-[11px] font-sans">否 (${item.epsGrowthYoY.toFixed(1)}%)</span>`;
-
         const isDualBuy = item.foreignNet3d > 0 && item.trustNet3d > 0;
         const dualBadge = isDualBuy
           ? `<div class="text-[11px]"><span class="text-rose-400 font-bold">外+${item.foreignNet3d}</span> / <span class="text-indigo-400 font-bold">投+${item.trustNet3d}</span> <span class="text-[9px] bg-rose-950 text-rose-300 border border-rose-800 px-1 py-0.2 rounded ml-0.5 font-sans">合拍</span></div>`
           : `<div class="text-[11px] text-slate-400">外${item.foreignNet3d > 0 ? '+' : ''}${item.foreignNet3d} / 投${item.trustNet3d > 0 ? '+' : ''}${item.trustNet3d}</div>`;
+
+        // 投本比標示 (大於 0.1% 標註醒目紫色)
+        const trustRatioBadge = item.trustRatio >= 0.1
+          ? `<span class="text-fuchsia-300 font-bold bg-fuchsia-950/80 border border-fuchsia-800 px-1.5 py-0.5 rounded text-[11px] font-sans">${item.trustRatio.toFixed(2)}%</span>`
+          : `<span class="text-slate-400 text-[11px]">${item.trustRatio.toFixed(2)}%</span>`;
+
+        // TDCC 大戶連增標示
+        const bigHolderBadge = item.bigHolderStreak > 0
+          ? `<span class="text-indigo-300 font-bold bg-indigo-950/80 border border-indigo-800 px-1.5 py-0.5 rounded text-[11px] font-sans">+${item.bigHolderStreak} 週</span>`
+          : `<span class="text-slate-500 text-[11px] font-sans">0 週</span>`;
 
         return `
           <tr class="hover:bg-slate-900/90 transition border-b border-slate-800/40">
@@ -416,9 +420,6 @@
               ${eps4QBadge}
             </td>
             <td class="py-3 px-3">
-              ${epsGrowthBadge}
-            </td>
-            <td class="py-3 px-3">
               <span class="${item.volumeRatio >= 1.48 ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30' : 'text-slate-400'} px-1.5 py-0.5 rounded font-bold">
                 ${item.volumeRatio.toFixed(2)}x
               </span>
@@ -428,8 +429,12 @@
               ${dualBadge}
             </td>
             <td class="py-3 px-3 ${item.trustStreak >= 3 ? 'text-rose-400 font-bold' : 'text-slate-400'}">+${item.trustStreak} 日</td>
-            <td class="py-3 px-3 text-indigo-300">${item.bigHolderStreak} 週</td>
-            <td class="py-3 px-3 ${item.brokerDiff < 0 ? 'text-emerald-400 font-bold' : 'text-slate-400'}">${item.brokerDiff} 家</td>
+            <td class="py-3 px-3">
+              ${trustRatioBadge}
+            </td>
+            <td class="py-3 px-3">
+              ${bigHolderBadge}
+            </td>
           </tr>
         `;
       }).join('');
@@ -448,15 +453,15 @@
 
     function exportCSV() {
       if (filteredData.length === 0) return alert("無資料可匯出！");
-      let csv = "市場,股票代號,股票名稱,收盤價,漲跌幅,當前PE,官方財報EPS,計算股價,近4季累計EPS,近4季EPS大於0,近4季EPS年增率(%),近4季年增大於0,量比,昨日成交量,外資買賣超,投信買賣超,投信連買日數,大戶連增週數,買賣家數差\n";
+      let csv = "市場,股票代號,股票名稱,收盤價,漲跌幅,當前PE,官方財報EPS,計算股價,近4季累計EPS,近4季EPS大於0,量比,昨日成交量,外資近3日累買,投信近3日累買,投信連買日數,投本比(%),TDCC大戶連增週數\n";
       filteredData.forEach(s => {
-        csv += `${s.market},${s.code},${s.name},${s.price},${s.changeRate}%,${s.pe},${s.eps},${s.calculatedPrice},${s.eps4Q},${s.isEps4QPositive?'是':'否'},${s.epsGrowthYoY}%,${s.isEpsGrowthPositive?'是':'否'},${s.volumeRatio},${s.yesterdayVol},${s.foreignNet3d},${s.trustNet3d},${s.trustStreak},${s.bigHolderStreak},${s.brokerDiff}\n`;
+        csv += `${s.market},${s.code},${s.name},${s.price},${s.changeRate}%,${s.pe},${s.eps},${s.calculatedPrice},${s.eps4Q},${s.isEps4QPositive?'是':'否'},${s.volumeRatio},${s.yesterdayVol},${s.foreignNet3d},${s.trustNet3d},${s.trustStreak},${s.trustRatio}%,${s.bigHolderStreak}\n`;
       });
       const blob = new Blob(["\uFEFF" + csv], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
-      link.download = `台股全真實多因子選股清單_${new Date().toISOString().slice(0, 10)}.csv`;
+      link.download = `台股全真實量價與籌碼選股清單_${new Date().toISOString().slice(0, 10)}.csv`;
       link.click();
     }
   </script>
