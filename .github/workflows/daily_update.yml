@@ -28,9 +28,10 @@ jobs:
         run: |
           python update_market.py
 
-      - name: 提交並推送最新 market_stocks.json
+      - name: 提交並推送最新數據與籌碼滾動快取
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add market_stocks.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "自動更新: 盤後全市場真實量價籌碼數據 [skip ci]" && git push)
+          # 同時追蹤 market_stocks.json 與 chips_history.json
+          git add market_stocks.json chips_history.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "自動更新: 盤後全市場真實量價與籌碼歷史快取 [skip ci]" && git push)
