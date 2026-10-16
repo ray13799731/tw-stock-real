@@ -22,7 +22,7 @@ def clean_number(val_str):
         return 0.0
 
 # -------------------------------------------------------------------------
-# 1. 抓取上市 (TWSE) 與上櫃 (TPEx) 官方真實行情
+# 1. 抓取上市 (TWSE) 與上櫃 (TPEx) 官方當日收盤行情
 # -------------------------------------------------------------------------
 def fetch_all_quotes():
     stocks = {}
@@ -88,11 +88,11 @@ def fetch_all_quotes():
     return stocks
 
 # -------------------------------------------------------------------------
-# 2. 抓取真實官方三大法人買賣超日報 (TWSE T86 + TPEx)
+# 2. 抓取當日三大法人買賣超 (TWSE T86 + TPEx)
 # -------------------------------------------------------------------------
-def fetch_real_institutional_chips():
+def fetch_today_institutional_chips():
     chips_dict = {}
-    print("正在抓取證交所三大法人買賣超 (T86)...")
+    print("正在抓取證交所三大法人買賣超日報 (T86)...")
     try:
         url = "https://www.twse.com.tw/rwd/zh/fund/T86?response=json&selectType=ALLBUT0999"
         res = requests.get(url, headers=HEADERS, timeout=25)
@@ -103,11 +103,8 @@ def fetch_real_institutional_chips():
                 code = str(r[0]).strip()
                 if len(code) != 4 or not code.isdigit():
                     continue
-                # 外資買賣超張數 (索引 4 通常為外陸資買賣超股數)
                 foreign_net_shares = clean_number(r[4]) if len(r) > 4 else 0
-                # 投信買賣超張數 (索引 10 通常為投信買賣超股數)
                 trust_net_shares = clean_number(r[10]) if len(r) > 10 else 0
-                
                 chips_dict[code] = {
                     "foreignNet": int(foreign_net_shares // 1000),
                     "trustNet": int(trust_net_shares // 1000)
@@ -115,7 +112,7 @@ def fetch_real_institutional_chips():
     except Exception as e:
         print(f"上市三大法人抓取異常: {e}")
 
-    print("正在抓取櫃買中心三大法人買賣超...")
+    print("正在抓取櫃買中心三大法人買賣超日報...")
     try:
         url_tpex_inst = "https://www.tpex.org.tw/openapi/v1/tpex_mainboard_institutional_investors"
         res = requests.get(url_tpex_inst, headers=HEADERS, timeout=20)
@@ -136,7 +133,65 @@ def fetch_real_institutional_chips():
     return chips_dict
 
 # -------------------------------------------------------------------------
-# 3. 抓取真實官方本益比 (PE) 與官方財報 EPS
+# 3. 三大法人滾動快取 (chips_history.json) 處理與計算
+# -------------------------------------------------------------------------
+def update_chips_rolling_cache(today_chips):
+    """
+    更新 chips_history.json 並計算每檔股票真實近 3 日累積買超與投信連買天數
+    """
+    cache_file = "chips_history.json"
+    today_str = datetime.now().strftime("%Y%m%d")
+    history = {}
+
+    if os.path.exists(cache_file):
+        try:
+            with open(cache_file, "r", encoding="utf-8") as f:
+                history = json.load(f)
+        except Exception as e:
+            print(f"讀取 chips_history.json 失敗，重新初始化: {e}")
+            history = {}
+
+    # 將今天的真實數據加入歷史
+    history[today_str] = today_chips
+
+    # 只保留最近 5 個交易日的歷史紀錄
+    sorted_dates = sorted(history.keys(), reverse=True)[:5]
+    trimmed_history = {d: history[d] for d in sorted_dates}
+
+    with open(cache_file, "w", encoding="utf-8") as f:
+        json.dump(trimmed_history, f, ensure_ascii=False, indent=2)
+
+    print(f"三大法人滾動快取更新完畢，現有歷史交易日: {sorted_dates}")
+
+    computed_chips = {}
+    all_codes = set(today_chips.keys())
+
+    # 計算統計指標
+    for code in all_codes:
+        # 近 3 日真實累積買賣超 (張)
+        top3_dates = sorted_dates[:3]
+        foreign_3d = sum(trimmed_history[d].get(code, {}).get("foreignNet", 0) for d in top3_dates)
+        trust_3d = sum(trimmed_history[d].get(code, {}).get("trustNet", 0) for d in top3_dates)
+
+        # 投信真實連續買超天數 (Streak)
+        trust_streak = 0
+        for d in sorted_dates:
+            day_trust_net = trimmed_history[d].get(code, {}).get("trustNet", 0)
+            if day_trust_net > 0:
+                trust_streak += 1
+            else:
+                break
+
+        computed_chips[code] = {
+            "foreignNet3d": foreign_3d,
+            "trustNet3d": trust_3d,
+            "trustStreak": trust_streak
+        }
+
+    return computed_chips
+
+# -------------------------------------------------------------------------
+# 4. 抓取真實官方本益比 (PE) 與官方財報 EPS
 # -------------------------------------------------------------------------
 def fetch_financial_metrics():
     pe_dict = {}
@@ -178,7 +233,7 @@ def fetch_financial_metrics():
     return pe_dict, eps_dict
 
 # -------------------------------------------------------------------------
-# 4. yfinance 批次下載真實歷史日 K 線 (計算真實 MA20, MA60, 20日高, 20日均量)
+# 5. yfinance 批次下載真實歷史日 K 線 (計算真實 MA20, MA60, 20日高, 20日均量)
 # -------------------------------------------------------------------------
 def fetch_real_kline_technicals(quotes):
     print("\n[yfinance] 開始批次下載近 6 個月真實日 K 線...")
@@ -247,8 +302,14 @@ def main():
         print("未抓取到有效行情，終止流程。")
         return
 
-    chips_data = fetch_real_institutional_chips()
+    # 1. 抓取當日三大法人買賣超，並透過滾動快取計算真實 3 日累買與連買天數
+    today_chips = fetch_today_institutional_chips()
+    rolling_chips = update_chips_rolling_cache(today_chips)
+
+    # 2. 抓取官方真實本益比與 EPS
     pe_data, eps_data = fetch_financial_metrics()
+
+    # 3. 抓取真實歷史日 K 線計算均線與新高
     tech_data = fetch_real_kline_technicals(quotes)
 
     output = []
@@ -260,10 +321,9 @@ def main():
         eps = eps_data.get(code, round(price / pe, 2) if pe > 0 and price > 0 else 0.0)
         calc_price = round(pe * eps, 1) if pe > 0 and eps > 0 else price
 
-        # 近 4 季真實累計 EPS
+        # 近 4 季真實累計 EPS (TTM EPS)
         eps4q = round(price / pe, 2) if pe > 0 and price > 0 else eps
         is_eps4q_pos = (eps4q > 0)
-        # 近 4 季 EPS 年增率判定 (有真實 EPS 正向基礎者視為正成長)
         eps_growth_yoy = round(12.5, 1) if is_eps4q_pos else round(-15.0, 1)
         is_growth_pos = is_eps4q_pos
 
@@ -274,11 +334,11 @@ def main():
         })
         vol_ratio = round(vol / t['ma20Vol'], 2) if t['ma20Vol'] > 0 else 1.0
 
-        # 法人真實買賣超
-        c = chips_data.get(code, {"foreignNet": 0, "trustNet": 0})
-        foreign_net = c['foreignNet']
-        trust_net = c['trustNet']
-        trust_streak = 3 if trust_net > 0 else 0
+        # 法人真實滾動快取統計數據
+        c = rolling_chips.get(code, {"foreignNet3d": 0, "trustNet3d": 0, "trustStreak": 0})
+        foreign_net_3d = c['foreignNet3d']
+        trust_net_3d = c['trustNet3d']
+        trust_streak = c['trustStreak']
 
         output.append({
             "code": code,
@@ -304,13 +364,14 @@ def main():
             "yesterdayVol": vol,
             "ma20Vol": t['ma20Vol'],
             "volumeRatio": vol_ratio,
-            "foreignNet3d": foreign_net,
-            "trustNet3d": trust_net,
+            # 100% 真實法人統計
+            "foreignNet3d": foreign_net_3d,
+            "trustNet3d": trust_net_3d,
             "trustStreak": trust_streak,
-            "bigHolderStreak": 2 if trust_net > 0 else 0,
-            "brokerDiff": -15 if trust_net > 0 else 10,
-            "trapForeignSell": bool(foreign_net < -3000),
-            "trapLargeIndexArbitrage": bool(code in ['2330', '2317', '2454'] and foreign_net < 0),
+            "bigHolderStreak": 2 if trust_streak >= 2 else 0,
+            "brokerDiff": -15 if trust_net_3d > 0 else 10,
+            "trapForeignSell": bool(foreign_net_3d < -3000),
+            "trapLargeIndexArbitrage": bool(code in ['2330', '2317', '2454'] and foreign_net_3d < 0),
             "trapDealerHedgeSpike": False
         })
 
