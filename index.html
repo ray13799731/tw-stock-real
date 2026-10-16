@@ -46,7 +46,7 @@
 
   <main class="max-w-7xl mx-auto px-6 py-6 space-y-6">
 
-    <!-- 策略控制看板 -->
+    <!-- 策略控制看板 (四個按鈕預設皆為未啟用) -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3">
       <!-- 條件一：主力土洋雙買鎖碼 -->
       <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between space-y-2.5">
@@ -56,9 +56,9 @@
           <p class="text-[11px] text-slate-400 mt-0.5">外資與投信雙向累買或投信積極佈局 (投本比>0.03%)</p>
         </div>
         <button id="btn-filter-chips" onclick="toggleFilter('chips')" 
-                class="w-full py-2 px-2.5 rounded-xl font-medium text-xs transition flex items-center justify-center gap-1.5 border bg-indigo-600 hover:bg-indigo-500 text-white border-indigo-500 shadow-lg shadow-indigo-600/20">
-          <i class="fa-solid fa-check"></i>
-          土洋雙買鎖碼 (已啟用)
+                class="w-full py-2 px-2.5 rounded-xl font-medium text-xs transition flex items-center justify-center gap-1.5 border bg-slate-800 hover:bg-slate-750 text-slate-300 border-slate-700">
+          <i class="fa-solid fa-power-off"></i>
+          土洋雙買鎖碼 (未啟用)
         </button>
       </div>
 
@@ -70,9 +70,9 @@
           <p class="text-[11px] text-slate-400 mt-0.5">昨日量 &ge; 真實20日均量 1.5 倍，<b>且收紅上漲</b></p>
         </div>
         <button id="btn-filter-vol" onclick="toggleFilter('vol')" 
-                class="w-full py-2 px-2.5 rounded-xl font-medium text-xs transition flex items-center justify-center gap-1.5 border bg-amber-600 hover:bg-amber-500 text-white border-amber-500 shadow-lg shadow-amber-600/20">
-          <i class="fa-solid fa-bolt"></i>
-          帶量收紅突破 (已啟用)
+                class="w-full py-2 px-2.5 rounded-xl font-medium text-xs transition flex items-center justify-center gap-1.5 border bg-slate-800 hover:bg-slate-750 text-slate-300 border-slate-700">
+          <i class="fa-solid fa-power-off"></i>
+          帶量收紅突破 (未啟用)
         </button>
       </div>
 
@@ -84,9 +84,9 @@
           <p class="text-[11px] text-slate-400 mt-0.5">真實價>MA20>MA60、月線上揚、創20日高</p>
         </div>
         <button id="btn-filter-tech" onclick="toggleFilter('tech')" 
-                class="w-full py-2 px-2.5 rounded-xl font-medium text-xs transition flex items-center justify-center gap-1.5 border bg-cyan-600 hover:bg-cyan-500 text-white border-cyan-500 shadow-lg shadow-cyan-600/20">
-          <i class="fa-solid fa-arrow-trend-up"></i>
-          均線多頭創高 (已啟用)
+                class="w-full py-2 px-2.5 rounded-xl font-medium text-xs transition flex items-center justify-center gap-1.5 border bg-slate-800 hover:bg-slate-750 text-slate-300 border-slate-700">
+          <i class="fa-solid fa-power-off"></i>
+          均線多頭創高 (未啟用)
         </button>
       </div>
 
@@ -98,9 +98,9 @@
           <p class="text-[11px] text-slate-400 mt-0.5">排除外資近3日大賣超、權值套利標的</p>
         </div>
         <button id="btn-filter-traps" onclick="toggleFilter('traps')" 
-                class="w-full py-2 px-2.5 rounded-xl font-medium text-xs transition flex items-center justify-center gap-1.5 border bg-rose-600 hover:bg-rose-500 text-white border-rose-500 shadow-lg shadow-rose-600/20">
-          <i class="fa-solid fa-check"></i>
-          防踩雷濾網 (已啟用)
+                class="w-full py-2 px-2.5 rounded-xl font-medium text-xs transition flex items-center justify-center gap-1.5 border bg-slate-800 hover:bg-slate-750 text-slate-300 border-slate-700">
+          <i class="fa-solid fa-power-off"></i>
+          防踩雷濾網 (未啟用)
         </button>
       </div>
 
@@ -123,13 +123,13 @@
           </button>
         </div>
         <div class="text-[11px] text-slate-400 flex justify-between">
-          <span>精選標的：<b id="stat-matches" class="text-amber-400 text-sm">0</b> 檔</span>
-          <span>總計：<b id="stat-total" class="text-slate-300">0</b> 檔</span>
+          <span>篩選標的：<b id="stat-matches" class="text-amber-400 text-sm">0</b> 檔</span>
+          <span>全市場：<b id="stat-total" class="text-slate-300">0</b> 檔</span>
         </div>
       </div>
     </div>
 
-    <!-- 表格區塊 (已精準移除「計算股價」欄位) -->
+    <!-- 表格區塊 -->
     <div class="bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden shadow-xl">
       <div class="overflow-x-auto">
         <table class="w-full text-left text-xs">
@@ -171,13 +171,14 @@
     let filteredData = [];
     let currentPage = 1;
     let pageSize = 50;
-    let currentSort = { key: 'trustRatio', asc: false };
+    let currentSort = { key: 'yesterdayVol', asc: false }; // 預設依成交量排序
 
+    // 四個條件預設全數設為 false (未啟用)
     const filters = {
-      chips: true,
+      chips: false,
       vol: false,
       tech: false,
-      traps: true
+      traps: false
     };
 
     window.addEventListener('DOMContentLoaded', async () => {
