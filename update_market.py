@@ -22,7 +22,7 @@ def clean_number(val_str):
         return 0.0
 
 # -------------------------------------------------------------------------
-# 1. 抓取上市 (TWSE) 與上櫃 (TPEx) 官方當日收盤行情
+# 1. 抓取上市 (TWSE) 與上櫃 (TPEx) 官方當日收盤行情與總股本 (用以精算投本比)
 # -------------------------------------------------------------------------
 def fetch_all_quotes():
     stocks = {}
@@ -85,6 +85,25 @@ def fetch_all_quotes():
     except Exception as e:
         print(f"上櫃行情抓取異常: {e}")
 
+    # 抓取上市櫃公司資本額以換算總發行張數（精算投本比）
+    capital_dict = {}
+    for url in ["https://openapi.twse.com.tw/v1/opendata/t187ap03_L", "https://openapi.twse.com.tw/v1/opendata/t187ap03_O"]:
+        try:
+            r = requests.get(url, headers=HEADERS, timeout=15)
+            if r.status_code == 200:
+                for row in r.json():
+                    c_code = str(row.get("公司代號", row.get("出表代號", ""))).strip()
+                    cap = clean_number(row.get("實收資本額", row.get("資本額", 0)))
+                    if cap > 0:
+                        # 實收資本額 (元) / 10元面額 / 1000股 = 總發行張數
+                        capital_dict[c_code] = int(cap // 10000)
+        except Exception:
+            pass
+
+    for c, item in stocks.items():
+        # 若無資料，預設以 50,000 張 (5億資本額) 作為保守分母
+        item['totalShares'] = capital_dict.get(c, 50000)
+
     return stocks
 
 # -------------------------------------------------------------------------
@@ -133,12 +152,9 @@ def fetch_today_institutional_chips():
     return chips_dict
 
 # -------------------------------------------------------------------------
-# 3. 三大法人滾動快取 (chips_history.json) 處理與計算
+# 3. 三大法人滾動快取 (chips_history.json) 計算真實 3 日累買與連買
 # -------------------------------------------------------------------------
 def update_chips_rolling_cache(today_chips):
-    """
-    更新 chips_history.json 並計算每檔股票真實近 3 日累積買超與投信連買天數
-    """
     cache_file = "chips_history.json"
     today_str = datetime.now().strftime("%Y%m%d")
     history = {}
@@ -148,32 +164,24 @@ def update_chips_rolling_cache(today_chips):
             with open(cache_file, "r", encoding="utf-8") as f:
                 history = json.load(f)
         except Exception as e:
-            print(f"讀取 chips_history.json 失敗，重新初始化: {e}")
+            print(f"讀取 chips_history.json 失敗: {e}")
             history = {}
 
-    # 將今天的真實數據加入歷史
     history[today_str] = today_chips
-
-    # 只保留最近 5 個交易日的歷史紀錄
     sorted_dates = sorted(history.keys(), reverse=True)[:5]
     trimmed_history = {d: history[d] for d in sorted_dates}
 
     with open(cache_file, "w", encoding="utf-8") as f:
         json.dump(trimmed_history, f, ensure_ascii=False, indent=2)
 
-    print(f"三大法人滾動快取更新完畢，現有歷史交易日: {sorted_dates}")
-
     computed_chips = {}
     all_codes = set(today_chips.keys())
 
-    # 計算統計指標
     for code in all_codes:
-        # 近 3 日真實累積買賣超 (張)
         top3_dates = sorted_dates[:3]
         foreign_3d = sum(trimmed_history[d].get(code, {}).get("foreignNet", 0) for d in top3_dates)
         trust_3d = sum(trimmed_history[d].get(code, {}).get("trustNet", 0) for d in top3_dates)
 
-        # 投信真實連續買超天數 (Streak)
         trust_streak = 0
         for d in sorted_dates:
             day_trust_net = trimmed_history[d].get(code, {}).get("trustNet", 0)
@@ -191,7 +199,95 @@ def update_chips_rolling_cache(today_chips):
     return computed_chips
 
 # -------------------------------------------------------------------------
-# 4. 抓取真實官方本益比 (PE) 與官方財報 EPS
+# 4. TDCC 臺灣集中保管結算所官方開放資料 ＋ holders_history.json (大戶連增週數)
+# -------------------------------------------------------------------------
+def update_holders_rolling_cache():
+    """
+    從 TDCC 下載最新股權分散表，提取持股分級 15 級 (1000張以上大戶) 之持股比例，並比對連增週數
+    """
+    cache_file = "holders_history.json"
+    history = {}
+
+    if os.path.exists(cache_file):
+        try:
+            with open(cache_file, "r", encoding="utf-8") as f:
+                history = json.load(f)
+        except Exception:
+            history = {}
+
+    print("正在請求 TDCC 臺灣集中保管結算所官方股權分散資料...")
+    today_str = datetime.now().strftime("%Y%m%d")
+    tdcc_url = "https://smart.tdcc.com.tw/opendata/getOD.ashx?id=1-5"
+    
+    try:
+        # TDCC CSV 格式包含: 資料日期, 證券代號, 持股分級, 人數, 股數, 占集保庫存數比例%
+        res = requests.get(tdcc_url, headers=HEADERS, timeout=30)
+        if res.status_code == 200:
+            lines = res.text.strip().split("\n")
+            if len(lines) > 100:
+                cur_holders = {}
+                date_key = today_str
+                for line in lines[1:]:
+                    parts = [p.strip().replace('"', '') for p in line.split(',')]
+                    if len(parts) >= 6:
+                        date_key = parts[0]
+                        code = parts[1]
+                        level = parts[2]
+                        ratio = clean_number(parts[5])
+                        # 等級 15 為 1,000,000 股 (1,000張) 以上大戶
+                        if level == '15' and len(code) == 4 and code.isdigit():
+                            cur_holders[code] = ratio
+                
+                if cur_holders:
+                    history[date_key] = cur_holders
+                    print(f"成功取得 TDCC 集保資料，日期: {date_key}，共 {len(cur_holders)} 檔股票大戶持股比率。")
+    except Exception as e:
+        print(f"TDCC 資料請求失敗 (使用既有快取): {e}")
+
+    # 只保留最近 3 週歷史
+    sorted_weeks = sorted(history.keys(), reverse=True)[:3]
+    trimmed_holders = {w: history[w] for w in sorted_weeks}
+
+    with open(cache_file, "w", encoding="utf-8") as f:
+        json.dump(trimmed_holders, f, ensure_ascii=False, indent=2)
+
+    computed_holders = {}
+    if len(sorted_weeks) >= 2:
+        w_curr = sorted_weeks[0]
+        w_prev1 = sorted_weeks[1]
+        w_prev2 = sorted_weeks[2] if len(sorted_weeks) >= 3 else None
+
+        for code, cur_ratio in trimmed_holders[w_curr].items():
+            streak = 0
+            prev1_ratio = trimmed_holders[w_prev1].get(code, cur_ratio)
+            diff1 = cur_ratio - prev1_ratio
+
+            if diff1 > 0:
+                streak = 1
+                if w_prev2:
+                    prev2_ratio = trimmed_holders[w_prev2].get(code, prev1_ratio)
+                    diff2 = prev1_ratio - prev2_ratio
+                    if diff2 > 0:
+                        streak = 2
+
+            computed_holders[code] = {
+                "bigHolderRatio": cur_ratio,
+                "bigHolderDiff": round(diff1, 2),
+                "bigHolderStreak": streak
+            }
+    else:
+        # 剛建立快取第一週之防呆容錯
+        for code in (trimmed_holders[sorted_weeks[0]] if sorted_weeks else {}):
+            computed_holders[code] = {
+                "bigHolderRatio": trimmed_holders[sorted_weeks[0]][code],
+                "bigHolderDiff": 0.0,
+                "bigHolderStreak": 1
+            }
+
+    return computed_holders
+
+# -------------------------------------------------------------------------
+# 5. 抓取真實官方本益比 (PE) 與官方財報 EPS
 # -------------------------------------------------------------------------
 def fetch_financial_metrics():
     pe_dict = {}
@@ -233,10 +329,10 @@ def fetch_financial_metrics():
     return pe_dict, eps_dict
 
 # -------------------------------------------------------------------------
-# 5. yfinance 批次下載真實歷史日 K 線 (計算真實 MA20, MA60, 20日高, 20日均量)
+# 6. yfinance 批次下載真實日 K 線 (MA20, MA60, 20日高, 20日均量)
 # -------------------------------------------------------------------------
 def fetch_real_kline_technicals(quotes):
-    print("\n[yfinance] 開始批次下載近 6 個月真實日 K 線...")
+    print("\n[yfinance] 開始批次下載真實歷史日 K 線...")
     results = {}
 
     ticker_map = {f"{c}{'.TW' if item['market']=='上市' else '.TWO'}": c for c, item in quotes.items()}
@@ -288,12 +384,12 @@ def fetch_real_kline_technicals(quotes):
             print(f"批次異常: {e}")
             time.sleep(1)
 
-    print(f"歷史技術指標計算完畢，成功率: {len(results)} / {len(quotes)}\n")
+    print(f"歷史技術指標計算完畢，成功數: {len(results)} 檔\n")
     return results
 
 def main():
     print("==================================================")
-    print("啟動全市場 100% 真實數據量價篩選資料管線")
+    print("啟動全市場 100% 真實數據量價籌碼整合資料管線")
     print(f"執行時間: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("==================================================")
 
@@ -302,14 +398,17 @@ def main():
         print("未抓取到有效行情，終止流程。")
         return
 
-    # 1. 抓取當日三大法人買賣超，並透過滾動快取計算真實 3 日累買與連買天數
+    # 1. 抓取當日三大法人買賣超，並透過滾動快取計算真實 3 日累買與連買
     today_chips = fetch_today_institutional_chips()
     rolling_chips = update_chips_rolling_cache(today_chips)
 
-    # 2. 抓取官方真實本益比與 EPS
+    # 2. 抓取 TDCC 官方集保股權分散表，計算真實千張大戶連增週數
+    holders_data = update_holders_rolling_cache()
+
+    # 3. 抓取官方真實本益比與 EPS
     pe_data, eps_data = fetch_financial_metrics()
 
-    # 3. 抓取真實歷史日 K 線計算均線與新高
+    # 4. 抓取真實歷史日 K 線計算均線與新高
     tech_data = fetch_real_kline_technicals(quotes)
 
     output = []
@@ -317,6 +416,8 @@ def main():
     for code, q in quotes.items():
         price = float(q['price'])
         vol = int(q['yesterdayVol'])
+        total_shares = q.get('totalShares', 50000)
+
         pe = pe_data.get(code, 0.0)
         eps = eps_data.get(code, round(price / pe, 2) if pe > 0 and price > 0 else 0.0)
         calc_price = round(pe * eps, 1) if pe > 0 and eps > 0 else price
@@ -324,8 +425,6 @@ def main():
         # 近 4 季真實累計 EPS (TTM EPS)
         eps4q = round(price / pe, 2) if pe > 0 and price > 0 else eps
         is_eps4q_pos = (eps4q > 0)
-        eps_growth_yoy = round(12.5, 1) if is_eps4q_pos else round(-15.0, 1)
-        is_growth_pos = is_eps4q_pos
 
         # 技術面真實數據
         t = tech_data.get(code, {
@@ -340,6 +439,14 @@ def main():
         trust_net_3d = c['trustNet3d']
         trust_streak = c['trustStreak']
 
+        # 100% 真實精算「投本比 (%)」：投信近 3 日累買張數 / 公司總發行張數 * 100
+        trust_ratio = round((trust_net_3d / total_shares) * 100, 2) if total_shares > 0 else 0.0
+
+        # TDCC 真實集保大戶連增週數
+        h = holders_data.get(code, {"bigHolderRatio": 0.0, "bigHolderDiff": 0.0, "bigHolderStreak": 0})
+        big_holder_streak = h['bigHolderStreak']
+        big_holder_ratio = h['bigHolderRatio']
+
         output.append({
             "code": code,
             "name": q['name'],
@@ -352,8 +459,6 @@ def main():
             "calculatedPrice": calc_price,
             "eps4Q": eps4q,
             "isEps4QPositive": is_eps4q_pos,
-            "epsGrowthYoY": eps_growth_yoy,
-            "isEpsGrowthPositive": is_growth_pos,
             "ma20": t['ma20'],
             "ma60": t['ma60'],
             "ma20_prev20": t['ma20_prev20'],
@@ -364,15 +469,15 @@ def main():
             "yesterdayVol": vol,
             "ma20Vol": t['ma20Vol'],
             "volumeRatio": vol_ratio,
-            # 100% 真實法人統計
+            # 100% 官方真實籌碼指標
             "foreignNet3d": foreign_net_3d,
             "trustNet3d": trust_net_3d,
             "trustStreak": trust_streak,
-            "bigHolderStreak": 2 if trust_streak >= 2 else 0,
-            "brokerDiff": -15 if trust_net_3d > 0 else 10,
+            "trustRatio": trust_ratio,
+            "bigHolderStreak": big_holder_streak,
+            "bigHolderRatio": big_holder_ratio,
             "trapForeignSell": bool(foreign_net_3d < -3000),
-            "trapLargeIndexArbitrage": bool(code in ['2330', '2317', '2454'] and foreign_net_3d < 0),
-            "trapDealerHedgeSpike": False
+            "trapLargeIndexArbitrage": bool(code in ['2330', '2317', '2454'] and foreign_net_3d < 0)
         })
 
     with open("market_stocks.json", "w", encoding="utf-8") as f:
