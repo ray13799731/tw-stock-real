@@ -76,17 +76,17 @@
         </button>
       </div>
 
-      <!-- 條件三：技術面強勢多頭排列 -->
+      <!-- 條件三：技術面強勢多頭起漲點 (移除創高，加入乖離率<=8%) -->
       <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between space-y-2.5">
         <div>
-          <span class="text-[11px] font-semibold uppercase tracking-wider text-cyan-400">條件三 (技術面)</span>
-          <h3 class="font-bold text-white text-sm mt-0.5">均線多頭創20日高</h3>
-          <p class="text-[11px] text-slate-400 mt-0.5">真實價>MA20>MA60、月線上揚、創20日高</p>
+          <span class="text-[11px] font-semibold uppercase tracking-wider text-cyan-400">條件三 (技術起漲)</span>
+          <h3 class="font-bold text-white text-sm mt-0.5">均線多頭・防追高</h3>
+          <p class="text-[11px] text-slate-400 mt-0.5">價>MA20>MA60、月線上揚、<b>月線乖離 &le; 8%</b>、收紅</p>
         </div>
         <button id="btn-filter-tech" onclick="toggleFilter('tech')" 
                 class="w-full py-2 px-2.5 rounded-xl font-medium text-xs transition flex items-center justify-center gap-1.5 border bg-slate-800 hover:bg-slate-750 text-slate-300 border-slate-700">
           <i class="fa-solid fa-power-off"></i>
-          均線多頭創高 (未啟用)
+          均線多頭起漲 (未啟用)
         </button>
       </div>
 
@@ -137,6 +137,7 @@
             <tr>
               <th class="py-3 px-4 cursor-pointer hover:text-white" onclick="sortBy('code')">股票代號 / 名稱 <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3 px-3 cursor-pointer hover:text-white" onclick="sortBy('price')">收盤價 (漲跌) <i class="fa-solid fa-sort ml-1"></i></th>
+              <th class="py-3 px-3 cursor-pointer hover:text-cyan-300 text-cyan-400" onclick="sortBy('bias20')">月線乖離 (Bias) <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3 px-3 cursor-pointer hover:text-emerald-300 text-emerald-400" onclick="sortBy('pe')">當前 PE <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3 px-3 cursor-pointer hover:text-emerald-300 text-emerald-400" onclick="sortBy('eps')">官方財報 EPS <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3 px-3 text-emerald-400 font-semibold cursor-pointer hover:text-emerald-300" onclick="sortBy('eps4Q')">近4季累計EPS > 0 <i class="fa-solid fa-sort ml-1"></i></th>
@@ -171,7 +172,7 @@
     let filteredData = [];
     let currentPage = 1;
     let pageSize = 50;
-    let currentSort = { key: 'yesterdayVol', asc: false }; // 預設依成交量排序
+    let currentSort = { key: 'yesterdayVol', asc: false };
 
     // 四個條件預設全數設為 false (未啟用)
     const filters = {
@@ -227,11 +228,16 @@
         item.ma20 = parseFloat(item.ma20) || item.price;
         item.ma60 = parseFloat(item.ma60) || item.price;
         item.ma20_prev20 = parseFloat(item.ma20_prev20) || item.price;
-        item.high20 = parseFloat(item.high20) || item.price;
+
+        // 計算月線乖離率 Bias20 (%)：(股價 - MA20) / MA20 * 100
+        if (item.ma20 > 0) {
+          item.bias20 = parseFloat((((item.price - item.ma20) / item.ma20) * 100).toFixed(2));
+        } else {
+          item.bias20 = 0.0;
+        }
 
         item.isPriceGtMa20GtMa60 = Boolean(item.isPriceGtMa20GtMa60);
         item.isMa20Rising = Boolean(item.isMa20Rising);
-        item.isNewHigh20 = Boolean(item.isNewHigh20);
       });
     }
 
@@ -258,7 +264,7 @@
           }
         }
 
-        // 條件二：帶量紅K突破
+        // 條件二：帶量紅K突破 (量增 >= 1.48倍 且 收紅上漲)
         if (filters.vol) {
           const volRatio = parseFloat(stock.volumeRatio) || 0;
           const changeRate = parseFloat(stock.changeRate) || 0;
@@ -268,9 +274,13 @@
           }
         }
 
-        // 條件三：技術面強勢多頭
+        // 條件三：均線多頭起漲點 (刪除創20日高，加入乖離率 <= 8% 且收紅)
         if (filters.tech) {
-          if (!(stock.isPriceGtMa20GtMa60 && stock.isMa20Rising && stock.isNewHigh20)) {
+          const isUpToday = (stock.changeRate > 0 || stock.change > 0); // 今日收紅上漲
+          const isBiasSafe = (stock.bias20 > 0 && stock.bias20 <= 8.0); // 乖離在 0% ~ 8% 之間 (起跑點)
+          const isTrendBullish = (stock.isPriceGtMa20GtMa60 && stock.isMa20Rising); // 價>MA20>MA60 且月線上揚
+
+          if (!(isTrendBullish && isBiasSafe && isUpToday)) {
             return false;
           }
         }
@@ -317,7 +327,7 @@
       const configs = {
         chips: { active: 'bg-indigo-600 border-indigo-500 shadow-indigo-600/20 text-white', label: '土洋雙買鎖碼' },
         vol: { active: 'bg-amber-600 border-amber-500 shadow-amber-600/20 text-white', label: '帶量收紅突破' },
-        tech: { active: 'bg-cyan-600 border-cyan-500 shadow-cyan-600/20 text-white', label: '均線多頭創高' },
+        tech: { active: 'bg-cyan-600 border-cyan-500 shadow-cyan-600/20 text-white', label: '均線多頭起漲' },
         traps: { active: 'bg-rose-600 border-rose-500 shadow-rose-600/20 text-white', label: '防踩雷濾網' }
       };
 
@@ -355,7 +365,7 @@
       const pageData = filteredData.slice(startIdx, startIdx + pageSize);
 
       if (filteredData.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="11" class="py-12 text-center text-slate-500">查無符合目前條件的股票。可點擊「重設」查看全市場列表。</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="12" class="py-12 text-center text-slate-500">查無符合目前條件的股票。可點擊「重設」查看全市場列表。</td></tr>`;
         document.getElementById('page-info').innerText = "0 筆";
         return;
       }
@@ -369,6 +379,11 @@
         const marketBadge = item.market === '上市'
           ? `<span class="text-[10px] bg-blue-950 text-blue-300 border border-blue-800 px-1 py-0.2 rounded font-sans">上市</span>`
           : `<span class="text-[10px] bg-purple-950 text-purple-300 border border-purple-800 px-1 py-0.2 rounded font-sans">上櫃</span>`;
+
+        // 乖離率標籤 (0% ~ 8% 為健康起跑點，以青色標註)
+        const biasBadge = (item.bias20 > 0 && item.bias20 <= 8.0)
+          ? `<span class="text-cyan-300 font-bold bg-cyan-950/80 border border-cyan-800 px-1.5 py-0.5 rounded text-[11px] font-sans">+${item.bias20.toFixed(1)}%</span>`
+          : `<span class="${item.bias20 > 8 ? 'text-amber-400' : 'text-slate-400'} text-[11px]">${item.bias20 > 0 ? '+' : ''}${item.bias20.toFixed(1)}%</span>`;
 
         const eps4QBadge = item.eps4Q > 0
           ? `<span class="text-emerald-400 font-bold bg-emerald-950/80 border border-emerald-800 px-1.5 py-0.5 rounded text-[11px] font-sans">是 ($${item.eps4Q.toFixed(2)})</span>`
@@ -399,6 +414,9 @@
               <span class="${changeColor} text-[11px] ml-1.5">
                 (${changeSign}${item.changeRate ? item.changeRate.toFixed(2) : '0.00'}%)
               </span>
+            </td>
+            <td class="py-3 px-3">
+              ${biasBadge}
             </td>
             <td class="py-3 px-3 text-emerald-300 font-semibold">
               ${item.pe > 0 ? item.pe.toFixed(1) + ' 倍' : '<span class="text-slate-500 font-normal">虧損</span>'}
@@ -443,9 +461,9 @@
 
     function exportCSV() {
       if (filteredData.length === 0) return alert("無資料可匯出！");
-      let csv = "市場,股票代號,股票名稱,收盤價,漲跌幅,當前PE,官方財報EPS,近4季累計EPS,近4季EPS大於0,量比,昨日成交量,外資近3日累買,投信近3日累買,投信連買日數,投本比(%),TDCC大戶連增週數\n";
+      let csv = "市場,股票代號,股票名稱,收盤價,漲跌幅,月線乖離率(%),當前PE,官方財報EPS,近4季累計EPS,近4季EPS大於0,量比,昨日成交量,外資近3日累買,投信近3日累買,投信連買日數,投本比(%),TDCC大戶連增週數\n";
       filteredData.forEach(s => {
-        csv += `${s.market},${s.code},${s.name},${s.price},${s.changeRate}%,${s.pe},${s.eps},${s.eps4Q},${s.isEps4QPositive?'是':'否'},${s.volumeRatio},${s.yesterdayVol},${s.foreignNet3d},${s.trustNet3d},${s.trustStreak},${s.trustRatio}%,${s.bigHolderStreak}\n`;
+        csv += `${s.market},${s.code},${s.name},${s.price},${s.changeRate}%,${s.bias20}%,${s.pe},${s.eps},${s.eps4Q},${s.isEps4QPositive?'是':'否'},${s.volumeRatio},${s.yesterdayVol},${s.foreignNet3d},${s.trustNet3d},${s.trustStreak},${s.trustRatio}%,${s.bigHolderStreak}\n`;
       });
       const blob = new Blob(["\uFEFF" + csv], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
