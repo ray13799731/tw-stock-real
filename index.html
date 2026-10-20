@@ -46,7 +46,7 @@
 
   <main class="max-w-7xl mx-auto px-6 py-6 space-y-6">
 
-    <!-- 策略控制看板 (四個按鈕預設皆為未啟用) -->
+    <!-- 策略控制看板 -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3">
       <!-- 條件一：主力土洋雙買鎖碼 -->
       <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between space-y-2.5">
@@ -62,12 +62,12 @@
         </button>
       </div>
 
-      <!-- 條件二：帶量紅K突破 -->
+      <!-- 條件二：帶量紅K突破 (已更新為 1.4 倍) -->
       <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between space-y-2.5">
         <div>
           <span class="text-[11px] font-semibold uppercase tracking-wider text-amber-400">條件二</span>
           <h3 class="font-bold text-white text-sm mt-0.5">帶量紅K突破</h3>
-          <p class="text-[11px] text-slate-400 mt-0.5">昨日量 &ge; 真實20日均量 1.5 倍，<b>且收紅上漲</b></p>
+          <p class="text-[11px] text-slate-400 mt-0.5">昨日量 &ge; 真實20日均量 1.4 倍，<b>且收紅上漲</b></p>
         </div>
         <button id="btn-filter-vol" onclick="toggleFilter('vol')" 
                 class="w-full py-2 px-2.5 rounded-xl font-medium text-xs transition flex items-center justify-center gap-1.5 border bg-slate-800 hover:bg-slate-750 text-slate-300 border-slate-700">
@@ -76,7 +76,7 @@
         </button>
       </div>
 
-      <!-- 條件三：技術面強勢多頭起漲點 (移除創高，加入乖離率<=8%) -->
+      <!-- 條件三：技術面強勢多頭排列 -->
       <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between space-y-2.5">
         <div>
           <span class="text-[11px] font-semibold uppercase tracking-wider text-cyan-400">條件三 (技術起漲)</span>
@@ -174,7 +174,6 @@
     let pageSize = 50;
     let currentSort = { key: 'yesterdayVol', asc: false };
 
-    // 四個條件預設全數設為 false (未啟用)
     const filters = {
       chips: false,
       vol: false,
@@ -229,7 +228,6 @@
         item.ma60 = parseFloat(item.ma60) || item.price;
         item.ma20_prev20 = parseFloat(item.ma20_prev20) || item.price;
 
-        // 計算月線乖離率 Bias20 (%)：(股價 - MA20) / MA20 * 100
         if (item.ma20 > 0) {
           item.bias20 = parseFloat((((item.price - item.ma20) / item.ma20) * 100).toFixed(2));
         } else {
@@ -264,21 +262,21 @@
           }
         }
 
-        // 條件二：帶量紅K突破 (量增 >= 1.38倍 且 收紅上漲)
+        // 條件二：帶量紅K突破 (量增門檻調整為 >= 1.39 且 收紅上漲)
         if (filters.vol) {
           const volRatio = parseFloat(stock.volumeRatio) || 0;
           const changeRate = parseFloat(stock.changeRate) || 0;
           const changeVal = parseFloat(stock.change) || 0;
-          if (volRatio < 1.38 || (changeRate <= 0 && changeVal <= 0)) {
+          if (volRatio < 1.39 || (changeRate <= 0 && changeVal <= 0)) {
             return false;
           }
         }
 
-        // 條件三：均線多頭起漲點 (刪除創20日高，加入乖離率 <= 8% 且收紅)
+        // 條件三：均線多頭起漲點 (乖離率 <= 8% 且收紅)
         if (filters.tech) {
-          const isUpToday = (stock.changeRate > 0 || stock.change > 0); // 今日收紅上漲
-          const isBiasSafe = (stock.bias20 > 0 && stock.bias20 <= 8.0); // 乖離在 0% ~ 8% 之間 (起跑點)
-          const isTrendBullish = (stock.isPriceGtMa20GtMa60 && stock.isMa20Rising); // 價>MA20>MA60 且月線上揚
+          const isUpToday = (stock.changeRate > 0 || stock.change > 0);
+          const isBiasSafe = (stock.bias20 > 0 && stock.bias20 <= 8.0);
+          const isTrendBullish = (stock.isPriceGtMa20GtMa60 && stock.isMa20Rising);
 
           if (!(isTrendBullish && isBiasSafe && isUpToday)) {
             return false;
@@ -380,7 +378,6 @@
           ? `<span class="text-[10px] bg-blue-950 text-blue-300 border border-blue-800 px-1 py-0.2 rounded font-sans">上市</span>`
           : `<span class="text-[10px] bg-purple-950 text-purple-300 border border-purple-800 px-1 py-0.2 rounded font-sans">上櫃</span>`;
 
-        // 乖離率標籤 (0% ~ 8% 為健康起跑點，以青色標註)
         const biasBadge = (item.bias20 > 0 && item.bias20 <= 8.0)
           ? `<span class="text-cyan-300 font-bold bg-cyan-950/80 border border-cyan-800 px-1.5 py-0.5 rounded text-[11px] font-sans">+${item.bias20.toFixed(1)}%</span>`
           : `<span class="${item.bias20 > 8 ? 'text-amber-400' : 'text-slate-400'} text-[11px]">${item.bias20 > 0 ? '+' : ''}${item.bias20.toFixed(1)}%</span>`;
@@ -393,6 +390,11 @@
         const dualBadge = isDualBuy
           ? `<div class="text-[11px]"><span class="text-rose-400 font-bold">外+${item.foreignNet3d}</span> / <span class="text-indigo-400 font-bold">投+${item.trustNet3d}</span> <span class="text-[9px] bg-rose-950 text-rose-300 border border-rose-800 px-1 py-0.2 rounded ml-0.5 font-sans">合拍</span></div>`
           : `<div class="text-[11px] text-slate-400">外${item.foreignNet3d > 0 ? '+' : ''}${item.foreignNet3d} / 投${item.trustNet3d > 0 ? '+' : ''}${item.trustNet3d}</div>`;
+
+        // 量比大於等於 1.39 倍時標註琥珀色高亮
+        const volumeBadge = item.volumeRatio >= 1.39
+          ? `<span class="bg-amber-500/20 text-amber-300 border border-amber-500/30 px-1.5 py-0.5 rounded font-bold">${item.volumeRatio.toFixed(2)}x</span>`
+          : `<span class="text-slate-400">${item.volumeRatio.toFixed(2)}x</span>`;
 
         const trustRatioBadge = item.trustRatio >= 0.1
           ? `<span class="text-fuchsia-300 font-bold bg-fuchsia-950/80 border border-fuchsia-800 px-1.5 py-0.5 rounded text-[11px] font-sans">${item.trustRatio.toFixed(2)}%</span>`
@@ -428,9 +430,7 @@
               ${eps4QBadge}
             </td>
             <td class="py-3 px-3">
-              <span class="${item.volumeRatio >= 1.38 ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30' : 'text-slate-400'} px-1.5 py-0.5 rounded font-bold">
-                ${item.volumeRatio.toFixed(2)}x
-              </span>
+              ${volumeBadge}
             </td>
             <td class="py-3 px-3 text-slate-300">${item.yesterdayVol.toLocaleString()}</td>
             <td class="py-3 px-3">
