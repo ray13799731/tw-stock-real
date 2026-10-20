@@ -252,7 +252,7 @@
 
         // 條件一：土洋雙買鎖碼
         if (filters.chips) {
-          const passTrustStreak = (stock.trustStreak >= 1);
+          const passTrustStreak = (stock.trustStreak >= 3);
           const passDualBuy = (stock.foreignNet3d > 0 && stock.trustNet3d > 0);
           const passTrustFocus = (stock.trustRatio >= 0.03);
           const passBigHolder = (stock.bigHolderStreak >= 0);
