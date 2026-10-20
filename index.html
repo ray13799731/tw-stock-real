@@ -264,12 +264,12 @@
           }
         }
 
-        // 條件二：帶量紅K突破 (量增 >= 1.48倍 且 收紅上漲)
+        // 條件二：帶量紅K突破 (量增 >= 1.38倍 且 收紅上漲)
         if (filters.vol) {
           const volRatio = parseFloat(stock.volumeRatio) || 0;
           const changeRate = parseFloat(stock.changeRate) || 0;
           const changeVal = parseFloat(stock.change) || 0;
-          if (volRatio < 1.48 || (changeRate <= 0 && changeVal <= 0)) {
+          if (volRatio < 1.38 || (changeRate <= 0 && changeVal <= 0)) {
             return false;
           }
         }
@@ -428,7 +428,7 @@
               ${eps4QBadge}
             </td>
             <td class="py-3 px-3">
-              <span class="${item.volumeRatio >= 1.48 ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30' : 'text-slate-400'} px-1.5 py-0.5 rounded font-bold">
+              <span class="${item.volumeRatio >= 1.38 ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30' : 'text-slate-400'} px-1.5 py-0.5 rounded font-bold">
                 ${item.volumeRatio.toFixed(2)}x
               </span>
             </td>
