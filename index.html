@@ -46,8 +46,8 @@
 
   <main class="max-w-7xl mx-auto px-6 py-6 space-y-6">
 
-    <!-- 策略控制看板 -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3">
+    <!-- 策略控制看板 (調整為 4 欄佈局) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
       <!-- 條件一：主力土洋雙買鎖碼 -->
       <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between space-y-2.5">
         <div>
@@ -76,7 +76,7 @@
         </button>
       </div>
 
-      <!-- 條件三：技術面強勢多頭起漲點 -->
+      <!-- 條件三：技術面強勢多頭排列 -->
       <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between space-y-2.5">
         <div>
           <span class="text-[11px] font-semibold uppercase tracking-wider text-cyan-400">條件三 (技術起漲)</span>
@@ -87,20 +87,6 @@
                 class="w-full py-2 px-2.5 rounded-xl font-medium text-xs transition flex items-center justify-center gap-1.5 border bg-slate-800 hover:bg-slate-750 text-slate-300 border-slate-700">
           <i class="fa-solid fa-power-off"></i>
           均線多頭起漲 (未啟用)
-        </button>
-      </div>
-
-      <!-- 條件四：防踩雷濾網 -->
-      <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between space-y-2.5">
-        <div>
-          <span class="text-[11px] font-semibold uppercase tracking-wider text-rose-400">風控機制</span>
-          <h3 class="font-bold text-white text-sm mt-0.5">排除法人陷阱標的</h3>
-          <p class="text-[11px] text-slate-400 mt-0.5">排除外資近3日大賣超、權值套利標的</p>
-        </div>
-        <button id="btn-filter-traps" onclick="toggleFilter('traps')" 
-                class="w-full py-2 px-2.5 rounded-xl font-medium text-xs transition flex items-center justify-center gap-1.5 border bg-slate-800 hover:bg-slate-750 text-slate-300 border-slate-700">
-          <i class="fa-solid fa-power-off"></i>
-          防踩雷濾網 (未啟用)
         </button>
       </div>
 
@@ -140,15 +126,12 @@
               <th class="py-3 px-3 cursor-pointer hover:text-emerald-300 text-emerald-400" onclick="sortBy('pe')">當前 PE <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3 px-3 cursor-pointer hover:text-emerald-300 text-emerald-400" onclick="sortBy('eps')">官方財報 EPS <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3 px-3 text-emerald-400 font-semibold cursor-pointer hover:text-emerald-300" onclick="sortBy('eps4Q')">近4季累計EPS > 0 <i class="fa-solid fa-sort ml-1"></i></th>
-              <!-- 月線乖離已移至此處 -->
               <th class="py-3 px-3 cursor-pointer hover:text-cyan-300 text-cyan-400" onclick="sortBy('bias20')">月線乖離 (Bias) <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3 px-3 cursor-pointer hover:text-white" onclick="sortBy('volumeRatio')">量比 (昨日/MA20) <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3 px-3 cursor-pointer hover:text-white" onclick="sortBy('yesterdayVol')">昨日量 (張) <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3 px-3 cursor-pointer hover:text-white text-indigo-300 font-semibold" onclick="sortBy('foreignNet3d')">土洋近3日買超 <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3 px-3 cursor-pointer hover:text-white" onclick="sortBy('trustStreak')">投信連買 <i class="fa-solid fa-sort ml-1"></i></th>
-              <!-- 新增大戶持股比例欄位 -->
               <th class="py-3 px-3 cursor-pointer hover:text-white text-fuchsia-300 font-semibold" onclick="sortBy('bigHolderRatio')">大戶持股比例 <i class="fa-solid fa-sort ml-1"></i></th>
-              <!-- TDCC大戶連增 (顯示增加增減量) -->
               <th class="py-3 px-3 cursor-pointer hover:text-white text-indigo-300 font-semibold" onclick="sortBy('bigHolderDiff')">TDCC大戶連增 (增減量) <i class="fa-solid fa-sort ml-1"></i></th>
             </tr>
           </thead>
@@ -177,11 +160,11 @@
     let pageSize = 50;
     let currentSort = { key: 'yesterdayVol', asc: false };
 
+    // 篩選條件預設全數設為 false (未啟用)
     const filters = {
       chips: false,
       vol: false,
-      tech: false,
-      traps: false
+      tech: false
     };
 
     window.addEventListener('DOMContentLoaded', async () => {
@@ -222,7 +205,6 @@
         item.foreignNet3d = Number(item.foreignNet3d) || 0;
         item.trustNet3d = Number(item.trustNet3d) || 0;
 
-        // 大戶持股比例與增減量數值處理
         item.bigHolderRatio = parseFloat(item.bigHolderRatio) || 0.0;
         item.bigHolderDiff = parseFloat(item.bigHolderDiff) || 0.0;
         item.bigHolderStreak = Number(item.bigHolderStreak) || 0;
@@ -260,7 +242,7 @@
         if (filters.chips) {
           const passTrustStreak = (stock.trustStreak >= 3);
           const passDualBuy = (stock.foreignNet3d > 0 && stock.trustNet3d > 0);
-          const passBigHolder = (stock.bigHolderStreak >= 0 && stock.bigHolderDiff >= -0.2); // 未大幅減持
+          const passBigHolder = (stock.bigHolderStreak >= 0 && stock.bigHolderDiff >= -0.2);
 
           if (!(passTrustStreak && passDualBuy && passBigHolder)) {
             return false;
@@ -284,13 +266,6 @@
           const isTrendBullish = (stock.isPriceGtMa20GtMa60 && stock.isMa20Rising);
 
           if (!(isTrendBullish && isBiasSafe && isUpToday)) {
-            return false;
-          }
-        }
-
-        // 條件四：排除陷阱
-        if (filters.traps) {
-          if (stock.trapForeignSell || stock.trapLargeIndexArbitrage) {
             return false;
           }
         }
@@ -330,11 +305,10 @@
       const configs = {
         chips: { active: 'bg-indigo-600 border-indigo-500 shadow-indigo-600/20 text-white', label: '土洋雙買鎖碼' },
         vol: { active: 'bg-amber-600 border-amber-500 shadow-amber-600/20 text-white', label: '帶量收紅突破' },
-        tech: { active: 'bg-cyan-600 border-cyan-500 shadow-cyan-600/20 text-white', label: '均線多頭起漲' },
-        traps: { active: 'bg-rose-600 border-rose-500 shadow-rose-600/20 text-white', label: '防踩雷濾網' }
+        tech: { active: 'bg-cyan-600 border-cyan-500 shadow-cyan-600/20 text-white', label: '均線多頭起漲' }
       };
 
-      ['chips', 'vol', 'tech', 'traps'].forEach(type => {
+      ['chips', 'vol', 'tech'].forEach(type => {
         const btn = document.getElementById(`btn-filter-${type}`);
         if (filters[type]) {
           btn.className = `w-full py-2 px-2.5 rounded-xl font-medium text-xs transition flex items-center justify-center gap-1.5 border ${configs[type].active} shadow-lg`;
@@ -357,7 +331,6 @@
       filters.chips = false;
       filters.vol = false;
       filters.tech = false;
-      filters.traps = false;
       updateButtonStyles();
       executeFiltering();
     }
@@ -383,7 +356,6 @@
           ? `<span class="text-[10px] bg-blue-950 text-blue-300 border border-blue-800 px-1 py-0.2 rounded font-sans">上市</span>`
           : `<span class="text-[10px] bg-purple-950 text-purple-300 border border-purple-800 px-1 py-0.2 rounded font-sans">上櫃</span>`;
 
-        // 月線乖離標籤
         const biasBadge = (item.bias20 > 0 && item.bias20 <= 8.0)
           ? `<span class="text-cyan-300 font-bold bg-cyan-950/80 border border-cyan-800 px-1.5 py-0.5 rounded text-[11px] font-sans">+${item.bias20.toFixed(1)}%</span>`
           : `<span class="${item.bias20 > 8 ? 'text-amber-400' : 'text-slate-400'} text-[11px]">${item.bias20 > 0 ? '+' : ''}${item.bias20.toFixed(1)}%</span>`;
@@ -401,12 +373,10 @@
           ? `<span class="bg-amber-500/20 text-amber-300 border border-amber-500/30 px-1.5 py-0.5 rounded font-bold">${item.volumeRatio.toFixed(2)}x</span>`
           : `<span class="text-slate-400">${item.volumeRatio.toFixed(2)}x</span>`;
 
-        // 大戶持股比例 (>= 60% 標註醒目紫色)
         const bigHolderRatioBadge = item.bigHolderRatio >= 60.0
           ? `<span class="text-fuchsia-300 font-bold bg-fuchsia-950/80 border border-fuchsia-800 px-1.5 py-0.5 rounded text-[11px] font-sans">${item.bigHolderRatio.toFixed(1)}%</span>`
           : `<span class="text-slate-300 text-[11px]">${item.bigHolderRatio > 0 ? item.bigHolderRatio.toFixed(1) + '%' : '-'}</span>`;
 
-        // TDCC 大戶連增 ＋ 增加增減量展示 (例如: +2週 (+1.25%) 或 0週 (-0.45%))
         const diffSign = item.bigHolderDiff > 0 ? '+' : '';
         const diffColor = item.bigHolderDiff > 0 ? 'text-rose-400' : (item.bigHolderDiff < 0 ? 'text-emerald-400' : 'text-slate-500');
         const bigHolderDetailBadge = item.bigHolderStreak > 0
