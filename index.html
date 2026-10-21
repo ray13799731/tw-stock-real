@@ -27,7 +27,7 @@
             <h1 class="text-xl font-bold tracking-tight text-white">台股全市場 100% 真實量價籌碼選股系統</h1>
             <span class="text-xs bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2 py-0.5 rounded-full font-mono">100% 真實資料庫</span>
           </div>
-          <p class="text-xs text-slate-400">官方三大法人日報・TDCC 集保千張大戶持股與增減量・yfinance 真實均線計算</p>
+          <p class="text-xs text-slate-400">官方三大法人日報・TDCC 集保千張大戶人數與持股比・yfinance 真實均線計算</p>
         </div>
       </div>
 
@@ -46,7 +46,7 @@
 
   <main class="max-w-7xl mx-auto px-6 py-6 space-y-6">
 
-    <!-- 策略控制看板 (調整為 4 欄佈局) -->
+    <!-- 策略控制看板 -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
       <!-- 條件一：主力土洋雙買鎖碼 -->
       <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between space-y-2.5">
@@ -131,7 +131,8 @@
               <th class="py-3 px-3 cursor-pointer hover:text-white" onclick="sortBy('yesterdayVol')">昨日量 (張) <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3 px-3 cursor-pointer hover:text-white text-indigo-300 font-semibold" onclick="sortBy('foreignNet3d')">土洋近3日買超 <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3 px-3 cursor-pointer hover:text-white" onclick="sortBy('trustStreak')">投信連買 <i class="fa-solid fa-sort ml-1"></i></th>
-              <th class="py-3 px-3 cursor-pointer hover:text-white text-fuchsia-300 font-semibold" onclick="sortBy('bigHolderRatio')">大戶持股比例 <i class="fa-solid fa-sort ml-1"></i></th>
+              <!-- 大戶人數及持股比例欄位 -->
+              <th class="py-3 px-3 cursor-pointer hover:text-white text-fuchsia-300 font-semibold" onclick="sortBy('bigHolderRatio')">大戶人數及持股比例 <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3 px-3 cursor-pointer hover:text-white text-indigo-300 font-semibold" onclick="sortBy('bigHolderDiff')">TDCC大戶連增 (增減量) <i class="fa-solid fa-sort ml-1"></i></th>
             </tr>
           </thead>
@@ -160,7 +161,6 @@
     let pageSize = 50;
     let currentSort = { key: 'yesterdayVol', asc: false };
 
-    // 篩選條件預設全數設為 false (未啟用)
     const filters = {
       chips: false,
       vol: false,
@@ -205,7 +205,9 @@
         item.foreignNet3d = Number(item.foreignNet3d) || 0;
         item.trustNet3d = Number(item.trustNet3d) || 0;
 
+        // 千張大戶持股比、人數與差值
         item.bigHolderRatio = parseFloat(item.bigHolderRatio) || 0.0;
+        item.bigHolderCount = Number(item.bigHolderCount) || 0;
         item.bigHolderDiff = parseFloat(item.bigHolderDiff) || 0.0;
         item.bigHolderStreak = Number(item.bigHolderStreak) || 0;
 
@@ -373,9 +375,12 @@
           ? `<span class="bg-amber-500/20 text-amber-300 border border-amber-500/30 px-1.5 py-0.5 rounded font-bold">${item.volumeRatio.toFixed(2)}x</span>`
           : `<span class="text-slate-400">${item.volumeRatio.toFixed(2)}x</span>`;
 
-        const bigHolderRatioBadge = item.bigHolderRatio >= 60.0
-          ? `<span class="text-fuchsia-300 font-bold bg-fuchsia-950/80 border border-fuchsia-800 px-1.5 py-0.5 rounded text-[11px] font-sans">${item.bigHolderRatio.toFixed(1)}%</span>`
-          : `<span class="text-slate-300 text-[11px]">${item.bigHolderRatio > 0 ? item.bigHolderRatio.toFixed(1) + '%' : '-'}</span>`;
+        // 大戶人數及持股比例標籤 (例如: 85人 (64.8%)，若持股 >= 60% 標註醒目紫色)
+        const countStr = item.bigHolderCount > 0 ? `${item.bigHolderCount}人` : '-人';
+        const ratioStr = item.bigHolderRatio > 0 ? `${item.bigHolderRatio.toFixed(1)}%` : '-';
+        const bigHolderDetailInfo = item.bigHolderRatio >= 60.0
+          ? `<span class="text-fuchsia-300 font-bold bg-fuchsia-950/80 border border-fuchsia-800 px-1.5 py-0.5 rounded text-[11px] font-sans">${countStr} (${ratioStr})</span>`
+          : `<span class="text-slate-300 text-[11px]">${countStr} (${ratioStr})</span>`;
 
         const diffSign = item.bigHolderDiff > 0 ? '+' : '';
         const diffColor = item.bigHolderDiff > 0 ? 'text-rose-400' : (item.bigHolderDiff < 0 ? 'text-emerald-400' : 'text-slate-500');
@@ -417,7 +422,7 @@
             </td>
             <td class="py-3 px-3 ${item.trustStreak >= 3 ? 'text-rose-400 font-bold' : 'text-slate-400'}">+${item.trustStreak} 日</td>
             <td class="py-3 px-3">
-              ${bigHolderRatioBadge}
+              ${bigHolderDetailInfo}
             </td>
             <td class="py-3 px-3">
               ${bigHolderDetailBadge}
@@ -440,9 +445,9 @@
 
     function exportCSV() {
       if (filteredData.length === 0) return alert("無資料可匯出！");
-      let csv = "市場,股票代號,股票名稱,收盤價,漲跌幅,當前PE,官方財報EPS,近4季累計EPS,近4季EPS大於0,月線乖離率(%),量比,昨日成交量,外資近3日累買,投信近3日累買,投信連買日數,大戶持股比例(%),TDCC大戶連增週數,大戶增減量(%)\n";
+      let csv = "市場,股票代號,股票名稱,收盤價,漲跌幅,當前PE,官方財報EPS,近4季累計EPS,近4季EPS大於0,月線乖離率(%),量比,昨日成交量,外資近3日累買,投信近3日累買,投信連買日數,大戶人數,大戶持股比例(%),TDCC大戶連增週數,大戶增減量(%)\n";
       filteredData.forEach(s => {
-        csv += `${s.market},${s.code},${s.name},${s.price},${s.changeRate}%,${s.pe},${s.eps},${s.eps4Q},${s.isEps4QPositive?'是':'否'},${s.bias20}%,${s.volumeRatio},${s.yesterdayVol},${s.foreignNet3d},${s.trustNet3d},${s.trustStreak},${s.bigHolderRatio}%,${s.bigHolderStreak},${s.bigHolderDiff}%\n`;
+        csv += `${s.market},${s.code},${s.name},${s.price},${s.changeRate}%,${s.pe},${s.eps},${s.eps4Q},${s.isEps4QPositive?'是':'否'},${s.bias20}%,${s.volumeRatio},${s.yesterdayVol},${s.foreignNet3d},${s.trustNet3d},${s.trustStreak},${s.bigHolderCount},${s.bigHolderRatio}%,${s.bigHolderStreak},${s.bigHolderDiff}%\n`;
       });
       const blob = new Blob(["\uFEFF" + csv], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
