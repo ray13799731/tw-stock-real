@@ -48,12 +48,12 @@
 
     <!-- 策略控制看板 -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3">
-      <!-- 條件一：主力土洋雙買鎖碼 -->
+      <!-- 條件一：主力土洋雙買鎖碼 (已更新條件說明) -->
       <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between space-y-2.5">
         <div>
           <span class="text-[11px] font-semibold uppercase tracking-wider text-indigo-400">條件一</span>
           <h3 class="font-bold text-white text-sm mt-0.5">主力土洋雙買鎖碼</h3>
-          <p class="text-[11px] text-slate-400 mt-0.5">外資與投信雙向累買或投信積極佈局 (投本比>0.03%)</p>
+          <p class="text-[11px] text-slate-400 mt-0.5">投信連買 &ge; 3 日、外資與投信近3日累買皆>0、大戶未減持</p>
         </div>
         <button id="btn-filter-chips" onclick="toggleFilter('chips')" 
                 class="w-full py-2 px-2.5 rounded-xl font-medium text-xs transition flex items-center justify-center gap-1.5 border bg-slate-800 hover:bg-slate-750 text-slate-300 border-slate-700">
@@ -62,7 +62,7 @@
         </button>
       </div>
 
-      <!-- 條件二：帶量紅K突破 (已更新為 1.4 倍) -->
+      <!-- 條件二：帶量紅K突破 -->
       <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between space-y-2.5">
         <div>
           <span class="text-[11px] font-semibold uppercase tracking-wider text-amber-400">條件二</span>
@@ -145,7 +145,7 @@
               <th class="py-3 px-3 cursor-pointer hover:text-white" onclick="sortBy('yesterdayVol')">昨日量 (張) <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3 px-3 cursor-pointer hover:text-white text-indigo-300 font-semibold" onclick="sortBy('foreignNet3d')">土洋近3日買超 <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3 px-3 cursor-pointer hover:text-white" onclick="sortBy('trustStreak')">投信連買 <i class="fa-solid fa-sort ml-1"></i></th>
-              <th class="py-3 px-3 cursor-pointer hover:text-white text-fuchsia-300 font-semibold" onclick="sortBy('trustRatio')">投本比 (%) <i class="fa-solid fa-sort ml-1"></i></th>
+              <th class="py-3 px-3 cursor-pointer hover:text-fuchsia-300 font-semibold" onclick="sortBy('trustRatio')">投本比 (%) <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3 px-3 cursor-pointer hover:text-white text-indigo-300 font-semibold" onclick="sortBy('bigHolderStreak')">TDCC大戶連增 <i class="fa-solid fa-sort ml-1"></i></th>
             </tr>
           </thead>
@@ -174,6 +174,7 @@
     let pageSize = 50;
     let currentSort = { key: 'yesterdayVol', asc: false };
 
+    // 四個條件預設全數設為 false (未啟用)
     const filters = {
       chips: false,
       vol: false,
@@ -250,19 +251,23 @@
           if (query.length >= 4 && matchCode) return true;
         }
 
-        // 條件一：土洋雙買鎖碼
+        // 條件一：主力土洋雙買鎖碼 (已嚴格設定為 3 項硬指標)
         if (filters.chips) {
+          // 1. 投信處於買超軌道：連續買超天數 >= 3 天
           const passTrustStreak = (stock.trustStreak >= 3);
+
+          // 2. 主力法人積極佈局：外資與投信近 3 日累積買賣超皆為正值 (雙向合拍)
           const passDualBuy = (stock.foreignNet3d > 0 && stock.trustNet3d > 0);
-          const passTrustFocus = (stock.trustRatio >= 0.03);
+
+          // 3. 集保大戶籌碼未鬆動：千張大戶持股比例呈現維持或連續增持狀態 (未明顯減持)
           const passBigHolder = (stock.bigHolderStreak >= 0);
 
-          if (!((passDualBuy || passTrustFocus) && passTrustStreak && passBigHolder)) {
+          if (!(passTrustStreak && passDualBuy && passBigHolder)) {
             return false;
           }
         }
 
-        // 條件二：帶量紅K突破 (量增門檻調整為 >= 1.39 且 收紅上漲)
+        // 條件二：帶量紅K突破 (量增門檻 >= 1.39 且 收紅上漲)
         if (filters.vol) {
           const volRatio = parseFloat(stock.volumeRatio) || 0;
           const changeRate = parseFloat(stock.changeRate) || 0;
@@ -391,7 +396,6 @@
           ? `<div class="text-[11px]"><span class="text-rose-400 font-bold">外+${item.foreignNet3d}</span> / <span class="text-indigo-400 font-bold">投+${item.trustNet3d}</span> <span class="text-[9px] bg-rose-950 text-rose-300 border border-rose-800 px-1 py-0.2 rounded ml-0.5 font-sans">合拍</span></div>`
           : `<div class="text-[11px] text-slate-400">外${item.foreignNet3d > 0 ? '+' : ''}${item.foreignNet3d} / 投${item.trustNet3d > 0 ? '+' : ''}${item.trustNet3d}</div>`;
 
-        // 量比大於等於 1.39 倍時標註琥珀色高亮
         const volumeBadge = item.volumeRatio >= 1.39
           ? `<span class="bg-amber-500/20 text-amber-300 border border-amber-500/30 px-1.5 py-0.5 rounded font-bold">${item.volumeRatio.toFixed(2)}x</span>`
           : `<span class="text-slate-400">${item.volumeRatio.toFixed(2)}x</span>`;
