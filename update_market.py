@@ -22,7 +22,7 @@ def clean_number(val_str):
         return 0.0
 
 # -------------------------------------------------------------------------
-# 1. 抓取上市 (TWSE) 與上櫃 (TPEx) 官方當日收盤行情與資本額
+# 1. 抓取上市 (TWSE) 與上櫃 (TPEx) 官方當日收盤行情
 # -------------------------------------------------------------------------
 def fetch_all_quotes():
     stocks = {}
@@ -84,22 +84,6 @@ def fetch_all_quotes():
                 }
     except Exception as e:
         print(f"上櫃行情抓取異常: {e}")
-
-    capital_dict = {}
-    for url in ["https://openapi.twse.com.tw/v1/opendata/t187ap03_L", "https://openapi.twse.com.tw/v1/opendata/t187ap03_O"]:
-        try:
-            r = requests.get(url, headers=HEADERS, timeout=15)
-            if r.status_code == 200:
-                for row in r.json():
-                    c_code = str(row.get("公司代號", row.get("出表代號", ""))).strip()
-                    cap = clean_number(row.get("實收資本額", row.get("資本額", 0)))
-                    if cap > 0:
-                        capital_dict[c_code] = int(cap // 10000)
-        except Exception:
-            pass
-
-    for c, item in stocks.items():
-        item['totalShares'] = capital_dict.get(c, 50000)
 
     return stocks
 
@@ -430,7 +414,6 @@ def main():
     for code, q in quotes.items():
         price = float(q['price'])
         vol = int(q['yesterdayVol'])
-        total_shares = q.get('totalShares', 50000)
 
         pe = pe_data.get(code, 0.0)
         
@@ -441,14 +424,12 @@ def main():
         else:
             eps = 0.0
 
-        # 近 4 季累計 EPS (TTM EPS)
         if pe > 0 and price > 0:
             eps4q = round(price / pe, 2)
         else:
             eps4q = eps
         is_eps4q_pos = (eps4q > 0)
 
-        # 技術面真實數據
         t = tech_data.get(code, {
             "ma20": price, "ma60": price, "ma20_prev20": price, "high20": price,
             "ma20Vol": max(50, vol), "isPriceGtMa20GtMa60": False, "isMa20Rising": False, "isNewHigh20": False
@@ -459,11 +440,11 @@ def main():
         foreign_net_3d = c['foreignNet3d']
         trust_net_3d = c['trustNet3d']
         trust_streak = c['trustStreak']
-        trust_ratio = round((trust_net_3d / total_shares) * 100, 2) if total_shares > 0 else 0.0
 
         h = holders_data.get(code, {"bigHolderRatio": 0.0, "bigHolderDiff": 0.0, "bigHolderStreak": 0})
         big_holder_streak = h['bigHolderStreak']
         big_holder_ratio = h['bigHolderRatio']
+        big_holder_diff = h['bigHolderDiff']
 
         output.append({
             "code": code,
@@ -489,9 +470,10 @@ def main():
             "foreignNet3d": foreign_net_3d,
             "trustNet3d": trust_net_3d,
             "trustStreak": trust_streak,
-            "trustRatio": trust_ratio,
+            # TDCC 集保大戶資料 (連增週數、最新持股%、增加增減幅)
             "bigHolderStreak": big_holder_streak,
             "bigHolderRatio": big_holder_ratio,
+            "bigHolderDiff": big_holder_diff,
             "trapForeignSell": bool(foreign_net_3d < -3000),
             "trapLargeIndexArbitrage": bool(code in ['2330', '2317', '2454'] and foreign_net_3d < 0)
         })
