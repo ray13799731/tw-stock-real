@@ -22,7 +22,7 @@ def clean_number(val_str):
         return 0.0
 
 # -------------------------------------------------------------------------
-# 1. 抓取上市 (TWSE) 與上櫃 (TPEx) 官方當日收盤行情
+# 1. 抓取上市 (TWSE) 與上櫃 (TPEx) 官方當日收盤行情與官方產業分類
 # -------------------------------------------------------------------------
 def fetch_all_quotes():
     stocks = {}
@@ -84,6 +84,23 @@ def fetch_all_quotes():
                 }
     except Exception as e:
         print(f"上櫃行情抓取異常: {e}")
+
+    # 抓取上市與上櫃官方真實產業類別
+    industry_dict = {}
+    for url in ["https://openapi.twse.com.tw/v1/opendata/t187ap03_L", "https://openapi.twse.com.tw/v1/opendata/t187ap03_O"]:
+        try:
+            r = requests.get(url, headers=HEADERS, timeout=15)
+            if r.status_code == 200:
+                for row in r.json():
+                    c_code = str(row.get("公司代號", row.get("出表代號", ""))).strip()
+                    ind = str(row.get("產業別", "")).strip()
+                    if ind:
+                        industry_dict[c_code] = ind.replace("業", "")
+        except Exception:
+            pass
+
+    for c, item in stocks.items():
+        item['industry'] = industry_dict.get(c, "其他")
 
     return stocks
 
@@ -162,7 +179,7 @@ def update_chips_rolling_cache(today_chips):
         foreign_3d = sum(trimmed_history[d].get(code, {}).get("foreignNet", 0) for d in top3_dates)
         trust_3d = sum(trimmed_history[d].get(code, {}).get("trustNet", 0) for d in top3_dates)
 
-        # 計算投信連買天數
+        # 投信連買日數
         trust_streak = 0
         for d in sorted_dates:
             day_trust_net = trimmed_history[d].get(code, {}).get("trustNet", 0)
@@ -171,7 +188,7 @@ def update_chips_rolling_cache(today_chips):
             else:
                 break
 
-        # 計算外資連買天數
+        # 外資連買日數
         foreign_streak = 0
         for d in sorted_dates:
             day_foreign_net = trimmed_history[d].get(code, {}).get("foreignNet", 0)
@@ -190,7 +207,7 @@ def update_chips_rolling_cache(today_chips):
     return computed_chips
 
 # -------------------------------------------------------------------------
-# 4. TDCC 官方集保股權分散表 (holders_history.json)
+# 4. TDCC 官方集保股權分散表 (holders_history.json) - 包含千張大戶人數與持股%
 # -------------------------------------------------------------------------
 def update_holders_rolling_cache():
     cache_file = "holders_history.json"
@@ -222,6 +239,7 @@ def update_holders_rolling_cache():
                         level = parts[2]
                         people_count = int(clean_number(parts[3]))
                         ratio = clean_number(parts[5])
+                        # 等級 15 為持有 1,000 張 (1,000,000股) 以上千張大戶
                         if level == '15' and len(code) == 4 and code.isdigit():
                             cur_holders[code] = {
                                 "ratio": ratio,
@@ -284,7 +302,7 @@ def update_holders_rolling_cache():
     return computed_holders
 
 # -------------------------------------------------------------------------
-# 5. 抓取真實官方本益比 (PE) 與 EPS
+# 5. 抓取真實官方本益比 (PE) 與 EPS (已排除 114 民國年誤判)
 # -------------------------------------------------------------------------
 def fetch_financial_metrics():
     pe_dict = {}
@@ -471,6 +489,7 @@ def main():
             "code": code,
             "name": q['name'],
             "market": q['market'],
+            "industry": q.get('industry', '其他'),
             "price": price,
             "change": float(q['change']),
             "changeRate": float(q['changeRate']),
