@@ -85,7 +85,20 @@ def fetch_all_quotes():
     except Exception as e:
         print(f"上櫃行情抓取異常: {e}")
 
-    # 抓取上市與上櫃官方真實產業類別
+    # 官方產業代碼中文名稱對照表 (完全對齊官方代碼標準)
+    INDUSTRY_CODE_MAP = {
+        "01": "水泥", "02": "食品", "03": "塑膠", "04": "紡織",
+        "05": "電機機械", "06": "電器電纜", "07": "化學生技", "08": "玻璃陶瓷",
+        "09": "造紙", "10": "鋼鐵", "11": "橡膠", "12": "汽車",
+        "13": "電子", "14": "建材營造", "15": "航運", "16": "觀光餐旅",
+        "17": "金融保險", "18": "貿易百貨", "19": "綜合", "20": "其他",
+        "21": "化學", "22": "生技醫療", "23": "油電燃氣", "24": "半導體",
+        "25": "電腦周邊", "26": "光電", "27": "通信網路", "28": "電子零組件",
+        "29": "電子通路", "30": "資訊服務", "31": "其他電子", "32": "文化創意",
+        "33": "農業科技", "34": "電子商務", "35": "綠能環保", "36": "數位雲端",
+        "37": "運動休閒", "38": "居家生活"
+    }
+
     industry_dict = {}
     for url in ["https://openapi.twse.com.tw/v1/opendata/t187ap03_L", "https://openapi.twse.com.tw/v1/opendata/t187ap03_O"]:
         try:
@@ -93,9 +106,11 @@ def fetch_all_quotes():
             if r.status_code == 200:
                 for row in r.json():
                     c_code = str(row.get("公司代號", row.get("出表代號", ""))).strip()
-                    ind = str(row.get("產業別", "")).strip()
-                    if ind:
-                        industry_dict[c_code] = ind.replace("業", "")
+                    ind_val = str(row.get("產業別", "")).strip()
+                    if ind_val:
+                        ind_key = ind_val.zfill(2) if ind_val.isdigit() else ind_val
+                        ind_name = INDUSTRY_CODE_MAP.get(ind_key, ind_val.replace("業", ""))
+                        industry_dict[c_code] = ind_name
         except Exception:
             pass
 
@@ -150,7 +165,7 @@ def fetch_today_institutional_chips():
     return chips_dict
 
 # -------------------------------------------------------------------------
-# 3. 三大法人滾動快取 (chips_history.json) - 同步計算投信與外資連買日數
+# 3. 三大法人滾動快取 (chips_history.json)
 # -------------------------------------------------------------------------
 def update_chips_rolling_cache(today_chips):
     cache_file = "chips_history.json"
@@ -179,7 +194,6 @@ def update_chips_rolling_cache(today_chips):
         foreign_3d = sum(trimmed_history[d].get(code, {}).get("foreignNet", 0) for d in top3_dates)
         trust_3d = sum(trimmed_history[d].get(code, {}).get("trustNet", 0) for d in top3_dates)
 
-        # 投信連買日數
         trust_streak = 0
         for d in sorted_dates:
             day_trust_net = trimmed_history[d].get(code, {}).get("trustNet", 0)
@@ -188,7 +202,6 @@ def update_chips_rolling_cache(today_chips):
             else:
                 break
 
-        # 外資連買日數
         foreign_streak = 0
         for d in sorted_dates:
             day_foreign_net = trimmed_history[d].get(code, {}).get("foreignNet", 0)
@@ -207,7 +220,7 @@ def update_chips_rolling_cache(today_chips):
     return computed_chips
 
 # -------------------------------------------------------------------------
-# 4. TDCC 官方集保股權分散表 (holders_history.json) - 包含千張大戶人數與持股%
+# 4. TDCC 官方集保股權分散表 (holders_history.json)
 # -------------------------------------------------------------------------
 def update_holders_rolling_cache():
     cache_file = "holders_history.json"
@@ -239,7 +252,6 @@ def update_holders_rolling_cache():
                         level = parts[2]
                         people_count = int(clean_number(parts[3]))
                         ratio = clean_number(parts[5])
-                        # 等級 15 為持有 1,000 張 (1,000,000股) 以上千張大戶
                         if level == '15' and len(code) == 4 and code.isdigit():
                             cur_holders[code] = {
                                 "ratio": ratio,
@@ -302,7 +314,7 @@ def update_holders_rolling_cache():
     return computed_holders
 
 # -------------------------------------------------------------------------
-# 5. 抓取真實官方本益比 (PE) 與 EPS (已排除 114 民國年誤判)
+# 5. 抓取真實官方本益比 (PE) 與 EPS
 # -------------------------------------------------------------------------
 def fetch_financial_metrics():
     pe_dict = {}
