@@ -179,7 +179,7 @@ def update_chips_rolling_cache(today_chips):
     return computed_chips
 
 # -------------------------------------------------------------------------
-# 4. TDCC 官方集保股權分散表 (holders_history.json)
+# 4. TDCC 官方集保股權分散表 (holders_history.json) 包含大戶人數與持股%
 # -------------------------------------------------------------------------
 def update_holders_rolling_cache():
     cache_file = "holders_history.json"
@@ -203,19 +203,25 @@ def update_holders_rolling_cache():
             if len(lines) > 100:
                 cur_holders = {}
                 date_key = today_str
+                # CSV欄位順序: 資料日期, 證券代號, 持股分級, 人數, 股數, 占集保庫存數比例%
                 for line in lines[1:]:
                     parts = [p.strip().replace('"', '') for p in line.split(',')]
                     if len(parts) >= 6:
                         date_key = parts[0]
                         code = parts[1]
                         level = parts[2]
+                        people_count = int(clean_number(parts[3]))
                         ratio = clean_number(parts[5])
+                        # 等級 15 為持有 1,000,000 股 (1,000張) 以上大戶
                         if level == '15' and len(code) == 4 and code.isdigit():
-                            cur_holders[code] = ratio
+                            cur_holders[code] = {
+                                "ratio": ratio,
+                                "count": people_count
+                            }
                 
                 if cur_holders:
                     history[date_key] = cur_holders
-                    print(f"成功取得 TDCC 集保資料，日期: {date_key}，共 {len(cur_holders)} 檔股票大戶持股比率。")
+                    print(f"成功取得 TDCC 集保資料，日期: {date_key}，共 {len(cur_holders)} 檔股票千張大戶人數與持股比率。")
     except Exception as e:
         print(f"TDCC 資料請求失敗 (使用既有快取): {e}")
 
@@ -231,28 +237,38 @@ def update_holders_rolling_cache():
         w_prev1 = sorted_weeks[1]
         w_prev2 = sorted_weeks[2] if len(sorted_weeks) >= 3 else None
 
-        for code, cur_ratio in trimmed_holders[w_curr].items():
+        for code, cur_data in trimmed_holders[w_curr].items():
             streak = 0
-            prev1_ratio = trimmed_holders[w_prev1].get(code, cur_ratio)
+            # 支援新舊快取格式容錯 (若是 float 則直接取比率)
+            cur_ratio = cur_data["ratio"] if isinstance(cur_data, dict) else cur_data
+            cur_count = cur_data.get("count", 0) if isinstance(cur_data, dict) else 0
+
+            prev1_val = trimmed_holders[w_prev1].get(code, cur_ratio)
+            prev1_ratio = prev1_val["ratio"] if isinstance(prev1_val, dict) else prev1_val
             diff1 = cur_ratio - prev1_ratio
 
             if diff1 > 0:
                 streak = 1
                 if w_prev2:
-                    prev2_ratio = trimmed_holders[w_prev2].get(code, prev1_ratio)
+                    prev2_val = trimmed_holders[w_prev2].get(code, prev1_ratio)
+                    prev2_ratio = prev2_val["ratio"] if isinstance(prev2_val, dict) else prev2_val
                     diff2 = prev1_ratio - prev2_ratio
                     if diff2 > 0:
                         streak = 2
 
             computed_holders[code] = {
                 "bigHolderRatio": cur_ratio,
+                "bigHolderCount": cur_count,
                 "bigHolderDiff": round(diff1, 2),
                 "bigHolderStreak": streak
             }
     else:
-        for code in (trimmed_holders[sorted_weeks[0]] if sorted_weeks else {}):
+        for code, cur_data in (trimmed_holders[sorted_weeks[0]].items() if sorted_weeks else []):
+            cur_ratio = cur_data["ratio"] if isinstance(cur_data, dict) else cur_data
+            cur_count = cur_data.get("count", 0) if isinstance(cur_data, dict) else 0
             computed_holders[code] = {
-                "bigHolderRatio": trimmed_holders[sorted_weeks[0]][code],
+                "bigHolderRatio": cur_ratio,
+                "bigHolderCount": cur_count,
                 "bigHolderDiff": 0.0,
                 "bigHolderStreak": 1
             }
@@ -334,7 +350,7 @@ def fetch_financial_metrics():
     return pe_dict, eps_dict
 
 # -------------------------------------------------------------------------
-# 6. yfinance 批次下載真實日 K 線 (MA20, MA60, 20日高, 20日均量)
+# 6. yfinance 批次下載真實日 K 線 (MA20, MA60, 20日均量)
 # -------------------------------------------------------------------------
 def fetch_real_kline_technicals(quotes):
     print("\n[yfinance] 開始批次下載真實歷史日 K 線...")
@@ -358,30 +374,25 @@ def fetch_real_kline_technicals(quotes):
                         continue
 
                     closes = s_df['Close']
-                    highs = s_df['High']
                     vols = s_df['Volume']
 
                     ma20_s = closes.rolling(20).mean()
                     ma60_s = closes.rolling(60).mean()
-                    high20_s = highs.rolling(20).max()
                     ma20_vol_s = vols.rolling(20).mean()
 
                     cur_close = float(closes.iloc[-1])
                     cur_ma20 = float(ma20_s.iloc[-1]) if pd.notnull(ma20_s.iloc[-1]) else cur_close
                     cur_ma60 = float(ma60_s.iloc[-1]) if pd.notnull(ma60_s.iloc[-1]) else cur_ma20
                     ma20_prev20 = float(ma20_s.iloc[-21]) if len(ma20_s) >= 21 and pd.notnull(ma20_s.iloc[-21]) else cur_ma20
-                    cur_high20 = float(high20_s.iloc[-1]) if pd.notnull(high20_s.iloc[-1]) else cur_close
                     cur_ma20_vol = int(ma20_vol_s.iloc[-1] // 1000) if pd.notnull(ma20_vol_s.iloc[-1]) else 100
 
                     results[code] = {
                         "ma20": round(cur_ma20, 2),
                         "ma60": round(cur_ma60, 2),
                         "ma20_prev20": round(ma20_prev20, 2),
-                        "high20": round(cur_high20, 2),
                         "ma20Vol": max(50, cur_ma20_vol),
                         "isPriceGtMa20GtMa60": bool(cur_close > cur_ma20 > cur_ma60),
-                        "isMa20Rising": bool(cur_ma20 > ma20_prev20),
-                        "isNewHigh20": bool(cur_close >= (cur_high20 * 0.998))
+                        "isMa20Rising": bool(cur_ma20 > ma20_prev20)
                     }
                 except Exception:
                     continue
@@ -431,8 +442,8 @@ def main():
         is_eps4q_pos = (eps4q > 0)
 
         t = tech_data.get(code, {
-            "ma20": price, "ma60": price, "ma20_prev20": price, "high20": price,
-            "ma20Vol": max(50, vol), "isPriceGtMa20GtMa60": False, "isMa20Rising": False, "isNewHigh20": False
+            "ma20": price, "ma60": price, "ma20_prev20": price,
+            "ma20Vol": max(50, vol), "isPriceGtMa20GtMa60": False, "isMa20Rising": False
         })
         vol_ratio = round(vol / t['ma20Vol'], 2) if t['ma20Vol'] > 0 else 1.0
 
@@ -441,9 +452,10 @@ def main():
         trust_net_3d = c['trustNet3d']
         trust_streak = c['trustStreak']
 
-        h = holders_data.get(code, {"bigHolderRatio": 0.0, "bigHolderDiff": 0.0, "bigHolderStreak": 0})
+        h = holders_data.get(code, {"bigHolderRatio": 0.0, "bigHolderCount": 0, "bigHolderDiff": 0.0, "bigHolderStreak": 0})
         big_holder_streak = h['bigHolderStreak']
         big_holder_ratio = h['bigHolderRatio']
+        big_holder_count = h.get('bigHolderCount', 0)
         big_holder_diff = h['bigHolderDiff']
 
         output.append({
@@ -460,22 +472,19 @@ def main():
             "ma20": t['ma20'],
             "ma60": t['ma60'],
             "ma20_prev20": t['ma20_prev20'],
-            "high20": t['high20'],
             "isPriceGtMa20GtMa60": t['isPriceGtMa20GtMa60'],
             "isMa20Rising": t['isMa20Rising'],
-            "isNewHigh20": t['isNewHigh20'],
             "yesterdayVol": vol,
             "ma20Vol": t['ma20Vol'],
             "volumeRatio": vol_ratio,
             "foreignNet3d": foreign_net_3d,
             "trustNet3d": trust_net_3d,
             "trustStreak": trust_streak,
-            # TDCC 集保大戶資料 (連增週數、最新持股%、增加增減幅)
+            # TDCC 千張大戶資料 (連增週數、大戶持股比率、大戶人數、大戶增減幅)
             "bigHolderStreak": big_holder_streak,
             "bigHolderRatio": big_holder_ratio,
-            "bigHolderDiff": big_holder_diff,
-            "trapForeignSell": bool(foreign_net_3d < -3000),
-            "trapLargeIndexArbitrage": bool(code in ['2330', '2317', '2454'] and foreign_net_3d < 0)
+            "bigHolderCount": big_holder_count,
+            "bigHolderDiff": big_holder_diff
         })
 
     with open("market_stocks.json", "w", encoding="utf-8") as f:
