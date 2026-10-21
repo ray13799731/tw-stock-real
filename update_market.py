@@ -133,7 +133,7 @@ def fetch_today_institutional_chips():
     return chips_dict
 
 # -------------------------------------------------------------------------
-# 3. 三大法人滾動快取 (chips_history.json)
+# 3. 三大法人滾動快取 (chips_history.json) - 同步計算投信與外資連買日數
 # -------------------------------------------------------------------------
 def update_chips_rolling_cache(today_chips):
     cache_file = "chips_history.json"
@@ -162,6 +162,7 @@ def update_chips_rolling_cache(today_chips):
         foreign_3d = sum(trimmed_history[d].get(code, {}).get("foreignNet", 0) for d in top3_dates)
         trust_3d = sum(trimmed_history[d].get(code, {}).get("trustNet", 0) for d in top3_dates)
 
+        # 計算投信連買天數
         trust_streak = 0
         for d in sorted_dates:
             day_trust_net = trimmed_history[d].get(code, {}).get("trustNet", 0)
@@ -170,16 +171,26 @@ def update_chips_rolling_cache(today_chips):
             else:
                 break
 
+        # 計算外資連買天數
+        foreign_streak = 0
+        for d in sorted_dates:
+            day_foreign_net = trimmed_history[d].get(code, {}).get("foreignNet", 0)
+            if day_foreign_net > 0:
+                foreign_streak += 1
+            else:
+                break
+
         computed_chips[code] = {
             "foreignNet3d": foreign_3d,
             "trustNet3d": trust_3d,
-            "trustStreak": trust_streak
+            "trustStreak": trust_streak,
+            "foreignStreak": foreign_streak
         }
 
     return computed_chips
 
 # -------------------------------------------------------------------------
-# 4. TDCC 官方集保股權分散表 (holders_history.json) 包含大戶人數與持股%
+# 4. TDCC 官方集保股權分散表 (holders_history.json)
 # -------------------------------------------------------------------------
 def update_holders_rolling_cache():
     cache_file = "holders_history.json"
@@ -203,7 +214,6 @@ def update_holders_rolling_cache():
             if len(lines) > 100:
                 cur_holders = {}
                 date_key = today_str
-                # CSV欄位順序: 資料日期, 證券代號, 持股分級, 人數, 股數, 占集保庫存數比例%
                 for line in lines[1:]:
                     parts = [p.strip().replace('"', '') for p in line.split(',')]
                     if len(parts) >= 6:
@@ -212,7 +222,6 @@ def update_holders_rolling_cache():
                         level = parts[2]
                         people_count = int(clean_number(parts[3]))
                         ratio = clean_number(parts[5])
-                        # 等級 15 為持有 1,000,000 股 (1,000張) 以上大戶
                         if level == '15' and len(code) == 4 and code.isdigit():
                             cur_holders[code] = {
                                 "ratio": ratio,
@@ -239,7 +248,6 @@ def update_holders_rolling_cache():
 
         for code, cur_data in trimmed_holders[w_curr].items():
             streak = 0
-            # 支援新舊快取格式容錯 (若是 float 則直接取比率)
             cur_ratio = cur_data["ratio"] if isinstance(cur_data, dict) else cur_data
             cur_count = cur_data.get("count", 0) if isinstance(cur_data, dict) else 0
 
@@ -447,10 +455,11 @@ def main():
         })
         vol_ratio = round(vol / t['ma20Vol'], 2) if t['ma20Vol'] > 0 else 1.0
 
-        c = rolling_chips.get(code, {"foreignNet3d": 0, "trustNet3d": 0, "trustStreak": 0})
+        c = rolling_chips.get(code, {"foreignNet3d": 0, "trustNet3d": 0, "trustStreak": 0, "foreignStreak": 0})
         foreign_net_3d = c['foreignNet3d']
         trust_net_3d = c['trustNet3d']
         trust_streak = c['trustStreak']
+        foreign_streak = c.get('foreignStreak', 0)
 
         h = holders_data.get(code, {"bigHolderRatio": 0.0, "bigHolderCount": 0, "bigHolderDiff": 0.0, "bigHolderStreak": 0})
         big_holder_streak = h['bigHolderStreak']
@@ -480,7 +489,7 @@ def main():
             "foreignNet3d": foreign_net_3d,
             "trustNet3d": trust_net_3d,
             "trustStreak": trust_streak,
-            # TDCC 千張大戶資料 (連增週數、大戶持股比率、大戶人數、大戶增減幅)
+            "foreignStreak": foreign_streak,
             "bigHolderStreak": big_holder_streak,
             "bigHolderRatio": big_holder_ratio,
             "bigHolderCount": big_holder_count,
