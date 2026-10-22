@@ -46,9 +46,9 @@
 
   <main class="max-w-7xl mx-auto px-6 py-6 space-y-6">
 
-    <!-- 策略控制看板 -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
-      <!-- 條件一：主力土洋雙買鎖碼 (投信連買 >= 2 日) -->
+    <!-- 策略控制看板 (5 欄均勻配置) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3">
+      <!-- 條件一：主力土洋雙買鎖碼 (投信連買 >= 1 日) -->
       <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between space-y-2.5">
         <div>
           <span class="text-[11px] font-semibold uppercase tracking-wider text-indigo-400">條件一</span>
@@ -87,6 +87,20 @@
                 class="w-full py-2 px-2.5 rounded-xl font-medium text-xs transition flex items-center justify-center gap-1.5 border bg-slate-800 hover:bg-slate-750 text-slate-300 border-slate-700">
           <i class="fa-solid fa-power-off"></i>
           均線多頭起漲 (未啟用)
+        </button>
+      </div>
+
+      <!-- 昨日漲停股 (漲幅 >= 9%) -->
+      <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between space-y-2.5">
+        <div>
+          <span class="text-[11px] font-semibold uppercase tracking-wider text-rose-400">強勢動能</span>
+          <h3 class="font-bold text-white text-sm mt-0.5">昨日漲停股</h3>
+          <p class="text-[11px] text-slate-400 mt-0.5">篩選官方收盤<b>漲幅 &ge; 9%</b> 之強勢攻頂標的</p>
+        </div>
+        <button id="btn-filter-limitup" onclick="toggleFilter('limitup')" 
+                class="w-full py-2 px-2.5 rounded-xl font-medium text-xs transition flex items-center justify-center gap-1.5 border bg-slate-800 hover:bg-slate-750 text-slate-300 border-slate-700">
+          <i class="fa-solid fa-power-off"></i>
+          昨日漲停股 (未啟用)
         </button>
       </div>
 
@@ -161,10 +175,12 @@
     let pageSize = 50;
     let currentSort = { key: 'yesterdayVol', asc: false };
 
+    // 篩選條件預設全數設為 false (未啟用)
     const filters = {
       chips: false,
       vol: false,
-      tech: false
+      tech: false,
+      limitup: false
     };
 
     window.addEventListener('DOMContentLoaded', async () => {
@@ -272,6 +288,14 @@
           }
         }
 
+        // 條件：昨日漲停股 (漲幅 >= 9.0%)
+        if (filters.limitup) {
+          const changeRate = parseFloat(stock.changeRate) || 0;
+          if (changeRate < 9.0) {
+            return false;
+          }
+        }
+
         return true;
       });
 
@@ -307,11 +331,13 @@
       const configs = {
         chips: { active: 'bg-indigo-600 border-indigo-500 shadow-indigo-600/20 text-white', label: '土洋雙買鎖碼' },
         vol: { active: 'bg-amber-600 border-amber-500 shadow-amber-600/20 text-white', label: '帶量收紅突破' },
-        tech: { active: 'bg-cyan-600 border-cyan-500 shadow-cyan-600/20 text-white', label: '均線多頭起漲' }
+        tech: { active: 'bg-cyan-600 border-cyan-500 shadow-cyan-600/20 text-white', label: '均線多頭起漲' },
+        limitup: { active: 'bg-rose-600 border-rose-500 shadow-rose-600/20 text-white', label: '昨日漲停股' }
       };
 
-      ['chips', 'vol', 'tech'].forEach(type => {
+      ['chips', 'vol', 'tech', 'limitup'].forEach(type => {
         const btn = document.getElementById(`btn-filter-${type}`);
+        if (!btn) return;
         if (filters[type]) {
           btn.className = `w-full py-2 px-2.5 rounded-xl font-medium text-xs transition flex items-center justify-center gap-1.5 border ${configs[type].active} shadow-lg`;
           btn.innerHTML = `<i class="fa-solid fa-check"></i> ${configs[type].label} (已啟用)`;
@@ -333,6 +359,7 @@
       filters.chips = false;
       filters.vol = false;
       filters.tech = false;
+      filters.limitup = false;
       updateButtonStyles();
       executeFiltering();
     }
@@ -358,7 +385,6 @@
           ? `<span class="text-[10px] bg-blue-950 text-blue-300 border border-blue-800 px-1 py-0.2 rounded font-sans">上市</span>`
           : `<span class="text-[10px] bg-purple-950 text-purple-300 border border-purple-800 px-1 py-0.2 rounded font-sans">上櫃</span>`;
 
-        // 官方產業別標籤 (例如: 航運、半導體、電子零組件)
         const industryBadge = item.industry 
           ? `<span class="text-[10px] bg-slate-800 text-slate-300 border border-slate-700 px-1 py-0.2 rounded font-sans font-normal ml-1">${item.industry}</span>` 
           : '';
@@ -380,17 +406,14 @@
           ? `<span class="bg-amber-500/20 text-amber-300 border border-amber-500/30 px-1.5 py-0.5 rounded font-bold">${item.volumeRatio.toFixed(2)}x</span>`
           : `<span class="text-slate-400">${item.volumeRatio.toFixed(2)}x</span>`;
 
-        // 外資連買標籤 (連買 >= 2 日即醒目紅字)
         const foreignStreakBadge = item.foreignStreak >= 2
           ? `<span class="text-rose-400 font-bold">+${item.foreignStreak} 日</span>`
           : `<span class="text-slate-300">+${item.foreignStreak} 日</span>`;
 
-        // 投信連買標籤 (連買 >= 2 日即醒目紅字)
         const trustStreakBadge = item.trustStreak >= 2
           ? `<span class="text-rose-400 font-bold">+${item.trustStreak} 日</span>`
           : `<span class="text-slate-300">+${item.trustStreak} 日</span>`;
 
-        // 大戶人數及持股比例標籤 (例如: 85人 (64.8%))
         const countStr = item.bigHolderCount > 0 ? `${item.bigHolderCount}人` : '-人';
         const ratioStr = item.bigHolderRatio > 0 ? `${item.bigHolderRatio.toFixed(1)}%` : '-';
         const bigHolderDetailInfo = item.bigHolderRatio >= 60.0
