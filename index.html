@@ -53,7 +53,7 @@
         <div>
           <span class="text-[11px] font-semibold uppercase tracking-wider text-indigo-400">條件一</span>
           <h3 class="font-bold text-white text-sm mt-0.5">主力土洋雙買鎖碼</h3>
-          <p class="text-[11px] text-slate-400 mt-0.5">投信連買 &ge; 2 日、外資與投信近3日累買皆>0、大戶未減持</p>
+          <p class="text-[11px] text-slate-400 mt-0.5">投信連買 &ge; 1 日、外資與投信近3日累買皆>0、大戶未減持</p>
         </div>
         <button id="btn-filter-chips" onclick="toggleFilter('chips')" 
                 class="w-full py-2 px-2.5 rounded-xl font-medium text-xs transition flex items-center justify-center gap-1.5 border bg-slate-800 hover:bg-slate-750 text-slate-300 border-slate-700">
@@ -240,9 +240,9 @@
           if (query.length >= 4 && matchCode) return true;
         }
 
-        // 條件一：主力土洋雙買鎖碼 (投信連買 >= 2 日)
+        // 條件一：主力土洋雙買鎖碼 (投信連買 >= 1 日)
         if (filters.chips) {
-          const passTrustStreak = (stock.trustStreak >= 2);
+          const passTrustStreak = (stock.trustStreak >= 1);
           const passDualBuy = (stock.foreignNet3d > 0 && stock.trustNet3d > 0);
           const passBigHolder = (stock.bigHolderStreak >= 0 && stock.bigHolderDiff >= -0.2);
 
