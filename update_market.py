@@ -22,7 +22,7 @@ def clean_number(val_str):
         return 0.0
 
 # -------------------------------------------------------------------------
-# 1. 抓取上市 (TWSE) 與上櫃 (TPEx) 官方當日收盤行情與產業別
+# 1. 抓取上市 (TWSE) 與上櫃 (TPEx) 官方當日收盤行情與產業別 (徹底修復漲跌符號)
 # -------------------------------------------------------------------------
 def fetch_all_quotes():
     stocks = {}
@@ -50,7 +50,7 @@ def fetch_all_quotes():
                 vol_shares = clean_number(row[2])
                 price = clean_number(row[8])
 
-                # 正確欄位對應：row[9] 是符號 (+/-)，row[10] 是漲跌價差數值
+                # 修正：row[9] 為漲跌符號 HTML (<p style='color:red'>+</p>)，row[10] 為漲跌金額數值
                 sign_raw = str(row[9]).lower()
                 diff_val = clean_number(row[10])
 
@@ -98,7 +98,7 @@ def fetch_all_quotes():
                         'price': price, 'change': round(diff, 2), 'changeRate': change_rate,
                         'yesterdayVol': int(vol_shares // 1000)
                     }
-                print(f"成功取得上櫃股票，累計共 {len(stocks)} 檔股票。")
+                print(f"成功取得上櫃股票，累計全市場共 {len(stocks)} 檔股票。")
     except Exception as e:
         print(f"上櫃行情抓取異常: {e}")
 
@@ -137,7 +137,7 @@ def fetch_all_quotes():
     return stocks
 
 # -------------------------------------------------------------------------
-# 2. 抓取當日三大法人買賣超 (上市 T86 + 上櫃 3itrade 官方雙通道)
+# 2. 抓取當日三大法人買賣超 (上市 T86 + 上櫃雙通道 OpenAPI/CSV，徹底打通上櫃籌碼)
 # -------------------------------------------------------------------------
 def fetch_today_institutional_chips():
     chips_dict = {}
@@ -162,52 +162,69 @@ def fetch_today_institutional_chips():
     except Exception as e:
         print(f"上市三大法人抓取異常: {e}")
 
-    print("正在抓取櫃買中心三大法人買賣超日報 (官方穩定接口)...")
-    tpex_count = 0
-    # 通道 A: 櫃買官方標準 JSON 日報
+    print("正在抓取櫃買中心三大法人買賣超日報 (強化容錯通道)...")
+    tpex_inst_count = 0
+    # 通道 A：櫃買官方 OpenAPI
     try:
-        url_tpex_a = "https://www.tpex.org.tw/web/stock/3invest/daily_trading/3itrade_hedge_result.php?l=zh-tw&t=D&response=json"
-        res = requests.get(url_tpex_a, headers=HEADERS, timeout=20)
+        url_tpex = "https://www.tpex.org.tw/openapi/v1/tpex_mainboard_institutional_investors"
+        res = requests.get(url_tpex, headers=HEADERS, timeout=25)
         if res.status_code == 200:
-            data = res.json()
-            rows = data.get('aaData', [])
-            for r in rows:
-                code = str(r[0]).strip()
-                if len(code) != 4 or not code.isdigit():
-                    continue
-                # 欄位：[7] 外資買賣超股數, [10] 投信買賣超股數
-                foreign_shares = clean_number(r[7]) if len(r) > 7 else 0
-                trust_shares = clean_number(r[10]) if len(r) > 10 else 0
-                chips_dict[code] = {
-                    "foreignNet": int(foreign_shares // 1000),
-                    "trustNet": int(trust_shares // 1000)
-                }
-                tpex_count += 1
-            print(f"透過通道 A 成功取得上櫃三大法人資料 {tpex_count} 檔。")
+            items = res.json()
+            if isinstance(items, list):
+                for item in items:
+                    code = str(
+                        item.get("SecuritiesCompanyCode") or 
+                        item.get("Code") or 
+                        item.get("證券代號") or ""
+                    ).strip()
+
+                    if len(code) != 4 or not code.isdigit():
+                        continue
+
+                    foreign_raw = (
+                        item.get("ForeignInvestorsNetBuySell") or
+                        item.get("ForeignNetBuySell") or
+                        item.get("外資及陸資買賣超股數") or
+                        item.get("外資及陸資合計買賣超股數") or 0
+                    )
+                    trust_raw = (
+                        item.get("InvestmentTrustNetBuySell") or
+                        item.get("TrustNetBuySell") or
+                        item.get("投信買賣超股數") or 0
+                    )
+
+                    foreign_shares = clean_number(foreign_raw)
+                    trust_shares = clean_number(trust_raw)
+
+                    chips_dict[code] = {
+                        "foreignNet": int(foreign_shares // 1000),
+                        "trustNet": int(trust_shares // 1000)
+                    }
+                    tpex_inst_count += 1
+            print(f"透過通道 A 成功取得上櫃三大法人資料，共 {tpex_inst_count} 檔。")
     except Exception as e:
         print(f"上櫃通道 A 抓取異常: {e}")
 
-    # 通道 B (備援): 櫃買 OpenAPI
-    if tpex_count == 0:
-        print("切換至上櫃通道 B (OpenAPI 備援)...")
+    # 通道 B (備援)：櫃買官方 CSV 開放報表
+    if tpex_inst_count == 0:
+        print("切換至上櫃通道 B (CSV 備援)...")
         try:
-            url_tpex_b = "https://www.tpex.org.tw/openapi/v1/tpex_mainboard_institutional_investors"
-            res = requests.get(url_tpex_b, headers=HEADERS, timeout=20)
+            url_csv = "https://www.tpex.org.tw/web/stock/3invest/daily_trading/3itrade_hedge_download.php?l=zh-tw&se=EW&t=D"
+            res = requests.get(url_csv, headers=HEADERS, timeout=25)
             if res.status_code == 200:
-                items = res.json()
-                if isinstance(items, list):
-                    for item in items:
-                        code = str(item.get("SecuritiesCompanyCode", item.get("Code", ""))).strip()
-                        if len(code) != 4 or not code.isdigit():
-                            continue
-                        foreign_shares = clean_number(item.get("ForeignInvestorsNetBuySell", item.get("外資及陸資買賣超股數", 0)))
-                        trust_shares = clean_number(item.get("InvestmentTrustNetBuySell", item.get("投信買賣超股數", 0)))
-                        chips_dict[code] = {
-                            "foreignNet": int(foreign_shares // 1000),
-                            "trustNet": int(trust_shares // 1000)
-                        }
-                        tpex_count += 1
-                    print(f"透過通道 B 取得上櫃三大法人資料 {tpex_count} 檔。")
+                for line in res.text.split("\n"):
+                    cols = [c.strip().replace('"', '').replace(',', '') for c in line.split(',')]
+                    if len(cols) >= 12:
+                        code = cols[0]
+                        if len(code) == 4 and code.isdigit():
+                            foreign_shares = clean_number(cols[7])
+                            trust_shares = clean_number(cols[10])
+                            chips_dict[code] = {
+                                "foreignNet": int(foreign_shares // 1000),
+                                "trustNet": int(trust_shares // 1000)
+                            }
+                            tpex_inst_count += 1
+                print(f"透過通道 B 成功取得上櫃三大法人資料，共 {tpex_inst_count} 檔。")
         except Exception as e:
             print(f"上櫃通道 B 抓取異常: {e}")
 
