@@ -1932,15 +1932,15 @@
       "foreignNet": 1,
       "trustNet": 0
     },
-    "1418": {
-      "foreignNet": 1,
-      "trustNet": 0
-    },
     "2702": {
       "foreignNet": -2,
       "trustNet": 0
     },
     "2514": {
+      "foreignNet": 1,
+      "trustNet": 0
+    },
+    "1418": {
       "foreignNet": 1,
       "trustNet": 0
     },
@@ -2168,10 +2168,6 @@
       "foreignNet": -3,
       "trustNet": 0
     },
-    "1470": {
-      "foreignNet": -1,
-      "trustNet": 0
-    },
     "8443": {
       "foreignNet": -1,
       "trustNet": 0
@@ -2180,19 +2176,23 @@
       "foreignNet": -1,
       "trustNet": 0
     },
-    "1413": {
-      "foreignNet": -1,
-      "trustNet": 0
-    },
     "1623": {
       "foreignNet": 5,
       "trustNet": 0
     },
-    "6771": {
+    "1413": {
+      "foreignNet": -1,
+      "trustNet": 0
+    },
+    "1470": {
       "foreignNet": -1,
       "trustNet": 0
     },
     "6582": {
+      "foreignNet": -1,
+      "trustNet": 0
+    },
+    "6771": {
       "foreignNet": -1,
       "trustNet": 0
     },
@@ -2260,11 +2260,11 @@
       "foreignNet": -2,
       "trustNet": 0
     },
-    "1443": {
+    "1730": {
       "foreignNet": -2,
       "trustNet": 0
     },
-    "1730": {
+    "1443": {
       "foreignNet": -2,
       "trustNet": 0
     },
@@ -2428,10 +2428,6 @@
       "foreignNet": -5,
       "trustNet": 0
     },
-    "1531": {
-      "foreignNet": -2,
-      "trustNet": 0
-    },
     "6792": {
       "foreignNet": -5,
       "trustNet": 0
@@ -2446,6 +2442,10 @@
     },
     "1525": {
       "foreignNet": -5,
+      "trustNet": 0
+    },
+    "1531": {
+      "foreignNet": -2,
       "trustNet": 0
     },
     "2397": {
