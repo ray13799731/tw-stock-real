@@ -27,7 +27,7 @@
             <h1 class="text-xl font-bold tracking-tight text-white">台股全市場 100% 真實量價籌碼選股系統</h1>
             <span class="text-xs bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2 py-0.5 rounded-full font-mono">100% 真實資料庫</span>
           </div>
-          <p class="text-xs text-slate-400">官方三大法人日報・外資與投信連買・TDCC 集保千張大戶人數與持股比・yfinance 真實均線計算</p>
+          <p class="text-xs text-slate-400">官方三大法人日報・外資與投信連買・TDCC 集保千張大戶人數與持股比・個人專屬自選股追蹤</p>
         </div>
       </div>
 
@@ -46,8 +46,8 @@
 
   <main class="max-w-7xl mx-auto px-6 py-6 space-y-6">
 
-    <!-- 策略控制看板 (5 欄均勻配置) -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3">
+    <!-- 策略控制看板 (6 欄均勻配置，含「我的自選」) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-3">
       <!-- 條件一：主力土洋雙買鎖碼 (投信連買 >= 1 日) -->
       <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between space-y-2.5">
         <div>
@@ -58,7 +58,7 @@
         <button id="btn-filter-chips" onclick="toggleFilter('chips')" 
                 class="w-full py-2 px-2.5 rounded-xl font-medium text-xs transition flex items-center justify-center gap-1.5 border bg-slate-800 hover:bg-slate-750 text-slate-300 border-slate-700">
           <i class="fa-solid fa-power-off"></i>
-          土洋雙買鎖碼 (未啟用)
+          土洋雙買 (未啟用)
         </button>
       </div>
 
@@ -72,21 +72,21 @@
         <button id="btn-filter-vol" onclick="toggleFilter('vol')" 
                 class="w-full py-2 px-2.5 rounded-xl font-medium text-xs transition flex items-center justify-center gap-1.5 border bg-slate-800 hover:bg-slate-750 text-slate-300 border-slate-700">
           <i class="fa-solid fa-power-off"></i>
-          帶量收紅突破 (未啟用)
+          帶量紅K (未啟用)
         </button>
       </div>
 
       <!-- 條件三：技術面強勢多頭排列 -->
       <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between space-y-2.5">
         <div>
-          <span class="text-[11px] font-semibold uppercase tracking-wider text-cyan-400">條件三 (技術起漲)</span>
+          <span class="text-[11px] font-semibold uppercase tracking-wider text-cyan-400">條件三 (起漲)</span>
           <h3 class="font-bold text-white text-sm mt-0.5">均線多頭・防追高</h3>
           <p class="text-[11px] text-slate-400 mt-0.5">價>MA20>MA60、月線上揚、<b>月線乖離 &le; 8%</b>、收紅</p>
         </div>
         <button id="btn-filter-tech" onclick="toggleFilter('tech')" 
                 class="w-full py-2 px-2.5 rounded-xl font-medium text-xs transition flex items-center justify-center gap-1.5 border bg-slate-800 hover:bg-slate-750 text-slate-300 border-slate-700">
           <i class="fa-solid fa-power-off"></i>
-          均線多頭起漲 (未啟用)
+          多頭起漲 (未啟用)
         </button>
       </div>
 
@@ -100,7 +100,21 @@
         <button id="btn-filter-limitup" onclick="toggleFilter('limitup')" 
                 class="w-full py-2 px-2.5 rounded-xl font-medium text-xs transition flex items-center justify-center gap-1.5 border bg-slate-800 hover:bg-slate-750 text-slate-300 border-slate-700">
           <i class="fa-solid fa-power-off"></i>
-          昨日漲停股 (未啟用)
+          昨日漲停 (未啟用)
+        </button>
+      </div>
+
+      <!-- 我的自選清單 (新增功能按鈕) -->
+      <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between space-y-2.5">
+        <div>
+          <span class="text-[11px] font-semibold uppercase tracking-wider text-yellow-400">個人收藏</span>
+          <h3 class="font-bold text-white text-sm mt-0.5">我的自選清單</h3>
+          <p class="text-[11px] text-slate-400 mt-0.5">點擊標的旁的星號收藏，點此按鈕專注觀察自選</p>
+        </div>
+        <button id="btn-filter-watchlist" onclick="toggleFilter('watchlist')" 
+                class="w-full py-2 px-2.5 rounded-xl font-medium text-xs transition flex items-center justify-center gap-1.5 border bg-slate-800 hover:bg-slate-750 text-slate-300 border-slate-700">
+          <i class="fa-solid fa-star"></i>
+          我的自選 (<span id="stat-watchlist-count">0</span>)
         </button>
       </div>
 
@@ -135,6 +149,8 @@
         <table class="w-full text-left text-xs">
           <thead class="bg-slate-950/70 text-slate-400 uppercase tracking-wider border-b border-slate-800 select-none">
             <tr>
+              <!-- 自選星號欄 -->
+              <th class="py-3 px-3 text-center w-10">自選</th>
               <th class="py-3 px-4 cursor-pointer hover:text-white" onclick="sortBy('code')">股票代號 / 名稱 <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3 px-3 cursor-pointer hover:text-white" onclick="sortBy('price')">收盤價 (漲跌) <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3 px-3 cursor-pointer hover:text-emerald-300 text-emerald-400" onclick="sortBy('pe')">當前 PE <i class="fa-solid fa-sort ml-1"></i></th>
@@ -175,17 +191,50 @@
     let pageSize = 50;
     let currentSort = { key: 'yesterdayVol', asc: false };
 
-    // 篩選條件預設全數設為 false (未啟用)
+    // 從 localStorage 讀取個人自選清單 (儲存代號陣列，如 ["2330", "2610"])
+    let userWatchlist = new Set(JSON.parse(localStorage.getItem('tw_stock_watchlist') || '[]'));
+
+    // 篩選條件
     const filters = {
       chips: false,
       vol: false,
       tech: false,
-      limitup: false
+      limitup: false,
+      watchlist: false // 自選清單快篩
     };
 
     window.addEventListener('DOMContentLoaded', async () => {
+      updateWatchlistBadge();
       await fetchMarketData();
     });
+
+    function saveWatchlist() {
+      localStorage.setItem('tw_stock_watchlist', JSON.stringify(Array.from(userWatchlist)));
+      updateWatchlistBadge();
+    }
+
+    function updateWatchlistBadge() {
+      const badge = document.getElementById('stat-watchlist-count');
+      if (badge) badge.innerText = userWatchlist.size;
+    }
+
+    function toggleWatchlist(code, event) {
+      if (event) event.stopPropagation();
+      const strCode = String(code);
+      if (userWatchlist.has(strCode)) {
+        userWatchlist.delete(strCode);
+      } else {
+        userWatchlist.add(strCode);
+      }
+      saveWatchlist();
+      
+      // 若當前正處於「我的自選」篩選模式下，即時重整篩選結果
+      if (filters.watchlist) {
+        executeFiltering();
+      } else {
+        renderTable();
+      }
+    }
 
     async function fetchMarketData() {
       const statusEl = document.getElementById('data-status');
@@ -249,8 +298,15 @@
       const query = document.getElementById('search-input').value.trim().toLowerCase();
 
       filteredData = rawMarketData.filter(stock => {
+        const strCode = String(stock.code);
+
+        // 自選清單快篩
+        if (filters.watchlist) {
+          if (!userWatchlist.has(strCode)) return false;
+        }
+
         if (query) {
-          const matchCode = String(stock.code).toLowerCase().includes(query);
+          const matchCode = strCode.toLowerCase().includes(query);
           const matchName = String(stock.name).toLowerCase().includes(query);
           if (!matchCode && !matchName) return false;
           if (query.length >= 4 && matchCode) return true;
@@ -329,21 +385,36 @@
 
     function updateButtonStyles() {
       const configs = {
-        chips: { active: 'bg-indigo-600 border-indigo-500 shadow-indigo-600/20 text-white', label: '土洋雙買鎖碼' },
-        vol: { active: 'bg-amber-600 border-amber-500 shadow-amber-600/20 text-white', label: '帶量收紅突破' },
-        tech: { active: 'bg-cyan-600 border-cyan-500 shadow-cyan-600/20 text-white', label: '均線多頭起漲' },
-        limitup: { active: 'bg-rose-600 border-rose-500 shadow-rose-600/20 text-white', label: '昨日漲停股' }
+        chips: { active: 'bg-indigo-600 border-indigo-500 shadow-indigo-600/20 text-white', label: '土洋雙買 (已啟用)' },
+        vol: { active: 'bg-amber-600 border-amber-500 shadow-amber-600/20 text-white', label: '帶量紅K (已啟用)' },
+        tech: { active: 'bg-cyan-600 border-cyan-500 shadow-cyan-600/20 text-white', label: '多頭起漲 (已啟用)' },
+        limitup: { active: 'bg-rose-600 border-rose-500 shadow-rose-600/20 text-white', label: '昨日漲停 (已啟用)' },
+        watchlist: { active: 'bg-yellow-500 border-yellow-400 shadow-yellow-500/20 text-slate-950 font-bold', label: '我的自選' }
       };
 
-      ['chips', 'vol', 'tech', 'limitup'].forEach(type => {
+      ['chips', 'vol', 'tech', 'limitup', 'watchlist'].forEach(type => {
         const btn = document.getElementById(`btn-filter-${type}`);
         if (!btn) return;
         if (filters[type]) {
           btn.className = `w-full py-2 px-2.5 rounded-xl font-medium text-xs transition flex items-center justify-center gap-1.5 border ${configs[type].active} shadow-lg`;
-          btn.innerHTML = `<i class="fa-solid fa-check"></i> ${configs[type].label} (已啟用)`;
+          if (type === 'watchlist') {
+            btn.innerHTML = `<i class="fa-solid fa-star text-slate-950"></i> 我的自選 (<span id="stat-watchlist-count">${userWatchlist.size}</span>)`;
+          } else {
+            btn.innerHTML = `<i class="fa-solid fa-check"></i> ${configs[type].label}`;
+          }
         } else {
           btn.className = "w-full py-2 px-2.5 rounded-xl font-medium text-xs transition flex items-center justify-center gap-1.5 border bg-slate-800 hover:bg-slate-750 text-slate-300 border-slate-700";
-          btn.innerHTML = `<i class="fa-solid fa-power-off"></i> ${configs[type].label} (未啟用)`;
+          if (type === 'watchlist') {
+            btn.innerHTML = `<i class="fa-regular fa-star"></i> 我的自選 (<span id="stat-watchlist-count">${userWatchlist.size}</span>)`;
+          } else {
+            const defaultLabels = {
+              chips: '土洋雙買 (未啟用)',
+              vol: '帶量紅K (未啟用)',
+              tech: '多頭起漲 (未啟用)',
+              limitup: '昨日漲停 (未啟用)'
+            };
+            btn.innerHTML = `<i class="fa-solid fa-power-off"></i> ${defaultLabels[type]}`;
+          }
         }
       });
     }
@@ -360,6 +431,7 @@
       filters.vol = false;
       filters.tech = false;
       filters.limitup = false;
+      filters.watchlist = false;
       updateButtonStyles();
       executeFiltering();
     }
@@ -370,7 +442,7 @@
       const pageData = filteredData.slice(startIdx, startIdx + pageSize);
 
       if (filteredData.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="13" class="py-12 text-center text-slate-500">查無符合目前條件的股票。可點擊「重設」查看全市場列表。</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="14" class="py-12 text-center text-slate-500">查無符合條件的股票。若處於「我的自選」模式，請先點擊股票旁的星號加入自選。</td></tr>`;
         document.getElementById('page-info').innerText = "0 筆";
         return;
       }
@@ -426,8 +498,17 @@
           ? `<div class="text-[11px]"><span class="text-indigo-300 font-bold">+${item.bigHolderStreak} 週</span> <span class="${diffColor} text-[10px] font-sans">(${diffSign}${item.bigHolderDiff.toFixed(2)}%)</span></div>`
           : `<div class="text-[11px] text-slate-500">0 週 <span class="${diffColor} text-[10px] font-sans">(${diffSign}${item.bigHolderDiff.toFixed(2)}%)</span></div>`;
 
+        // 自選星號按鈕判定
+        const isStarred = userWatchlist.has(String(item.code));
+        const starBtn = isStarred
+          ? `<button onclick="toggleWatchlist('${item.code}', event)" title="從自選移除" class="text-yellow-400 hover:scale-125 transition text-sm"><i class="fa-solid fa-star"></i></button>`
+          : `<button onclick="toggleWatchlist('${item.code}', event)" title="加入自選" class="text-slate-600 hover:text-yellow-400 hover:scale-125 transition text-sm"><i class="fa-regular fa-star"></i></button>`;
+
         return `
           <tr class="hover:bg-slate-900/90 transition border-b border-slate-800/40">
+            <td class="py-3 px-3 text-center">
+              ${starBtn}
+            </td>
             <td class="py-3 px-4 font-sans font-bold text-white flex items-center gap-1.5">
               ${marketBadge}
               <span>${item.code}</span>
@@ -489,15 +570,18 @@
 
     function exportCSV() {
       if (filteredData.length === 0) return alert("無資料可匯出！");
-      let csv = "市場,股票代號,股票名稱,產業別,收盤價,漲跌幅,當前PE,官方財報EPS,近4季累計EPS,近4季EPS大於0,月線乖離率(%),量比,昨日成交量,外資近3日累買,投信近3日累買,外資連買日數,投信連買日數,大戶人數,大戶持股比例(%),TDCC大戶連增週數,大戶增減量(%)\n";
+      const isWatchlistMode = filters.watchlist;
+      let csv = "自選,市場,股票代號,股票名稱,產業別,收盤價,漲跌幅,當前PE,官方財報EPS,近4季累計EPS,近4季EPS大於0,月線乖離率(%),量比,昨日成交量,外資近3日累買,投信近3日累買,外資連買日數,投信連買日數,大戶人數,大戶持股比例(%),TDCC大戶連增週數,大戶增減量(%)\n";
       filteredData.forEach(s => {
-        csv += `${s.market},${s.code},${s.name},${s.industry},${s.price},${s.changeRate}%,${s.pe},${s.eps},${s.eps4Q},${s.isEps4QPositive?'是':'否'},${s.bias20}%,${s.volumeRatio},${s.yesterdayVol},${s.foreignNet3d},${s.trustNet3d},${s.foreignStreak},${s.trustStreak},${s.bigHolderCount},${s.bigHolderRatio}%,${s.bigHolderStreak},${s.bigHolderDiff}%\n`;
+        const isStar = userWatchlist.has(String(s.code)) ? '是' : '否';
+        csv += `${isStar},${s.market},${s.code},${s.name},${s.industry},${s.price},${s.changeRate}%,${s.pe},${s.eps},${s.eps4Q},${s.isEps4QPositive?'是':'否'},${s.bias20}%,${s.volumeRatio},${s.yesterdayVol},${s.foreignNet3d},${s.trustNet3d},${s.foreignStreak},${s.trustStreak},${s.bigHolderCount},${s.bigHolderRatio}%,${s.bigHolderStreak},${s.bigHolderDiff}%\n`;
       });
       const blob = new Blob(["\uFEFF" + csv], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
-      link.download = `台股全真實量價與籌碼選股清單_${new Date().toISOString().slice(0, 10)}.csv`;
+      const fileNamePrefix = isWatchlistMode ? '台股自選觀察清單' : '台股全真實量價與籌碼選股清單';
+      link.download = `${fileNamePrefix}_${new Date().toISOString().slice(0, 10)}.csv`;
       link.click();
     }
   </script>
