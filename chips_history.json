@@ -1,4 +1,4334 @@
 {
+  "20261112": {
+    "0050": {
+      "foreignNet": 22452,
+      "trustNet": 4440
+    },
+    "2409": {
+      "foreignNet": 24148,
+      "trustNet": 41
+    },
+    "2618": {
+      "foreignNet": 27889,
+      "trustNet": 55
+    },
+    "2610": {
+      "foreignNet": 21874,
+      "trustNet": 115
+    },
+    "3481": {
+      "foreignNet": 21117,
+      "trustNet": 56
+    },
+    "1802": {
+      "foreignNet": 15907,
+      "trustNet": 3734
+    },
+    "9933": {
+      "foreignNet": 17633,
+      "trustNet": 0
+    },
+    "2303": {
+      "foreignNet": 13864,
+      "trustNet": 1173
+    },
+    "4927": {
+      "foreignNet": 11814,
+      "trustNet": 0
+    },
+    "2886": {
+      "foreignNet": 13367,
+      "trustNet": -2508
+    },
+    "2887": {
+      "foreignNet": 25273,
+      "trustNet": -14755
+    },
+    "2330": {
+      "foreignNet": 6038,
+      "trustNet": 2385
+    },
+    "1528": {
+      "foreignNet": 8138,
+      "trustNet": 0
+    },
+    "2885": {
+      "foreignNet": 14884,
+      "trustNet": -7288
+    },
+    "2891": {
+      "foreignNet": -8182,
+      "trustNet": 14693
+    },
+    "2881": {
+      "foreignNet": -54,
+      "trustNet": 6927
+    },
+    "3715": {
+      "foreignNet": 4766,
+      "trustNet": 0
+    },
+    "1416": {
+      "foreignNet": 4633,
+      "trustNet": 0
+    },
+    "3231": {
+      "foreignNet": 3579,
+      "trustNet": 116
+    },
+    "2883": {
+      "foreignNet": 10348,
+      "trustNet": -5991
+    },
+    "0052": {
+      "foreignNet": 2332,
+      "trustNet": 550
+    },
+    "2408": {
+      "foreignNet": 8565,
+      "trustNet": -4943
+    },
+    "2412": {
+      "foreignNet": 4462,
+      "trustNet": -959
+    },
+    "8150": {
+      "foreignNet": 3542,
+      "trustNet": 20
+    },
+    "2027": {
+      "foreignNet": 1419,
+      "trustNet": 1470
+    },
+    "2892": {
+      "foreignNet": 4017,
+      "trustNet": -139
+    },
+    "1303": {
+      "foreignNet": -12877,
+      "trustNet": 15637
+    },
+    "1326": {
+      "foreignNet": 3636,
+      "trustNet": 0
+    },
+    "4904": {
+      "foreignNet": 2486,
+      "trustNet": 466
+    },
+    "2890": {
+      "foreignNet": 2345,
+      "trustNet": 55
+    },
+    "8112": {
+      "foreignNet": 2721,
+      "trustNet": 67
+    },
+    "6505": {
+      "foreignNet": 2420,
+      "trustNet": 75
+    },
+    "1714": {
+      "foreignNet": 2342,
+      "trustNet": 0
+    },
+    "6239": {
+      "foreignNet": 1897,
+      "trustNet": 72
+    },
+    "5388": {
+      "foreignNet": 2021,
+      "trustNet": 7
+    },
+    "2880": {
+      "foreignNet": 1092,
+      "trustNet": 992
+    },
+    "2614": {
+      "foreignNet": 2512,
+      "trustNet": 0
+    },
+    "2884": {
+      "foreignNet": 10705,
+      "trustNet": -8936
+    },
+    "3006": {
+      "foreignNet": 1991,
+      "trustNet": 0
+    },
+    "6456": {
+      "foreignNet": 2022,
+      "trustNet": 0
+    },
+    "2489": {
+      "foreignNet": 1798,
+      "trustNet": 0
+    },
+    "2337": {
+      "foreignNet": 1718,
+      "trustNet": 2
+    },
+    "2882": {
+      "foreignNet": -5262,
+      "trustNet": 7799
+    },
+    "8213": {
+      "foreignNet": 1835,
+      "trustNet": 0
+    },
+    "5880": {
+      "foreignNet": 1398,
+      "trustNet": 16
+    },
+    "5871": {
+      "foreignNet": 512,
+      "trustNet": 1033
+    },
+    "4958": {
+      "foreignNet": -81,
+      "trustNet": 1301
+    },
+    "6116": {
+      "foreignNet": 1100,
+      "trustNet": 0
+    },
+    "1718": {
+      "foreignNet": 1378,
+      "trustNet": 0
+    },
+    "1216": {
+      "foreignNet": -1161,
+      "trustNet": 2507
+    },
+    "2465": {
+      "foreignNet": 999,
+      "trustNet": 0
+    },
+    "2313": {
+      "foreignNet": 880,
+      "trustNet": -586
+    },
+    "3026": {
+      "foreignNet": 1493,
+      "trustNet": -116
+    },
+    "2034": {
+      "foreignNet": 1420,
+      "trustNet": 0
+    },
+    "5469": {
+      "foreignNet": 1529,
+      "trustNet": -289
+    },
+    "2464": {
+      "foreignNet": 1064,
+      "trustNet": 80
+    },
+    "2385": {
+      "foreignNet": 1256,
+      "trustNet": 7
+    },
+    "1709": {
+      "foreignNet": 1199,
+      "trustNet": 0
+    },
+    "4916": {
+      "foreignNet": 1020,
+      "trustNet": 0
+    },
+    "2441": {
+      "foreignNet": 955,
+      "trustNet": 115
+    },
+    "2801": {
+      "foreignNet": 689,
+      "trustNet": 393
+    },
+    "6757": {
+      "foreignNet": 1097,
+      "trustNet": 0
+    },
+    "3035": {
+      "foreignNet": 1000,
+      "trustNet": 0
+    },
+    "9105": {
+      "foreignNet": 1167,
+      "trustNet": 0
+    },
+    "2367": {
+      "foreignNet": 1034,
+      "trustNet": 0
+    },
+    "8039": {
+      "foreignNet": 678,
+      "trustNet": 1
+    },
+    "1409": {
+      "foreignNet": 901,
+      "trustNet": 0
+    },
+    "3045": {
+      "foreignNet": 830,
+      "trustNet": 245
+    },
+    "3661": {
+      "foreignNet": 519,
+      "trustNet": 218
+    },
+    "1402": {
+      "foreignNet": 822,
+      "trustNet": 0
+    },
+    "2340": {
+      "foreignNet": 545,
+      "trustNet": 0
+    },
+    "6152": {
+      "foreignNet": 754,
+      "trustNet": 0
+    },
+    "2449": {
+      "foreignNet": 742,
+      "trustNet": 19
+    },
+    "6962": {
+      "foreignNet": 733,
+      "trustNet": 0
+    },
+    "2104": {
+      "foreignNet": 610,
+      "trustNet": 0
+    },
+    "1711": {
+      "foreignNet": 638,
+      "trustNet": 0
+    },
+    "6415": {
+      "foreignNet": 535,
+      "trustNet": 44
+    },
+    "3048": {
+      "foreignNet": 601,
+      "trustNet": 0
+    },
+    "2504": {
+      "foreignNet": 670,
+      "trustNet": 18
+    },
+    "6949": {
+      "foreignNet": 594,
+      "trustNet": 0
+    },
+    "8110": {
+      "foreignNet": 559,
+      "trustNet": 0
+    },
+    "2379": {
+      "foreignNet": 551,
+      "trustNet": 63
+    },
+    "2646": {
+      "foreignNet": 570,
+      "trustNet": 0
+    },
+    "4961": {
+      "foreignNet": 487,
+      "trustNet": 73
+    },
+    "3717": {
+      "foreignNet": 555,
+      "trustNet": 0
+    },
+    "2634": {
+      "foreignNet": 516,
+      "trustNet": 0
+    },
+    "2851": {
+      "foreignNet": 611,
+      "trustNet": 0
+    },
+    "2485": {
+      "foreignNet": 500,
+      "trustNet": 0
+    },
+    "1101": {
+      "foreignNet": 908,
+      "trustNet": -6
+    },
+    "4562": {
+      "foreignNet": 493,
+      "trustNet": 0
+    },
+    "3092": {
+      "foreignNet": 478,
+      "trustNet": 0
+    },
+    "2468": {
+      "foreignNet": 475,
+      "trustNet": 0
+    },
+    "3060": {
+      "foreignNet": 438,
+      "trustNet": 0
+    },
+    "2542": {
+      "foreignNet": 432,
+      "trustNet": 24
+    },
+    "3042": {
+      "foreignNet": 311,
+      "trustNet": 0
+    },
+    "3701": {
+      "foreignNet": 243,
+      "trustNet": 0
+    },
+    "3149": {
+      "foreignNet": 421,
+      "trustNet": 0
+    },
+    "2442": {
+      "foreignNet": 453,
+      "trustNet": 0
+    },
+    "1710": {
+      "foreignNet": 325,
+      "trustNet": 0
+    },
+    "1304": {
+      "foreignNet": 417,
+      "trustNet": 0
+    },
+    "2486": {
+      "foreignNet": 430,
+      "trustNet": 0
+    },
+    "6153": {
+      "foreignNet": 423,
+      "trustNet": 0
+    },
+    "1463": {
+      "foreignNet": 407,
+      "trustNet": 0
+    },
+    "6108": {
+      "foreignNet": -164,
+      "trustNet": 0
+    },
+    "5876": {
+      "foreignNet": 700,
+      "trustNet": -306
+    },
+    "3059": {
+      "foreignNet": 369,
+      "trustNet": 0
+    },
+    "2331": {
+      "foreignNet": 368,
+      "trustNet": 0
+    },
+    "5521": {
+      "foreignNet": 368,
+      "trustNet": 0
+    },
+    "6139": {
+      "foreignNet": 299,
+      "trustNet": 0
+    },
+    "3703": {
+      "foreignNet": 314,
+      "trustNet": 0
+    },
+    "2455": {
+      "foreignNet": 487,
+      "trustNet": -286
+    },
+    "1309": {
+      "foreignNet": 441,
+      "trustNet": 0
+    },
+    "2498": {
+      "foreignNet": 307,
+      "trustNet": 0
+    },
+    "6446": {
+      "foreignNet": 273,
+      "trustNet": 61
+    },
+    "8033": {
+      "foreignNet": 333,
+      "trustNet": 0
+    },
+    "2454": {
+      "foreignNet": -427,
+      "trustNet": 589
+    },
+    "2395": {
+      "foreignNet": 821,
+      "trustNet": -483
+    },
+    "2481": {
+      "foreignNet": 289,
+      "trustNet": -39
+    },
+    "2548": {
+      "foreignNet": 301,
+      "trustNet": 0
+    },
+    "2399": {
+      "foreignNet": 290,
+      "trustNet": 0
+    },
+    "6742": {
+      "foreignNet": 290,
+      "trustNet": 0
+    },
+    "6214": {
+      "foreignNet": 291,
+      "trustNet": 4
+    },
+    "6669": {
+      "foreignNet": 1427,
+      "trustNet": -1112
+    },
+    "6526": {
+      "foreignNet": 189,
+      "trustNet": 71
+    },
+    "3031": {
+      "foreignNet": 279,
+      "trustNet": 0
+    },
+    "2484": {
+      "foreignNet": 260,
+      "trustNet": 0
+    },
+    "2547": {
+      "foreignNet": 218,
+      "trustNet": 16
+    },
+    "2425": {
+      "foreignNet": 273,
+      "trustNet": 0
+    },
+    "2493": {
+      "foreignNet": 242,
+      "trustNet": 4
+    },
+    "8070": {
+      "foreignNet": 247,
+      "trustNet": 11
+    },
+    "3167": {
+      "foreignNet": 283,
+      "trustNet": -15
+    },
+    "3312": {
+      "foreignNet": 265,
+      "trustNet": 0
+    },
+    "8105": {
+      "foreignNet": 259,
+      "trustNet": 0
+    },
+    "9939": {
+      "foreignNet": 258,
+      "trustNet": 0
+    },
+    "5243": {
+      "foreignNet": 236,
+      "trustNet": 0
+    },
+    "2359": {
+      "foreignNet": 244,
+      "trustNet": 0
+    },
+    "4938": {
+      "foreignNet": -577,
+      "trustNet": 1015
+    },
+    "9914": {
+      "foreignNet": 215,
+      "trustNet": 0
+    },
+    "2402": {
+      "foreignNet": 199,
+      "trustNet": 0
+    },
+    "6141": {
+      "foreignNet": 221,
+      "trustNet": 0
+    },
+    "2539": {
+      "foreignNet": 197,
+      "trustNet": 0
+    },
+    "3019": {
+      "foreignNet": 206,
+      "trustNet": 0
+    },
+    "7711": {
+      "foreignNet": 179,
+      "trustNet": 0
+    },
+    "6226": {
+      "foreignNet": 217,
+      "trustNet": 0
+    },
+    "3008": {
+      "foreignNet": 149,
+      "trustNet": 16
+    },
+    "6805": {
+      "foreignNet": -285,
+      "trustNet": 496
+    },
+    "1308": {
+      "foreignNet": 175,
+      "trustNet": 0
+    },
+    "3135": {
+      "foreignNet": 205,
+      "trustNet": 0
+    },
+    "1536": {
+      "foreignNet": 202,
+      "trustNet": 0
+    },
+    "1708": {
+      "foreignNet": 204,
+      "trustNet": 0
+    },
+    "2072": {
+      "foreignNet": 198,
+      "trustNet": 0
+    },
+    "6176": {
+      "foreignNet": 184,
+      "trustNet": 5
+    },
+    "3617": {
+      "foreignNet": 180,
+      "trustNet": 3
+    },
+    "4919": {
+      "foreignNet": 124,
+      "trustNet": 13
+    },
+    "8210": {
+      "foreignNet": 218,
+      "trustNet": -50
+    },
+    "2451": {
+      "foreignNet": 213,
+      "trustNet": -5
+    },
+    "3094": {
+      "foreignNet": 193,
+      "trustNet": 0
+    },
+    "1215": {
+      "foreignNet": 189,
+      "trustNet": 0
+    },
+    "2630": {
+      "foreignNet": 186,
+      "trustNet": 0
+    },
+    "4720": {
+      "foreignNet": 183,
+      "trustNet": 0
+    },
+    "2342": {
+      "foreignNet": 178,
+      "trustNet": 0
+    },
+    "6873": {
+      "foreignNet": 182,
+      "trustNet": 0
+    },
+    "6756": {
+      "foreignNet": 179,
+      "trustNet": 0
+    },
+    "4540": {
+      "foreignNet": 172,
+      "trustNet": 0
+    },
+    "2474": {
+      "foreignNet": 179,
+      "trustNet": 11
+    },
+    "4770": {
+      "foreignNet": 150,
+      "trustNet": 0
+    },
+    "1476": {
+      "foreignNet": -27,
+      "trustNet": 203
+    },
+    "2480": {
+      "foreignNet": 142,
+      "trustNet": 4
+    },
+    "3311": {
+      "foreignNet": 199,
+      "trustNet": 0
+    },
+    "2211": {
+      "foreignNet": 167,
+      "trustNet": 0
+    },
+    "4956": {
+      "foreignNet": 165,
+      "trustNet": 0
+    },
+    "3013": {
+      "foreignNet": 158,
+      "trustNet": 0
+    },
+    "2852": {
+      "foreignNet": 162,
+      "trustNet": 0
+    },
+    "2374": {
+      "foreignNet": 163,
+      "trustNet": 0
+    },
+    "1721": {
+      "foreignNet": 162,
+      "trustNet": 0
+    },
+    "2471": {
+      "foreignNet": 161,
+      "trustNet": 0
+    },
+    "5522": {
+      "foreignNet": 181,
+      "trustNet": 4
+    },
+    "6202": {
+      "foreignNet": 156,
+      "trustNet": 0
+    },
+    "3030": {
+      "foreignNet": 134,
+      "trustNet": 0
+    },
+    "3376": {
+      "foreignNet": 566,
+      "trustNet": -510
+    },
+    "3591": {
+      "foreignNet": 155,
+      "trustNet": 0
+    },
+    "6743": {
+      "foreignNet": 144,
+      "trustNet": 2
+    },
+    "2338": {
+      "foreignNet": 156,
+      "trustNet": 0
+    },
+    "4968": {
+      "foreignNet": 148,
+      "trustNet": 0
+    },
+    "2530": {
+      "foreignNet": 129,
+      "trustNet": 10
+    },
+    "6168": {
+      "foreignNet": 144,
+      "trustNet": 0
+    },
+    "2049": {
+      "foreignNet": 80,
+      "trustNet": 90
+    },
+    "3504": {
+      "foreignNet": 144,
+      "trustNet": 0
+    },
+    "8131": {
+      "foreignNet": 140,
+      "trustNet": 0
+    },
+    "6715": {
+      "foreignNet": 67,
+      "trustNet": 47
+    },
+    "9921": {
+      "foreignNet": 129,
+      "trustNet": 0
+    },
+    "2233": {
+      "foreignNet": 139,
+      "trustNet": 0
+    },
+    "6789": {
+      "foreignNet": 127,
+      "trustNet": 1
+    },
+    "4576": {
+      "foreignNet": 122,
+      "trustNet": 0
+    },
+    "6533": {
+      "foreignNet": 132,
+      "trustNet": 0
+    },
+    "9103": {
+      "foreignNet": 133,
+      "trustNet": 0
+    },
+    "2476": {
+      "foreignNet": 23,
+      "trustNet": 100
+    },
+    "3047": {
+      "foreignNet": 127,
+      "trustNet": 0
+    },
+    "8261": {
+      "foreignNet": 122,
+      "trustNet": 0
+    },
+    "3694": {
+      "foreignNet": 128,
+      "trustNet": 0
+    },
+    "3437": {
+      "foreignNet": 123,
+      "trustNet": 0
+    },
+    "7786": {
+      "foreignNet": 116,
+      "trustNet": 0
+    },
+    "2645": {
+      "foreignNet": 136,
+      "trustNet": 0
+    },
+    "1522": {
+      "foreignNet": 120,
+      "trustNet": 0
+    },
+    "6885": {
+      "foreignNet": 106,
+      "trustNet": 0
+    },
+    "2605": {
+      "foreignNet": -17,
+      "trustNet": 0
+    },
+    "3029": {
+      "foreignNet": -46,
+      "trustNet": 6
+    },
+    "3090": {
+      "foreignNet": 131,
+      "trustNet": 0
+    },
+    "2607": {
+      "foreignNet": 105,
+      "trustNet": 0
+    },
+    "6165": {
+      "foreignNet": 71,
+      "trustNet": 0
+    },
+    "6405": {
+      "foreignNet": 110,
+      "trustNet": 0
+    },
+    "2546": {
+      "foreignNet": 109,
+      "trustNet": 0
+    },
+    "3028": {
+      "foreignNet": 96,
+      "trustNet": 8
+    },
+    "6205": {
+      "foreignNet": 109,
+      "trustNet": 0
+    },
+    "2375": {
+      "foreignNet": 106,
+      "trustNet": 0
+    },
+    "6472": {
+      "foreignNet": 102,
+      "trustNet": 0
+    },
+    "3450": {
+      "foreignNet": 404,
+      "trustNet": -318
+    },
+    "2516": {
+      "foreignNet": 113,
+      "trustNet": 0
+    },
+    "4155": {
+      "foreignNet": 223,
+      "trustNet": 0
+    },
+    "4545": {
+      "foreignNet": 88,
+      "trustNet": 0
+    },
+    "6670": {
+      "foreignNet": 66,
+      "trustNet": 30
+    },
+    "1108": {
+      "foreignNet": 98,
+      "trustNet": 0
+    },
+    "4764": {
+      "foreignNet": 95,
+      "trustNet": 0
+    },
+    "2543": {
+      "foreignNet": 95,
+      "trustNet": 0
+    },
+    "3321": {
+      "foreignNet": 95,
+      "trustNet": 0
+    },
+    "1597": {
+      "foreignNet": 97,
+      "trustNet": 0
+    },
+    "8249": {
+      "foreignNet": 96,
+      "trustNet": 0
+    },
+    "3011": {
+      "foreignNet": 92,
+      "trustNet": 0
+    },
+    "5285": {
+      "foreignNet": 93,
+      "trustNet": 0
+    },
+    "5471": {
+      "foreignNet": 82,
+      "trustNet": 0
+    },
+    "6689": {
+      "foreignNet": 88,
+      "trustNet": 0
+    },
+    "1305": {
+      "foreignNet": 30,
+      "trustNet": 0
+    },
+    "4739": {
+      "foreignNet": 103,
+      "trustNet": 0
+    },
+    "3040": {
+      "foreignNet": 192,
+      "trustNet": 0
+    },
+    "7799": {
+      "foreignNet": 88,
+      "trustNet": 0
+    },
+    "2369": {
+      "foreignNet": 82,
+      "trustNet": 0
+    },
+    "2545": {
+      "foreignNet": 97,
+      "trustNet": 0
+    },
+    "6605": {
+      "foreignNet": 81,
+      "trustNet": 0
+    },
+    "2731": {
+      "foreignNet": 84,
+      "trustNet": 0
+    },
+    "7822": {
+      "foreignNet": 83,
+      "trustNet": 0
+    },
+    "6235": {
+      "foreignNet": 82,
+      "trustNet": 0
+    },
+    "1310": {
+      "foreignNet": 344,
+      "trustNet": 0
+    },
+    "6409": {
+      "foreignNet": 75,
+      "trustNet": 1
+    },
+    "4414": {
+      "foreignNet": 89,
+      "trustNet": 0
+    },
+    "1515": {
+      "foreignNet": 73,
+      "trustNet": 0
+    },
+    "1808": {
+      "foreignNet": 78,
+      "trustNet": 0
+    },
+    "3010": {
+      "foreignNet": 74,
+      "trustNet": 5
+    },
+    "2022": {
+      "foreignNet": 73,
+      "trustNet": 0
+    },
+    "4564": {
+      "foreignNet": 72,
+      "trustNet": 0
+    },
+    "3550": {
+      "foreignNet": 68,
+      "trustNet": 0
+    },
+    "6166": {
+      "foreignNet": 73,
+      "trustNet": 0
+    },
+    "2329": {
+      "foreignNet": 84,
+      "trustNet": 0
+    },
+    "8162": {
+      "foreignNet": 67,
+      "trustNet": 0
+    },
+    "2540": {
+      "foreignNet": 97,
+      "trustNet": 0
+    },
+    "5434": {
+      "foreignNet": 71,
+      "trustNet": 1
+    },
+    "9946": {
+      "foreignNet": 68,
+      "trustNet": 0
+    },
+    "6197": {
+      "foreignNet": 48,
+      "trustNet": 0
+    },
+    "4722": {
+      "foreignNet": 62,
+      "trustNet": 0
+    },
+    "6937": {
+      "foreignNet": 58,
+      "trustNet": 0
+    },
+    "5531": {
+      "foreignNet": 64,
+      "trustNet": 0
+    },
+    "3563": {
+      "foreignNet": 64,
+      "trustNet": 0
+    },
+    "3583": {
+      "foreignNet": 54,
+      "trustNet": 0
+    },
+    "3054": {
+      "foreignNet": 63,
+      "trustNet": 0
+    },
+    "1762": {
+      "foreignNet": 61,
+      "trustNet": 0
+    },
+    "4552": {
+      "foreignNet": 59,
+      "trustNet": 0
+    },
+    "5907": {
+      "foreignNet": 59,
+      "trustNet": 0
+    },
+    "4746": {
+      "foreignNet": 56,
+      "trustNet": 0
+    },
+    "3338": {
+      "foreignNet": 56,
+      "trustNet": 0
+    },
+    "5222": {
+      "foreignNet": 58,
+      "trustNet": -3
+    },
+    "3515": {
+      "foreignNet": 51,
+      "trustNet": 2
+    },
+    "8374": {
+      "foreignNet": 55,
+      "trustNet": 0
+    },
+    "8404": {
+      "foreignNet": 54,
+      "trustNet": 0
+    },
+    "6426": {
+      "foreignNet": 49,
+      "trustNet": 14
+    },
+    "2597": {
+      "foreignNet": 54,
+      "trustNet": 0
+    },
+    "6994": {
+      "foreignNet": 53,
+      "trustNet": 0
+    },
+    "9935": {
+      "foreignNet": 49,
+      "trustNet": 2
+    },
+    "1231": {
+      "foreignNet": 51,
+      "trustNet": 0
+    },
+    "1524": {
+      "foreignNet": 51,
+      "trustNet": 0
+    },
+    "2258": {
+      "foreignNet": 21,
+      "trustNet": 0
+    },
+    "1514": {
+      "foreignNet": 51,
+      "trustNet": 0
+    },
+    "4441": {
+      "foreignNet": 49,
+      "trustNet": 0
+    },
+    "4585": {
+      "foreignNet": 33,
+      "trustNet": 0
+    },
+    "2537": {
+      "foreignNet": 49,
+      "trustNet": 0
+    },
+    "9907": {
+      "foreignNet": 26,
+      "trustNet": 21
+    },
+    "6442": {
+      "foreignNet": 27,
+      "trustNet": -4
+    },
+    "3056": {
+      "foreignNet": 94,
+      "trustNet": 0
+    },
+    "3518": {
+      "foreignNet": 46,
+      "trustNet": 0
+    },
+    "6243": {
+      "foreignNet": 46,
+      "trustNet": 0
+    },
+    "2906": {
+      "foreignNet": 35,
+      "trustNet": 0
+    },
+    "4934": {
+      "foreignNet": 46,
+      "trustNet": 0
+    },
+    "1582": {
+      "foreignNet": 44,
+      "trustNet": 0
+    },
+    "1783": {
+      "foreignNet": 44,
+      "trustNet": 0
+    },
+    "2033": {
+      "foreignNet": 43,
+      "trustNet": 0
+    },
+    "2434": {
+      "foreignNet": 43,
+      "trustNet": 0
+    },
+    "2393": {
+      "foreignNet": 6,
+      "trustNet": 24
+    },
+    "3138": {
+      "foreignNet": 43,
+      "trustNet": 0
+    },
+    "5203": {
+      "foreignNet": 42,
+      "trustNet": 0
+    },
+    "3257": {
+      "foreignNet": 43,
+      "trustNet": 0
+    },
+    "6525": {
+      "foreignNet": 46,
+      "trustNet": 0
+    },
+    "8201": {
+      "foreignNet": 38,
+      "trustNet": 0
+    },
+    "2404": {
+      "foreignNet": 193,
+      "trustNet": -182
+    },
+    "6668": {
+      "foreignNet": 44,
+      "trustNet": 0
+    },
+    "6133": {
+      "foreignNet": 38,
+      "trustNet": 0
+    },
+    "7689": {
+      "foreignNet": 49,
+      "trustNet": 0
+    },
+    "6695": {
+      "foreignNet": 37,
+      "trustNet": 0
+    },
+    "2365": {
+      "foreignNet": 36,
+      "trustNet": 0
+    },
+    "3346": {
+      "foreignNet": 35,
+      "trustNet": 0
+    },
+    "7795": {
+      "foreignNet": 32,
+      "trustNet": 0
+    },
+    "2495": {
+      "foreignNet": 35,
+      "trustNet": 0
+    },
+    "6887": {
+      "foreignNet": 41,
+      "trustNet": 0
+    },
+    "2911": {
+      "foreignNet": 35,
+      "trustNet": 0
+    },
+    "2483": {
+      "foreignNet": 34,
+      "trustNet": 0
+    },
+    "1731": {
+      "foreignNet": 34,
+      "trustNet": 0
+    },
+    "6477": {
+      "foreignNet": 33,
+      "trustNet": 0
+    },
+    "6591": {
+      "foreignNet": 32,
+      "trustNet": 0
+    },
+    "8438": {
+      "foreignNet": 32,
+      "trustNet": 0
+    },
+    "6451": {
+      "foreignNet": 35,
+      "trustNet": 0
+    },
+    "7780": {
+      "foreignNet": 31,
+      "trustNet": 0
+    },
+    "6216": {
+      "foreignNet": 32,
+      "trustNet": 0
+    },
+    "1907": {
+      "foreignNet": 37,
+      "trustNet": 0
+    },
+    "4551": {
+      "foreignNet": -68,
+      "trustNet": 97
+    },
+    "2388": {
+      "foreignNet": 5,
+      "trustNet": 0
+    },
+    "2413": {
+      "foreignNet": 30,
+      "trustNet": 0
+    },
+    "3652": {
+      "foreignNet": 29,
+      "trustNet": 0
+    },
+    "3645": {
+      "foreignNet": 23,
+      "trustNet": 0
+    },
+    "1568": {
+      "foreignNet": 27,
+      "trustNet": 0
+    },
+    "2611": {
+      "foreignNet": 26,
+      "trustNet": 0
+    },
+    "1451": {
+      "foreignNet": 16,
+      "trustNet": 0
+    },
+    "7855": {
+      "foreignNet": 26,
+      "trustNet": 0
+    },
+    "6776": {
+      "foreignNet": 26,
+      "trustNet": 0
+    },
+    "2069": {
+      "foreignNet": 25,
+      "trustNet": 0
+    },
+    "7710": {
+      "foreignNet": 30,
+      "trustNet": 0
+    },
+    "2812": {
+      "foreignNet": -20,
+      "trustNet": 0
+    },
+    "2601": {
+      "foreignNet": 24,
+      "trustNet": 0
+    },
+    "8104": {
+      "foreignNet": 24,
+      "trustNet": 0
+    },
+    "6573": {
+      "foreignNet": 23,
+      "trustNet": 0
+    },
+    "6558": {
+      "foreignNet": 23,
+      "trustNet": 0
+    },
+    "2017": {
+      "foreignNet": 15,
+      "trustNet": 0
+    },
+    "8072": {
+      "foreignNet": 22,
+      "trustNet": 0
+    },
+    "2387": {
+      "foreignNet": 1,
+      "trustNet": 21
+    },
+    "1235": {
+      "foreignNet": 22,
+      "trustNet": 0
+    },
+    "6861": {
+      "foreignNet": 13,
+      "trustNet": 0
+    },
+    "2364": {
+      "foreignNet": 21,
+      "trustNet": 0
+    },
+    "3413": {
+      "foreignNet": 21,
+      "trustNet": 0
+    },
+    "1529": {
+      "foreignNet": 21,
+      "trustNet": 0
+    },
+    "1323": {
+      "foreignNet": 18,
+      "trustNet": 0
+    },
+    "4571": {
+      "foreignNet": 20,
+      "trustNet": 0
+    },
+    "1236": {
+      "foreignNet": 20,
+      "trustNet": 0
+    },
+    "1438": {
+      "foreignNet": 21,
+      "trustNet": 0
+    },
+    "2380": {
+      "foreignNet": 20,
+      "trustNet": 0
+    },
+    "5269": {
+      "foreignNet": 9,
+      "trustNet": -1
+    },
+    "3229": {
+      "foreignNet": 20,
+      "trustNet": 0
+    },
+    "3419": {
+      "foreignNet": 15,
+      "trustNet": 0
+    },
+    "1432": {
+      "foreignNet": 18,
+      "trustNet": 0
+    },
+    "7610": {
+      "foreignNet": 10,
+      "trustNet": 0
+    },
+    "3023": {
+      "foreignNet": 19,
+      "trustNet": -2
+    },
+    "4976": {
+      "foreignNet": 18,
+      "trustNet": 0
+    },
+    "3712": {
+      "foreignNet": 18,
+      "trustNet": 0
+    },
+    "2509": {
+      "foreignNet": 21,
+      "trustNet": 0
+    },
+    "2462": {
+      "foreignNet": 17,
+      "trustNet": 0
+    },
+    "9938": {
+      "foreignNet": 23,
+      "trustNet": 8
+    },
+    "1817": {
+      "foreignNet": 17,
+      "trustNet": 0
+    },
+    "1472": {
+      "foreignNet": 13,
+      "trustNet": 0
+    },
+    "4736": {
+      "foreignNet": 4,
+      "trustNet": 7
+    },
+    "6117": {
+      "foreignNet": 18,
+      "trustNet": 0
+    },
+    "6924": {
+      "foreignNet": 15,
+      "trustNet": 0
+    },
+    "2617": {
+      "foreignNet": 15,
+      "trustNet": 0
+    },
+    "2429": {
+      "foreignNet": 16,
+      "trustNet": 0
+    },
+    "6541": {
+      "foreignNet": 15,
+      "trustNet": 0
+    },
+    "3002": {
+      "foreignNet": 15,
+      "trustNet": 0
+    },
+    "4582": {
+      "foreignNet": -1,
+      "trustNet": 0
+    },
+    "2428": {
+      "foreignNet": 71,
+      "trustNet": -60
+    },
+    "1623": {
+      "foreignNet": 36,
+      "trustNet": 0
+    },
+    "2231": {
+      "foreignNet": 4,
+      "trustNet": 0
+    },
+    "5484": {
+      "foreignNet": 15,
+      "trustNet": 0
+    },
+    "3150": {
+      "foreignNet": 9,
+      "trustNet": 0
+    },
+    "8429": {
+      "foreignNet": 13,
+      "trustNet": 0
+    },
+    "2423": {
+      "foreignNet": 13,
+      "trustNet": 0
+    },
+    "1735": {
+      "foreignNet": 13,
+      "trustNet": 0
+    },
+    "1733": {
+      "foreignNet": 13,
+      "trustNet": 0
+    },
+    "8467": {
+      "foreignNet": 12,
+      "trustNet": 0
+    },
+    "3296": {
+      "foreignNet": 14,
+      "trustNet": 0
+    },
+    "2850": {
+      "foreignNet": 5,
+      "trustNet": 0
+    },
+    "6625": {
+      "foreignNet": 13,
+      "trustNet": 0
+    },
+    "6606": {
+      "foreignNet": 15,
+      "trustNet": 0
+    },
+    "6201": {
+      "foreignNet": 7,
+      "trustNet": 0
+    },
+    "2488": {
+      "foreignNet": 0,
+      "trustNet": 0
+    },
+    "1419": {
+      "foreignNet": 11,
+      "trustNet": 0
+    },
+    "1410": {
+      "foreignNet": 10,
+      "trustNet": 0
+    },
+    "2433": {
+      "foreignNet": 12,
+      "trustNet": 0
+    },
+    "1906": {
+      "foreignNet": 0,
+      "trustNet": 0
+    },
+    "3043": {
+      "foreignNet": 11,
+      "trustNet": 0
+    },
+    "1531": {
+      "foreignNet": 11,
+      "trustNet": 0
+    },
+    "2482": {
+      "foreignNet": 10,
+      "trustNet": 0
+    },
+    "2524": {
+      "foreignNet": 10,
+      "trustNet": 0
+    },
+    "6657": {
+      "foreignNet": 10,
+      "trustNet": 0
+    },
+    "3055": {
+      "foreignNet": -6,
+      "trustNet": 0
+    },
+    "4912": {
+      "foreignNet": 9,
+      "trustNet": 0
+    },
+    "2477": {
+      "foreignNet": 10,
+      "trustNet": 2
+    },
+    "5525": {
+      "foreignNet": 9,
+      "trustNet": 0
+    },
+    "6918": {
+      "foreignNet": 9,
+      "trustNet": 0
+    },
+    "2722": {
+      "foreignNet": 9,
+      "trustNet": 0
+    },
+    "1457": {
+      "foreignNet": 8,
+      "trustNet": 0
+    },
+    "5283": {
+      "foreignNet": 8,
+      "trustNet": 0
+    },
+    "3038": {
+      "foreignNet": 6,
+      "trustNet": 0
+    },
+    "2114": {
+      "foreignNet": 8,
+      "trustNet": 0
+    },
+    "1109": {
+      "foreignNet": 8,
+      "trustNet": 0
+    },
+    "5546": {
+      "foreignNet": 9,
+      "trustNet": 0
+    },
+    "2029": {
+      "foreignNet": -7,
+      "trustNet": 0
+    },
+    "1447": {
+      "foreignNet": 7,
+      "trustNet": 0
+    },
+    "3535": {
+      "foreignNet": 7,
+      "trustNet": 0
+    },
+    "7765": {
+      "foreignNet": 7,
+      "trustNet": 0
+    },
+    "6988": {
+      "foreignNet": 6,
+      "trustNet": 0
+    },
+    "3607": {
+      "foreignNet": 7,
+      "trustNet": 0
+    },
+    "4999": {
+      "foreignNet": 7,
+      "trustNet": 0
+    },
+    "1456": {
+      "foreignNet": 7,
+      "trustNet": 0
+    },
+    "2816": {
+      "foreignNet": -5,
+      "trustNet": 0
+    },
+    "2062": {
+      "foreignNet": 7,
+      "trustNet": 0
+    },
+    "6272": {
+      "foreignNet": 8,
+      "trustNet": 0
+    },
+    "7791": {
+      "foreignNet": 6,
+      "trustNet": 0
+    },
+    "6906": {
+      "foreignNet": 6,
+      "trustNet": 0
+    },
+    "7769": {
+      "foreignNet": 32,
+      "trustNet": -29
+    },
+    "4555": {
+      "foreignNet": 5,
+      "trustNet": 0
+    },
+    "4807": {
+      "foreignNet": -4,
+      "trustNet": 0
+    },
+    "7721": {
+      "foreignNet": 4,
+      "trustNet": 0
+    },
+    "6863": {
+      "foreignNet": 5,
+      "trustNet": 0
+    },
+    "6674": {
+      "foreignNet": 4,
+      "trustNet": 0
+    },
+    "1110": {
+      "foreignNet": 5,
+      "trustNet": 0
+    },
+    "6902": {
+      "foreignNet": 5,
+      "trustNet": 0
+    },
+    "2207": {
+      "foreignNet": 8,
+      "trustNet": 0
+    },
+    "8499": {
+      "foreignNet": 2,
+      "trustNet": 0
+    },
+    "6792": {
+      "foreignNet": 2,
+      "trustNet": 0
+    },
+    "6431": {
+      "foreignNet": 3,
+      "trustNet": 0
+    },
+    "2901": {
+      "foreignNet": 2,
+      "trustNet": 0
+    },
+    "3057": {
+      "foreignNet": 4,
+      "trustNet": 0
+    },
+    "2250": {
+      "foreignNet": 4,
+      "trustNet": 0
+    },
+    "2012": {
+      "foreignNet": 3,
+      "trustNet": 0
+    },
+    "1460": {
+      "foreignNet": 3,
+      "trustNet": 0
+    },
+    "1810": {
+      "foreignNet": 3,
+      "trustNet": 0
+    },
+    "1437": {
+      "foreignNet": 3,
+      "trustNet": 0
+    },
+    "2415": {
+      "foreignNet": 2,
+      "trustNet": 0
+    },
+    "2431": {
+      "foreignNet": 3,
+      "trustNet": 0
+    },
+    "2910": {
+      "foreignNet": 3,
+      "trustNet": 0
+    },
+    "4440": {
+      "foreignNet": 3,
+      "trustNet": 0
+    },
+    "3686": {
+      "foreignNet": 1,
+      "trustNet": 0
+    },
+    "6754": {
+      "foreignNet": 3,
+      "trustNet": 0
+    },
+    "7736": {
+      "foreignNet": 3,
+      "trustNet": 0
+    },
+    "9918": {
+      "foreignNet": 3,
+      "trustNet": 0
+    },
+    "4137": {
+      "foreignNet": 5,
+      "trustNet": 1
+    },
+    "4583": {
+      "foreignNet": 11,
+      "trustNet": -11
+    },
+    "2239": {
+      "foreignNet": 2,
+      "trustNet": 0
+    },
+    "2248": {
+      "foreignNet": 2,
+      "trustNet": 0
+    },
+    "1233": {
+      "foreignNet": 2,
+      "trustNet": 0
+    },
+    "1726": {
+      "foreignNet": 2,
+      "trustNet": 0
+    },
+    "1752": {
+      "foreignNet": 2,
+      "trustNet": 0
+    },
+    "4737": {
+      "foreignNet": 2,
+      "trustNet": 0
+    },
+    "4581": {
+      "foreignNet": 2,
+      "trustNet": 0
+    },
+    "4439": {
+      "foreignNet": 0,
+      "trustNet": 0
+    },
+    "3432": {
+      "foreignNet": 2,
+      "trustNet": 0
+    },
+    "6504": {
+      "foreignNet": -1,
+      "trustNet": 0
+    },
+    "8463": {
+      "foreignNet": -1,
+      "trustNet": 0
+    },
+    "8466": {
+      "foreignNet": 2,
+      "trustNet": 0
+    },
+    "6645": {
+      "foreignNet": 2,
+      "trustNet": 0
+    },
+    "6666": {
+      "foreignNet": 4,
+      "trustNet": 0
+    },
+    "6908": {
+      "foreignNet": -1,
+      "trustNet": 0
+    },
+    "6862": {
+      "foreignNet": -2,
+      "trustNet": 0
+    },
+    "0057": {
+      "foreignNet": -17,
+      "trustNet": 0
+    },
+    "6719": {
+      "foreignNet": -7,
+      "trustNet": 0
+    },
+    "1321": {
+      "foreignNet": 5,
+      "trustNet": 0
+    },
+    "5906": {
+      "foreignNet": 1,
+      "trustNet": 0
+    },
+    "6771": {
+      "foreignNet": -1,
+      "trustNet": 0
+    },
+    "1446": {
+      "foreignNet": 1,
+      "trustNet": 0
+    },
+    "6552": {
+      "foreignNet": 1,
+      "trustNet": 0
+    },
+    "6671": {
+      "foreignNet": 1,
+      "trustNet": 0
+    },
+    "6923": {
+      "foreignNet": 1,
+      "trustNet": 0
+    },
+    "6936": {
+      "foreignNet": 1,
+      "trustNet": 0
+    },
+    "6464": {
+      "foreignNet": 1,
+      "trustNet": 0
+    },
+    "4569": {
+      "foreignNet": 1,
+      "trustNet": 0
+    },
+    "1439": {
+      "foreignNet": 0,
+      "trustNet": 0
+    },
+    "2939": {
+      "foreignNet": 0,
+      "trustNet": 0
+    },
+    "2417": {
+      "foreignNet": 0,
+      "trustNet": 0
+    },
+    "1452": {
+      "foreignNet": 0,
+      "trustNet": 0
+    },
+    "5234": {
+      "foreignNet": -2,
+      "trustNet": 2
+    },
+    "7867": {
+      "foreignNet": 0,
+      "trustNet": 0
+    },
+    "1904": {
+      "foreignNet": -36,
+      "trustNet": 0
+    },
+    "2024": {
+      "foreignNet": 0,
+      "trustNet": 0
+    },
+    "1435": {
+      "foreignNet": 0,
+      "trustNet": 0
+    },
+    "1423": {
+      "foreignNet": 0,
+      "trustNet": 0
+    },
+    "1218": {
+      "foreignNet": 0,
+      "trustNet": 0
+    },
+    "1474": {
+      "foreignNet": 0,
+      "trustNet": 0
+    },
+    "1525": {
+      "foreignNet": 0,
+      "trustNet": 0
+    },
+    "8367": {
+      "foreignNet": 0,
+      "trustNet": 0
+    },
+    "6722": {
+      "foreignNet": 0,
+      "trustNet": 0
+    },
+    "1443": {
+      "foreignNet": -1,
+      "trustNet": 0
+    },
+    "8045": {
+      "foreignNet": 0,
+      "trustNet": 0
+    },
+    "2702": {
+      "foreignNet": -1,
+      "trustNet": 0
+    },
+    "4930": {
+      "foreignNet": -1,
+      "trustNet": 0
+    },
+    "3051": {
+      "foreignNet": -3,
+      "trustNet": 0
+    },
+    "1723": {
+      "foreignNet": -1,
+      "trustNet": 0
+    },
+    "2945": {
+      "foreignNet": -1,
+      "trustNet": 0
+    },
+    "2642": {
+      "foreignNet": 0,
+      "trustNet": 0
+    },
+    "1530": {
+      "foreignNet": -1,
+      "trustNet": 0
+    },
+    "1203": {
+      "foreignNet": -1,
+      "trustNet": 0
+    },
+    "1805": {
+      "foreignNet": 0,
+      "trustNet": 0
+    },
+    "2115": {
+      "foreignNet": -1,
+      "trustNet": 0
+    },
+    "2424": {
+      "foreignNet": -1,
+      "trustNet": 0
+    },
+    "2430": {
+      "foreignNet": -1,
+      "trustNet": 0
+    },
+    "5292": {
+      "foreignNet": 5,
+      "trustNet": 0
+    },
+    "6128": {
+      "foreignNet": -1,
+      "trustNet": 0
+    },
+    "5215": {
+      "foreignNet": -2,
+      "trustNet": 0
+    },
+    "9944": {
+      "foreignNet": -2,
+      "trustNet": 0
+    },
+    "8481": {
+      "foreignNet": -1,
+      "trustNet": 0
+    },
+    "6807": {
+      "foreignNet": -1,
+      "trustNet": 0
+    },
+    "3018": {
+      "foreignNet": -1,
+      "trustNet": 0
+    },
+    "2514": {
+      "foreignNet": -3,
+      "trustNet": 0
+    },
+    "2438": {
+      "foreignNet": 1,
+      "trustNet": 0
+    },
+    "6582": {
+      "foreignNet": -1,
+      "trustNet": 0
+    },
+    "2432": {
+      "foreignNet": -1,
+      "trustNet": 0
+    },
+    "1413": {
+      "foreignNet": -1,
+      "trustNet": 0
+    },
+    "1418": {
+      "foreignNet": -1,
+      "trustNet": 0
+    },
+    "2535": {
+      "foreignNet": -2,
+      "trustNet": 0
+    },
+    "3021": {
+      "foreignNet": -2,
+      "trustNet": 0
+    },
+    "9906": {
+      "foreignNet": -2,
+      "trustNet": 0
+    },
+    "6890": {
+      "foreignNet": -1,
+      "trustNet": 0
+    },
+    "6928": {
+      "foreignNet": -2,
+      "trustNet": 0
+    },
+    "0061": {
+      "foreignNet": -147,
+      "trustNet": 0
+    },
+    "3622": {
+      "foreignNet": -13,
+      "trustNet": 11
+    },
+    "2373": {
+      "foreignNet": -1,
+      "trustNet": 0
+    },
+    "2227": {
+      "foreignNet": -2,
+      "trustNet": 0
+    },
+    "1441": {
+      "foreignNet": -3,
+      "trustNet": 0
+    },
+    "1539": {
+      "foreignNet": -2,
+      "trustNet": 0
+    },
+    "1521": {
+      "foreignNet": -2,
+      "trustNet": 0
+    },
+    "1512": {
+      "foreignNet": -2,
+      "trustNet": 0
+    },
+    "4169": {
+      "foreignNet": -6,
+      "trustNet": 0
+    },
+    "4190": {
+      "foreignNet": -2,
+      "trustNet": 0
+    },
+    "3164": {
+      "foreignNet": -1,
+      "trustNet": 0
+    },
+    "6835": {
+      "foreignNet": -2,
+      "trustNet": 0
+    },
+    "9924": {
+      "foreignNet": -2,
+      "trustNet": 0
+    },
+    "9912": {
+      "foreignNet": -5,
+      "trustNet": 0
+    },
+    "8487": {
+      "foreignNet": -1,
+      "trustNet": 0
+    },
+    "6952": {
+      "foreignNet": -2,
+      "trustNet": 0
+    },
+    "1467": {
+      "foreignNet": -2,
+      "trustNet": 0
+    },
+    "2497": {
+      "foreignNet": 47,
+      "trustNet": -50
+    },
+    "2616": {
+      "foreignNet": -5,
+      "trustNet": 0
+    },
+    "1454": {
+      "foreignNet": -4,
+      "trustNet": 0
+    },
+    "1506": {
+      "foreignNet": 3,
+      "trustNet": 0
+    },
+    "1535": {
+      "foreignNet": -3,
+      "trustNet": 0
+    },
+    "9937": {
+      "foreignNet": -6,
+      "trustNet": 0
+    },
+    "8488": {
+      "foreignNet": -4,
+      "trustNet": 0
+    },
+    "8908": {
+      "foreignNet": -3,
+      "trustNet": 0
+    },
+    "9926": {
+      "foreignNet": -3,
+      "trustNet": 0
+    },
+    "6955": {
+      "foreignNet": 1,
+      "trustNet": 0
+    },
+    "7768": {
+      "foreignNet": -3,
+      "trustNet": 0
+    },
+    "7705": {
+      "foreignNet": -3,
+      "trustNet": 0
+    },
+    "3168": {
+      "foreignNet": -3,
+      "trustNet": 0
+    },
+    "4572": {
+      "foreignNet": -3,
+      "trustNet": 0
+    },
+    "4148": {
+      "foreignNet": -3,
+      "trustNet": 0
+    },
+    "5007": {
+      "foreignNet": -3,
+      "trustNet": 0
+    },
+    "7823": {
+      "foreignNet": -1,
+      "trustNet": 0
+    },
+    "6581": {
+      "foreignNet": 0,
+      "trustNet": 0
+    },
+    "1730": {
+      "foreignNet": -3,
+      "trustNet": 0
+    },
+    "1341": {
+      "foreignNet": -3,
+      "trustNet": 0
+    },
+    "1614": {
+      "foreignNet": -3,
+      "trustNet": 0
+    },
+    "1760": {
+      "foreignNet": -3,
+      "trustNet": 0
+    },
+    "8940": {
+      "foreignNet": -4,
+      "trustNet": 0
+    },
+    "7835": {
+      "foreignNet": 0,
+      "trustNet": 0
+    },
+    "4935": {
+      "foreignNet": -4,
+      "trustNet": 0
+    },
+    "5538": {
+      "foreignNet": -14,
+      "trustNet": 0
+    },
+    "6183": {
+      "foreignNet": -5,
+      "trustNet": 0
+    },
+    "2762": {
+      "foreignNet": -9,
+      "trustNet": 0
+    },
+    "2496": {
+      "foreignNet": -4,
+      "trustNet": 0
+    },
+    "1583": {
+      "foreignNet": -4,
+      "trustNet": 0
+    },
+    "1475": {
+      "foreignNet": -4,
+      "trustNet": 0
+    },
+    "1468": {
+      "foreignNet": -4,
+      "trustNet": 0
+    },
+    "1471": {
+      "foreignNet": -4,
+      "trustNet": 0
+    },
+    "1256": {
+      "foreignNet": -5,
+      "trustNet": 0
+    },
+    "4164": {
+      "foreignNet": -5,
+      "trustNet": 0
+    },
+    "8114": {
+      "foreignNet": -7,
+      "trustNet": 0
+    },
+    "7749": {
+      "foreignNet": -5,
+      "trustNet": 0
+    },
+    "2109": {
+      "foreignNet": -5,
+      "trustNet": 0
+    },
+    "1517": {
+      "foreignNet": -6,
+      "trustNet": 0
+    },
+    "1473": {
+      "foreignNet": -5,
+      "trustNet": 0
+    },
+    "1465": {
+      "foreignNet": -4,
+      "trustNet": 0
+    },
+    "1459": {
+      "foreignNet": -6,
+      "trustNet": 0
+    },
+    "1339": {
+      "foreignNet": -5,
+      "trustNet": 0
+    },
+    "7760": {
+      "foreignNet": -5,
+      "trustNet": 0
+    },
+    "7821": {
+      "foreignNet": -5,
+      "trustNet": 0
+    },
+    "6969": {
+      "foreignNet": -5,
+      "trustNet": 0
+    },
+    "9931": {
+      "foreignNet": -5,
+      "trustNet": 0
+    },
+    "4952": {
+      "foreignNet": -5,
+      "trustNet": 0
+    },
+    "4133": {
+      "foreignNet": -5,
+      "trustNet": 0
+    },
+    "4108": {
+      "foreignNet": -4,
+      "trustNet": 0
+    },
+    "3669": {
+      "foreignNet": -5,
+      "trustNet": 0
+    },
+    "4560": {
+      "foreignNet": -5,
+      "trustNet": 0
+    },
+    "3494": {
+      "foreignNet": -5,
+      "trustNet": 0
+    },
+    "3588": {
+      "foreignNet": -4,
+      "trustNet": 0
+    },
+    "6951": {
+      "foreignNet": 6,
+      "trustNet": 0
+    },
+    "4106": {
+      "foreignNet": -5,
+      "trustNet": 0
+    },
+    "7722": {
+      "foreignNet": -5,
+      "trustNet": 0
+    },
+    "6206": {
+      "foreignNet": -14,
+      "trustNet": 4
+    },
+    "6215": {
+      "foreignNet": -8,
+      "trustNet": 0
+    },
+    "5225": {
+      "foreignNet": -6,
+      "trustNet": 0
+    },
+    "9929": {
+      "foreignNet": -6,
+      "trustNet": 0
+    },
+    "3266": {
+      "foreignNet": -6,
+      "trustNet": 0
+    },
+    "3679": {
+      "foreignNet": -7,
+      "trustNet": 0
+    },
+    "1603": {
+      "foreignNet": -11,
+      "trustNet": 0
+    },
+    "1540": {
+      "foreignNet": -8,
+      "trustNet": 0
+    },
+    "1340": {
+      "foreignNet": -7,
+      "trustNet": 0
+    },
+    "1445": {
+      "foreignNet": -2,
+      "trustNet": 0
+    },
+    "2008": {
+      "foreignNet": -7,
+      "trustNet": 0
+    },
+    "3027": {
+      "foreignNet": -10,
+      "trustNet": 0
+    },
+    "1315": {
+      "foreignNet": -7,
+      "trustNet": 0
+    },
+    "1806": {
+      "foreignNet": 5,
+      "trustNet": 0
+    },
+    "7631": {
+      "foreignNet": -5,
+      "trustNet": 0
+    },
+    "6790": {
+      "foreignNet": -7,
+      "trustNet": 0
+    },
+    "2247": {
+      "foreignNet": -8,
+      "trustNet": 0
+    },
+    "8016": {
+      "foreignNet": -37,
+      "trustNet": 29
+    },
+    "1232": {
+      "foreignNet": -19,
+      "trustNet": 0
+    },
+    "5236": {
+      "foreignNet": -8,
+      "trustNet": 0
+    },
+    "1516": {
+      "foreignNet": -4,
+      "trustNet": 0
+    },
+    "6958": {
+      "foreignNet": -9,
+      "trustNet": 0
+    },
+    "6614": {
+      "foreignNet": -8,
+      "trustNet": 0
+    },
+    "8482": {
+      "foreignNet": -8,
+      "trustNet": 0
+    },
+    "4557": {
+      "foreignNet": -8,
+      "trustNet": 0
+    },
+    "1725": {
+      "foreignNet": -10,
+      "trustNet": 0
+    },
+    "3052": {
+      "foreignNet": -9,
+      "trustNet": 0
+    },
+    "6579": {
+      "foreignNet": -16,
+      "trustNet": 0
+    },
+    "3708": {
+      "foreignNet": -9,
+      "trustNet": 0
+    },
+    "1598": {
+      "foreignNet": -10,
+      "trustNet": 0
+    },
+    "6230": {
+      "foreignNet": -10,
+      "trustNet": 0
+    },
+    "6965": {
+      "foreignNet": -10,
+      "trustNet": 0
+    },
+    "7818": {
+      "foreignNet": -11,
+      "trustNet": 0
+    },
+    "5515": {
+      "foreignNet": -11,
+      "trustNet": 0
+    },
+    "2832": {
+      "foreignNet": -13,
+      "trustNet": 2
+    },
+    "9955": {
+      "foreignNet": -11,
+      "trustNet": 0
+    },
+    "1720": {
+      "foreignNet": -11,
+      "trustNet": 0
+    },
+    "2038": {
+      "foreignNet": -12,
+      "trustNet": 0
+    },
+    "1616": {
+      "foreignNet": -17,
+      "trustNet": 0
+    },
+    "3025": {
+      "foreignNet": -11,
+      "trustNet": 0
+    },
+    "6691": {
+      "foreignNet": -13,
+      "trustNet": -10
+    },
+    "1558": {
+      "foreignNet": -12,
+      "trustNet": 0
+    },
+    "6931": {
+      "foreignNet": -12,
+      "trustNet": 0
+    },
+    "4178": {
+      "foreignNet": -15,
+      "trustNet": 0
+    },
+    "8478": {
+      "foreignNet": -13,
+      "trustNet": 0
+    },
+    "6136": {
+      "foreignNet": -13,
+      "trustNet": 0
+    },
+    "1615": {
+      "foreignNet": -13,
+      "trustNet": 0
+    },
+    "2254": {
+      "foreignNet": -13,
+      "trustNet": 0
+    },
+    "1776": {
+      "foreignNet": -13,
+      "trustNet": 0
+    },
+    "1453": {
+      "foreignNet": -12,
+      "trustNet": 0
+    },
+    "2440": {
+      "foreignNet": -15,
+      "trustNet": 0
+    },
+    "4994": {
+      "foreignNet": -13,
+      "trustNet": 0
+    },
+    "3557": {
+      "foreignNet": -13,
+      "trustNet": 0
+    },
+    "4588": {
+      "foreignNet": -17,
+      "trustNet": 0
+    },
+    "8442": {
+      "foreignNet": -17,
+      "trustNet": 0
+    },
+    "1503": {
+      "foreignNet": -34,
+      "trustNet": 3
+    },
+    "1316": {
+      "foreignNet": -14,
+      "trustNet": 0
+    },
+    "6916": {
+      "foreignNet": -14,
+      "trustNet": 0
+    },
+    "1773": {
+      "foreignNet": -25,
+      "trustNet": 0
+    },
+    "2636": {
+      "foreignNet": -32,
+      "trustNet": 0
+    },
+    "2849": {
+      "foreignNet": -9,
+      "trustNet": 0
+    },
+    "2020": {
+      "foreignNet": -15,
+      "trustNet": 0
+    },
+    "7803": {
+      "foreignNet": -11,
+      "trustNet": 0
+    },
+    "3530": {
+      "foreignNet": -15,
+      "trustNet": 0
+    },
+    "6281": {
+      "foreignNet": -15,
+      "trustNet": 0
+    },
+    "2420": {
+      "foreignNet": -17,
+      "trustNet": 0
+    },
+    "1220": {
+      "foreignNet": 9,
+      "trustNet": 0
+    },
+    "2390": {
+      "foreignNet": -16,
+      "trustNet": 0
+    },
+    "6115": {
+      "foreignNet": -16,
+      "trustNet": 0
+    },
+    "3447": {
+      "foreignNet": -16,
+      "trustNet": 0
+    },
+    "7812": {
+      "foreignNet": -18,
+      "trustNet": 0
+    },
+    "6934": {
+      "foreignNet": -16,
+      "trustNet": 0
+    },
+    "6854": {
+      "foreignNet": -19,
+      "trustNet": 0
+    },
+    "1417": {
+      "foreignNet": -17,
+      "trustNet": 0
+    },
+    "2836": {
+      "foreignNet": -17,
+      "trustNet": 0
+    },
+    "3716": {
+      "foreignNet": -17,
+      "trustNet": 0
+    },
+    "6534": {
+      "foreignNet": -17,
+      "trustNet": 0
+    },
+    "9902": {
+      "foreignNet": -17,
+      "trustNet": 0
+    },
+    "8443": {
+      "foreignNet": -1,
+      "trustNet": 0
+    },
+    "2450": {
+      "foreignNet": -17,
+      "trustNet": 0
+    },
+    "2613": {
+      "foreignNet": -18,
+      "trustNet": 0
+    },
+    "1449": {
+      "foreignNet": -51,
+      "trustNet": 0
+    },
+    "6796": {
+      "foreignNet": -18,
+      "trustNet": 0
+    },
+    "9928": {
+      "foreignNet": 0,
+      "trustNet": 0
+    },
+    "9943": {
+      "foreignNet": -18,
+      "trustNet": 0
+    },
+    "5288": {
+      "foreignNet": -19,
+      "trustNet": 0
+    },
+    "6658": {
+      "foreignNet": -18,
+      "trustNet": 0
+    },
+    "6416": {
+      "foreignNet": -31,
+      "trustNet": 0
+    },
+    "6438": {
+      "foreignNet": -23,
+      "trustNet": 0
+    },
+    "0051": {
+      "foreignNet": 0,
+      "trustNet": 0
+    },
+    "1533": {
+      "foreignNet": -21,
+      "trustNet": 0
+    },
+    "2237": {
+      "foreignNet": -21,
+      "trustNet": 0
+    },
+    "4195": {
+      "foreignNet": -17,
+      "trustNet": 0
+    },
+    "7827": {
+      "foreignNet": -19,
+      "trustNet": 0
+    },
+    "1225": {
+      "foreignNet": -20,
+      "trustNet": 0
+    },
+    "4119": {
+      "foreignNet": -19,
+      "trustNet": 0
+    },
+    "2107": {
+      "foreignNet": -6,
+      "trustNet": 0
+    },
+    "2228": {
+      "foreignNet": -24,
+      "trustNet": 0
+    },
+    "4942": {
+      "foreignNet": -23,
+      "trustNet": 0
+    },
+    "1234": {
+      "foreignNet": -9,
+      "trustNet": 0
+    },
+    "3003": {
+      "foreignNet": -21,
+      "trustNet": 0
+    },
+    "6944": {
+      "foreignNet": -23,
+      "trustNet": 0
+    },
+    "6799": {
+      "foreignNet": -22,
+      "trustNet": 0
+    },
+    "5284": {
+      "foreignNet": -24,
+      "trustNet": 0
+    },
+    "1442": {
+      "foreignNet": -22,
+      "trustNet": 0
+    },
+    "8462": {
+      "foreignNet": -29,
+      "trustNet": 0
+    },
+    "1219": {
+      "foreignNet": -24,
+      "trustNet": 0
+    },
+    "8476": {
+      "foreignNet": -26,
+      "trustNet": 0
+    },
+    "1504": {
+      "foreignNet": -101,
+      "trustNet": 2
+    },
+    "3305": {
+      "foreignNet": -54,
+      "trustNet": 0
+    },
+    "6585": {
+      "foreignNet": -25,
+      "trustNet": 0
+    },
+    "6283": {
+      "foreignNet": -23,
+      "trustNet": 0
+    },
+    "2748": {
+      "foreignNet": -15,
+      "trustNet": 0
+    },
+    "2007": {
+      "foreignNet": -25,
+      "trustNet": 0
+    },
+    "9930": {
+      "foreignNet": -25,
+      "trustNet": 0
+    },
+    "2013": {
+      "foreignNet": -25,
+      "trustNet": 0
+    },
+    "1342": {
+      "foreignNet": -26,
+      "trustNet": 0
+    },
+    "7730": {
+      "foreignNet": -27,
+      "trustNet": 0
+    },
+    "1313": {
+      "foreignNet": -102,
+      "trustNet": 0
+    },
+    "2348": {
+      "foreignNet": -25,
+      "trustNet": 0
+    },
+    "1337": {
+      "foreignNet": -26,
+      "trustNet": 0
+    },
+    "1626": {
+      "foreignNet": 53,
+      "trustNet": 0
+    },
+    "2753": {
+      "foreignNet": -29,
+      "trustNet": 1
+    },
+    "2608": {
+      "foreignNet": -30,
+      "trustNet": 0
+    },
+    "7750": {
+      "foreignNet": -16,
+      "trustNet": -15
+    },
+    "2236": {
+      "foreignNet": -28,
+      "trustNet": 0
+    },
+    "8081": {
+      "foreignNet": -34,
+      "trustNet": 6
+    },
+    "2923": {
+      "foreignNet": -8,
+      "trustNet": 0
+    },
+    "9905": {
+      "foreignNet": -27,
+      "trustNet": 0
+    },
+    "6184": {
+      "foreignNet": -27,
+      "trustNet": 0
+    },
+    "4438": {
+      "foreignNet": -31,
+      "trustNet": 0
+    },
+    "6957": {
+      "foreignNet": -56,
+      "trustNet": 0
+    },
+    "2414": {
+      "foreignNet": -38,
+      "trustNet": 0
+    },
+    "6224": {
+      "foreignNet": -28,
+      "trustNet": 0
+    },
+    "5244": {
+      "foreignNet": -30,
+      "trustNet": 0
+    },
+    "6781": {
+      "foreignNet": -31,
+      "trustNet": 0
+    },
+    "2459": {
+      "foreignNet": -31,
+      "trustNet": 0
+    },
+    "4771": {
+      "foreignNet": -29,
+      "trustNet": 0
+    },
+    "2006": {
+      "foreignNet": 234,
+      "trustNet": -280
+    },
+    "1713": {
+      "foreignNet": -31,
+      "trustNet": 0
+    },
+    "6947": {
+      "foreignNet": -32,
+      "trustNet": 0
+    },
+    "6838": {
+      "foreignNet": -34,
+      "trustNet": 0
+    },
+    "6589": {
+      "foreignNet": -48,
+      "trustNet": 0
+    },
+    "7788": {
+      "foreignNet": -41,
+      "trustNet": 0
+    },
+    "8411": {
+      "foreignNet": -27,
+      "trustNet": 0
+    },
+    "6024": {
+      "foreignNet": -33,
+      "trustNet": 0
+    },
+    "2028": {
+      "foreignNet": -33,
+      "trustNet": 0
+    },
+    "4566": {
+      "foreignNet": 23,
+      "trustNet": 0
+    },
+    "9136": {
+      "foreignNet": -34,
+      "trustNet": 0
+    },
+    "1734": {
+      "foreignNet": -35,
+      "trustNet": 0
+    },
+    "1732": {
+      "foreignNet": -35,
+      "trustNet": 0
+    },
+    "1809": {
+      "foreignNet": -48,
+      "trustNet": 0
+    },
+    "8222": {
+      "foreignNet": -35,
+      "trustNet": 0
+    },
+    "1903": {
+      "foreignNet": -35,
+      "trustNet": 0
+    },
+    "0053": {
+      "foreignNet": -1,
+      "trustNet": 0
+    },
+    "2419": {
+      "foreignNet": -8,
+      "trustNet": 0
+    },
+    "9942": {
+      "foreignNet": -37,
+      "trustNet": 0
+    },
+    "1526": {
+      "foreignNet": -40,
+      "trustNet": 0
+    },
+    "2102": {
+      "foreignNet": -37,
+      "trustNet": 0
+    },
+    "3308": {
+      "foreignNet": -37,
+      "trustNet": 0
+    },
+    "1587": {
+      "foreignNet": -38,
+      "trustNet": 0
+    },
+    "2929": {
+      "foreignNet": -38,
+      "trustNet": 0
+    },
+    "6467": {
+      "foreignNet": -39,
+      "trustNet": 0
+    },
+    "4590": {
+      "foreignNet": -39,
+      "trustNet": 0
+    },
+    "3501": {
+      "foreignNet": -40,
+      "trustNet": 0
+    },
+    "3130": {
+      "foreignNet": -41,
+      "trustNet": 0
+    },
+    "5706": {
+      "foreignNet": -6,
+      "trustNet": 0
+    },
+    "5607": {
+      "foreignNet": -38,
+      "trustNet": 0
+    },
+    "6225": {
+      "foreignNet": -43,
+      "trustNet": 0
+    },
+    "1537": {
+      "foreignNet": -51,
+      "trustNet": 0
+    },
+    "2739": {
+      "foreignNet": -46,
+      "trustNet": 0
+    },
+    "6491": {
+      "foreignNet": -24,
+      "trustNet": 0
+    },
+    "4426": {
+      "foreignNet": -51,
+      "trustNet": 0
+    },
+    "1786": {
+      "foreignNet": -46,
+      "trustNet": 0
+    },
+    "6706": {
+      "foreignNet": -83,
+      "trustNet": 0
+    },
+    "4766": {
+      "foreignNet": -61,
+      "trustNet": 0
+    },
+    "1325": {
+      "foreignNet": -53,
+      "trustNet": 0
+    },
+    "1466": {
+      "foreignNet": -53,
+      "trustNet": 0
+    },
+    "2704": {
+      "foreignNet": -53,
+      "trustNet": 0
+    },
+    "5306": {
+      "foreignNet": -53,
+      "trustNet": 0
+    },
+    "1905": {
+      "foreignNet": -37,
+      "trustNet": 0
+    },
+    "8454": {
+      "foreignNet": -48,
+      "trustNet": 0
+    },
+    "3032": {
+      "foreignNet": -54,
+      "trustNet": 0
+    },
+    "1414": {
+      "foreignNet": -55,
+      "trustNet": 0
+    },
+    "9919": {
+      "foreignNet": -55,
+      "trustNet": 0
+    },
+    "7740": {
+      "foreignNet": -57,
+      "trustNet": 0
+    },
+    "9927": {
+      "foreignNet": -57,
+      "trustNet": 0
+    },
+    "8464": {
+      "foreignNet": -57,
+      "trustNet": 2
+    },
+    "3046": {
+      "foreignNet": -78,
+      "trustNet": 0
+    },
+    "1513": {
+      "foreignNet": -237,
+      "trustNet": 7
+    },
+    "2460": {
+      "foreignNet": -56,
+      "trustNet": 0
+    },
+    "5519": {
+      "foreignNet": -10,
+      "trustNet": 0
+    },
+    "2059": {
+      "foreignNet": -89,
+      "trustNet": 30
+    },
+    "2538": {
+      "foreignNet": -61,
+      "trustNet": 0
+    },
+    "3058": {
+      "foreignNet": -62,
+      "trustNet": 0
+    },
+    "1519": {
+      "foreignNet": 3,
+      "trustNet": -60
+    },
+    "2527": {
+      "foreignNet": -64,
+      "trustNet": 0
+    },
+    "3004": {
+      "foreignNet": -65,
+      "trustNet": 0
+    },
+    "9908": {
+      "foreignNet": -65,
+      "trustNet": 0
+    },
+    "6598": {
+      "foreignNet": -65,
+      "trustNet": 0
+    },
+    "6869": {
+      "foreignNet": -23,
+      "trustNet": 0
+    },
+    "4906": {
+      "foreignNet": -130,
+      "trustNet": 0
+    },
+    "6155": {
+      "foreignNet": -68,
+      "trustNet": 0
+    },
+    "1527": {
+      "foreignNet": -28,
+      "trustNet": 0
+    },
+    "4977": {
+      "foreignNet": -176,
+      "trustNet": 0
+    },
+    "1736": {
+      "foreignNet": -65,
+      "trustNet": 0
+    },
+    "6914": {
+      "foreignNet": -70,
+      "trustNet": 0
+    },
+    "1737": {
+      "foreignNet": -71,
+      "trustNet": 0
+    },
+    "3015": {
+      "foreignNet": -81,
+      "trustNet": 10
+    },
+    "3356": {
+      "foreignNet": -67,
+      "trustNet": 0
+    },
+    "1201": {
+      "foreignNet": -72,
+      "trustNet": 0
+    },
+    "1464": {
+      "foreignNet": -71,
+      "trustNet": 0
+    },
+    "2472": {
+      "foreignNet": -71,
+      "trustNet": 0
+    },
+    "9910": {
+      "foreignNet": -84,
+      "trustNet": 11
+    },
+    "4104": {
+      "foreignNet": -89,
+      "trustNet": 0
+    },
+    "1436": {
+      "foreignNet": -74,
+      "trustNet": 0
+    },
+    "6550": {
+      "foreignNet": -76,
+      "trustNet": 0
+    },
+    "6768": {
+      "foreignNet": -76,
+      "trustNet": 0
+    },
+    "5533": {
+      "foreignNet": -77,
+      "trustNet": 0
+    },
+    "6164": {
+      "foreignNet": -78,
+      "trustNet": 0
+    },
+    "1324": {
+      "foreignNet": 12,
+      "trustNet": 0
+    },
+    "3592": {
+      "foreignNet": -84,
+      "trustNet": 3
+    },
+    "3533": {
+      "foreignNet": -95,
+      "trustNet": -4
+    },
+    "2032": {
+      "foreignNet": -81,
+      "trustNet": 0
+    },
+    "6412": {
+      "foreignNet": -89,
+      "trustNet": 7
+    },
+    "3024": {
+      "foreignNet": -70,
+      "trustNet": 0
+    },
+    "4763": {
+      "foreignNet": -99,
+      "trustNet": 15
+    },
+    "1590": {
+      "foreignNet": -88,
+      "trustNet": 1
+    },
+    "8473": {
+      "foreignNet": -84,
+      "trustNet": 0
+    },
+    "1532": {
+      "foreignNet": -85,
+      "trustNet": 0
+    },
+    "8271": {
+      "foreignNet": -81,
+      "trustNet": 0
+    },
+    "1604": {
+      "foreignNet": -88,
+      "trustNet": 0
+    },
+    "2360": {
+      "foreignNet": 291,
+      "trustNet": -420
+    },
+    "8011": {
+      "foreignNet": -92,
+      "trustNet": 0
+    },
+    "1789": {
+      "foreignNet": -90,
+      "trustNet": 0
+    },
+    "2015": {
+      "foreignNet": -90,
+      "trustNet": 0
+    },
+    "3705": {
+      "foreignNet": -90,
+      "trustNet": 0
+    },
+    "6142": {
+      "foreignNet": -90,
+      "trustNet": 0
+    },
+    "1102": {
+      "foreignNet": -149,
+      "trustNet": 18
+    },
+    "4755": {
+      "foreignNet": -94,
+      "trustNet": 0
+    },
+    "6191": {
+      "foreignNet": -92,
+      "trustNet": 1
+    },
+    "6515": {
+      "foreignNet": -99,
+      "trustNet": 0
+    },
+    "2612": {
+      "foreignNet": -94,
+      "trustNet": 0
+    },
+    "2478": {
+      "foreignNet": -118,
+      "trustNet": 0
+    },
+    "8028": {
+      "foreignNet": -154,
+      "trustNet": 0
+    },
+    "8341": {
+      "foreignNet": -98,
+      "trustNet": 0
+    },
+    "1338": {
+      "foreignNet": -98,
+      "trustNet": 0
+    },
+    "2903": {
+      "foreignNet": -100,
+      "trustNet": 0
+    },
+    "2705": {
+      "foreignNet": -100,
+      "trustNet": 0
+    },
+    "2397": {
+      "foreignNet": -101,
+      "trustNet": 0
+    },
+    "3416": {
+      "foreignNet": -103,
+      "trustNet": 0
+    },
+    "9802": {
+      "foreignNet": -106,
+      "trustNet": 0
+    },
+    "9945": {
+      "foreignNet": 38,
+      "trustNet": 10
+    },
+    "3545": {
+      "foreignNet": -103,
+      "trustNet": 0
+    },
+    "6698": {
+      "foreignNet": -107,
+      "trustNet": 0
+    },
+    "2009": {
+      "foreignNet": -106,
+      "trustNet": 0
+    },
+    "2701": {
+      "foreignNet": -108,
+      "trustNet": 0
+    },
+    "3443": {
+      "foreignNet": -364,
+      "trustNet": 236
+    },
+    "2357": {
+      "foreignNet": -156,
+      "trustNet": 113
+    },
+    "2908": {
+      "foreignNet": -123,
+      "trustNet": 0
+    },
+    "6449": {
+      "foreignNet": -118,
+      "trustNet": 0
+    },
+    "4306": {
+      "foreignNet": -113,
+      "trustNet": 0
+    },
+    "3050": {
+      "foreignNet": -113,
+      "trustNet": 0
+    },
+    "2439": {
+      "foreignNet": -118,
+      "trustNet": 7
+    },
+    "2536": {
+      "foreignNet": -116,
+      "trustNet": 0
+    },
+    "9917": {
+      "foreignNet": -115,
+      "trustNet": -10
+    },
+    "2506": {
+      "foreignNet": -133,
+      "trustNet": 0
+    },
+    "2723": {
+      "foreignNet": -116,
+      "trustNet": 0
+    },
+    "3704": {
+      "foreignNet": -132,
+      "trustNet": 0
+    },
+    "2025": {
+      "foreignNet": -124,
+      "trustNet": 0
+    },
+    "2727": {
+      "foreignNet": -125,
+      "trustNet": 0
+    },
+    "2855": {
+      "foreignNet": -338,
+      "trustNet": 206
+    },
+    "5534": {
+      "foreignNet": -129,
+      "trustNet": 0
+    },
+    "6282": {
+      "foreignNet": 46,
+      "trustNet": 0
+    },
+    "2453": {
+      "foreignNet": -136,
+      "trustNet": 0
+    },
+    "2706": {
+      "foreignNet": -137,
+      "trustNet": 0
+    },
+    "6177": {
+      "foreignNet": -127,
+      "trustNet": 9
+    },
+    "2467": {
+      "foreignNet": -116,
+      "trustNet": -14
+    },
+    "6901": {
+      "foreignNet": -129,
+      "trustNet": 0
+    },
+    "6592": {
+      "foreignNet": -142,
+      "trustNet": 0
+    },
+    "8215": {
+      "foreignNet": -128,
+      "trustNet": 0
+    },
+    "1217": {
+      "foreignNet": -140,
+      "trustNet": 0
+    },
+    "1717": {
+      "foreignNet": -213,
+      "trustNet": 2
+    },
+    "4532": {
+      "foreignNet": -152,
+      "trustNet": 7
+    },
+    "2243": {
+      "foreignNet": -145,
+      "trustNet": 0
+    },
+    "2108": {
+      "foreignNet": -147,
+      "trustNet": 0
+    },
+    "2208": {
+      "foreignNet": -148,
+      "trustNet": 0
+    },
+    "6830": {
+      "foreignNet": -146,
+      "trustNet": 0
+    },
+    "2491": {
+      "foreignNet": -150,
+      "trustNet": 0
+    },
+    "2401": {
+      "foreignNet": -278,
+      "trustNet": 0
+    },
+    "2405": {
+      "foreignNet": -160,
+      "trustNet": 0
+    },
+    "2707": {
+      "foreignNet": -161,
+      "trustNet": 0
+    },
+    "1455": {
+      "foreignNet": -163,
+      "trustNet": 0
+    },
+    "2406": {
+      "foreignNet": -170,
+      "trustNet": 0
+    },
+    "2328": {
+      "foreignNet": -55,
+      "trustNet": 0
+    },
+    "1477": {
+      "foreignNet": -195,
+      "trustNet": 37
+    },
+    "2014": {
+      "foreignNet": -168,
+      "trustNet": 0
+    },
+    "1319": {
+      "foreignNet": -294,
+      "trustNet": 0
+    },
+    "9940": {
+      "foreignNet": -178,
+      "trustNet": 0
+    },
+    "1103": {
+      "foreignNet": -179,
+      "trustNet": 0
+    },
+    "6909": {
+      "foreignNet": -179,
+      "trustNet": 0
+    },
+    "3005": {
+      "foreignNet": -227,
+      "trustNet": 32
+    },
+    "2206": {
+      "foreignNet": -182,
+      "trustNet": 0
+    },
+    "2912": {
+      "foreignNet": -235,
+      "trustNet": 36
+    },
+    "2392": {
+      "foreignNet": -207,
+      "trustNet": 0
+    },
+    "1712": {
+      "foreignNet": -201,
+      "trustNet": 7
+    },
+    "3034": {
+      "foreignNet": -292,
+      "trustNet": 102
+    },
+    "2505": {
+      "foreignNet": -172,
+      "trustNet": 0
+    },
+    "8021": {
+      "foreignNet": -1485,
+      "trustNet": 1401
+    },
+    "2838": {
+      "foreignNet": -242,
+      "trustNet": 0
+    },
+    "2363": {
+      "foreignNet": -194,
+      "trustNet": 0
+    },
+    "2101": {
+      "foreignNet": -182,
+      "trustNet": 0
+    },
+    "2031": {
+      "foreignNet": -189,
+      "trustNet": 0
+    },
+    "5258": {
+      "foreignNet": -192,
+      "trustNet": 0
+    },
+    "0055": {
+      "foreignNet": 94,
+      "trustNet": 0
+    },
+    "6192": {
+      "foreignNet": -210,
+      "trustNet": 17
+    },
+    "1702": {
+      "foreignNet": -200,
+      "trustNet": 0
+    },
+    "6414": {
+      "foreignNet": -197,
+      "trustNet": 0
+    },
+    "2458": {
+      "foreignNet": -219,
+      "trustNet": 21
+    },
+    "2528": {
+      "foreignNet": -211,
+      "trustNet": 6
+    },
+    "1707": {
+      "foreignNet": -211,
+      "trustNet": 0
+    },
+    "1563": {
+      "foreignNet": -211,
+      "trustNet": 0
+    },
+    "3022": {
+      "foreignNet": -215,
+      "trustNet": 7
+    },
+    "2349": {
+      "foreignNet": -251,
+      "trustNet": 0
+    },
+    "3406": {
+      "foreignNet": -309,
+      "trustNet": -44
+    },
+    "1229": {
+      "foreignNet": -221,
+      "trustNet": -5
+    },
+    "9911": {
+      "foreignNet": -218,
+      "trustNet": 0
+    },
+    "6196": {
+      "foreignNet": -182,
+      "trustNet": -36
+    },
+    "2421": {
+      "foreignNet": -224,
+      "trustNet": 0
+    },
+    "1609": {
+      "foreignNet": -239,
+      "trustNet": 0
+    },
+    "3033": {
+      "foreignNet": -224,
+      "trustNet": 13
+    },
+    "6189": {
+      "foreignNet": -236,
+      "trustNet": 11
+    },
+    "9934": {
+      "foreignNet": -243,
+      "trustNet": 0
+    },
+    "6672": {
+      "foreignNet": -328,
+      "trustNet": 0
+    },
+    "4989": {
+      "foreignNet": -246,
+      "trustNet": 0
+    },
+    "4536": {
+      "foreignNet": -236,
+      "trustNet": 0
+    },
+    "6753": {
+      "foreignNet": -240,
+      "trustNet": 0
+    },
+    "9941": {
+      "foreignNet": -245,
+      "trustNet": 0
+    },
+    "1611": {
+      "foreignNet": -246,
+      "trustNet": 0
+    },
+    "2436": {
+      "foreignNet": 79,
+      "trustNet": -324
+    },
+    "6933": {
+      "foreignNet": -259,
+      "trustNet": 0
+    },
+    "8996": {
+      "foreignNet": -271,
+      "trustNet": 43
+    },
+    "8163": {
+      "foreignNet": -259,
+      "trustNet": 0
+    },
+    "3532": {
+      "foreignNet": -192,
+      "trustNet": -239
+    },
+    "3017": {
+      "foreignNet": -749,
+      "trustNet": 491
+    },
+    "3665": {
+      "foreignNet": -269,
+      "trustNet": -4
+    },
+    "9925": {
+      "foreignNet": -268,
+      "trustNet": 0
+    },
+    "1444": {
+      "foreignNet": -275,
+      "trustNet": 0
+    },
+    "3528": {
+      "foreignNet": -289,
+      "trustNet": 0
+    },
+    "3596": {
+      "foreignNet": -313,
+      "trustNet": 3
+    },
+    "2461": {
+      "foreignNet": -292,
+      "trustNet": 0
+    },
+    "6831": {
+      "foreignNet": -305,
+      "trustNet": 0
+    },
+    "6277": {
+      "foreignNet": -297,
+      "trustNet": 0
+    },
+    "2511": {
+      "foreignNet": -298,
+      "trustNet": 0
+    },
+    "2376": {
+      "foreignNet": -539,
+      "trustNet": 97
+    },
+    "6120": {
+      "foreignNet": -303,
+      "trustNet": 0
+    },
+    "2457": {
+      "foreignNet": -374,
+      "trustNet": 0
+    },
+    "1617": {
+      "foreignNet": -317,
+      "trustNet": 0
+    },
+    "1612": {
+      "foreignNet": -319,
+      "trustNet": 0
+    },
+    "2915": {
+      "foreignNet": -314,
+      "trustNet": 0
+    },
+    "6271": {
+      "foreignNet": -663,
+      "trustNet": 300
+    },
+    "3014": {
+      "foreignNet": -522,
+      "trustNet": 178
+    },
+    "2204": {
+      "foreignNet": -389,
+      "trustNet": 7
+    },
+    "2466": {
+      "foreignNet": -395,
+      "trustNet": 84
+    },
+    "3380": {
+      "foreignNet": -352,
+      "trustNet": 0
+    },
+    "6782": {
+      "foreignNet": -202,
+      "trustNet": -139
+    },
+    "2010": {
+      "foreignNet": -352,
+      "trustNet": 0
+    },
+    "3543": {
+      "foreignNet": -350,
+      "trustNet": 0
+    },
+    "1307": {
+      "foreignNet": -350,
+      "trustNet": 0
+    },
+    "2444": {
+      "foreignNet": -367,
+      "trustNet": 0
+    },
+    "2023": {
+      "foreignNet": -379,
+      "trustNet": 0
+    },
+    "1210": {
+      "foreignNet": -527,
+      "trustNet": 0
+    },
+    "1722": {
+      "foreignNet": -392,
+      "trustNet": 0
+    },
+    "2345": {
+      "foreignNet": -1012,
+      "trustNet": 327
+    },
+    "2534": {
+      "foreignNet": -411,
+      "trustNet": 0
+    },
+    "2501": {
+      "foreignNet": -421,
+      "trustNet": 0
+    },
+    "4915": {
+      "foreignNet": -450,
+      "trustNet": 0
+    },
+    "8103": {
+      "foreignNet": -439,
+      "trustNet": 0
+    },
+    "8422": {
+      "foreignNet": -471,
+      "trustNet": 0
+    },
+    "4142": {
+      "foreignNet": -442,
+      "trustNet": 0
+    },
+    "6531": {
+      "foreignNet": -1655,
+      "trustNet": 1187
+    },
+    "2427": {
+      "foreignNet": -464,
+      "trustNet": 0
+    },
+    "2201": {
+      "foreignNet": -457,
+      "trustNet": -5
+    },
+    "3044": {
+      "foreignNet": -573,
+      "trustNet": -44
+    },
+    "3653": {
+      "foreignNet": -829,
+      "trustNet": 289
+    },
+    "2030": {
+      "foreignNet": -496,
+      "trustNet": 0
+    },
+    "2354": {
+      "foreignNet": -489,
+      "trustNet": 4
+    },
+    "2316": {
+      "foreignNet": -622,
+      "trustNet": 0
+    },
+    "3041": {
+      "foreignNet": -526,
+      "trustNet": 0
+    },
+    "1104": {
+      "foreignNet": -533,
+      "trustNet": 0
+    },
+    "4967": {
+      "foreignNet": -510,
+      "trustNet": 0
+    },
+    "9958": {
+      "foreignNet": -538,
+      "trustNet": 0
+    },
+    "1312": {
+      "foreignNet": -355,
+      "trustNet": 0
+    },
+    "1909": {
+      "foreignNet": -641,
+      "trustNet": 0
+    },
+    "4949": {
+      "foreignNet": -569,
+      "trustNet": 0
+    },
+    "2103": {
+      "foreignNet": -586,
+      "trustNet": 0
+    },
+    "1727": {
+      "foreignNet": -613,
+      "trustNet": 0
+    },
+    "1618": {
+      "foreignNet": -396,
+      "trustNet": 0
+    },
+    "6834": {
+      "foreignNet": -664,
+      "trustNet": 0
+    },
+    "2603": {
+      "foreignNet": -1643,
+      "trustNet": 1101
+    },
+    "2606": {
+      "foreignNet": -607,
+      "trustNet": -77
+    },
+    "8046": {
+      "foreignNet": -426,
+      "trustNet": -220
+    },
+    "1795": {
+      "foreignNet": -742,
+      "trustNet": 0
+    },
+    "2105": {
+      "foreignNet": -850,
+      "trustNet": 8
+    },
+    "6257": {
+      "foreignNet": -923,
+      "trustNet": 1
+    },
+    "5608": {
+      "foreignNet": -758,
+      "trustNet": 0
+    },
+    "6443": {
+      "foreignNet": -764,
+      "trustNet": 0
+    },
+    "2377": {
+      "foreignNet": -883,
+      "trustNet": 4
+    },
+    "2520": {
+      "foreignNet": -806,
+      "trustNet": 0
+    },
+    "6213": {
+      "foreignNet": -831,
+      "trustNet": 0
+    },
+    "1227": {
+      "foreignNet": -772,
+      "trustNet": 0
+    },
+    "2834": {
+      "foreignNet": -1175,
+      "trustNet": 0
+    },
+    "4960": {
+      "foreignNet": -878,
+      "trustNet": 0
+    },
+    "2305": {
+      "foreignNet": -821,
+      "trustNet": 0
+    },
+    "2913": {
+      "foreignNet": -588,
+      "trustNet": 0
+    },
+    "8926": {
+      "foreignNet": -787,
+      "trustNet": 0
+    },
+    "2426": {
+      "foreignNet": -904,
+      "trustNet": 0
+    },
+    "2905": {
+      "foreignNet": -847,
+      "trustNet": 0
+    },
+    "3062": {
+      "foreignNet": -906,
+      "trustNet": 0
+    },
+    "1440": {
+      "foreignNet": -971,
+      "trustNet": 0
+    },
+    "3702": {
+      "foreignNet": -937,
+      "trustNet": 43
+    },
+    "6919": {
+      "foreignNet": -1006,
+      "trustNet": 0
+    },
+    "2351": {
+      "foreignNet": -1125,
+      "trustNet": 36
+    },
+    "1434": {
+      "foreignNet": -909,
+      "trustNet": 0
+    },
+    "2383": {
+      "foreignNet": -1078,
+      "trustNet": 54
+    },
+    "2637": {
+      "foreignNet": 1030,
+      "trustNet": -2030
+    },
+    "6005": {
+      "foreignNet": -1047,
+      "trustNet": 4
+    },
+    "2362": {
+      "foreignNet": -1066,
+      "trustNet": 0
+    },
+    "2317": {
+      "foreignNet": -1762,
+      "trustNet": 600
+    },
+    "2371": {
+      "foreignNet": -1027,
+      "trustNet": 0
+    },
+    "1560": {
+      "foreignNet": -1125,
+      "trustNet": -37
+    },
+    "1608": {
+      "foreignNet": -1194,
+      "trustNet": 0
+    },
+    "2301": {
+      "foreignNet": -1564,
+      "trustNet": 425
+    },
+    "2889": {
+      "foreignNet": -1219,
+      "trustNet": 0
+    },
+    "2302": {
+      "foreignNet": -1229,
+      "trustNet": 0
+    },
+    "3605": {
+      "foreignNet": -1600,
+      "trustNet": 317
+    },
+    "2323": {
+      "foreignNet": -1250,
+      "trustNet": 0
+    },
+    "2241": {
+      "foreignNet": -1323,
+      "trustNet": 0
+    },
+    "2368": {
+      "foreignNet": -1806,
+      "trustNet": 603
+    },
+    "3016": {
+      "foreignNet": -1411,
+      "trustNet": 0
+    },
+    "6209": {
+      "foreignNet": -1480,
+      "trustNet": 0
+    },
+    "3711": {
+      "foreignNet": -2694,
+      "trustNet": 747
+    },
+    "2515": {
+      "foreignNet": -1415,
+      "trustNet": 0
+    },
+    "2347": {
+      "foreignNet": -900,
+      "trustNet": -767
+    },
+    "3673": {
+      "foreignNet": -1518,
+      "trustNet": 0
+    },
+    "6285": {
+      "foreignNet": -1942,
+      "trustNet": 194
+    },
+    "1605": {
+      "foreignNet": -1067,
+      "trustNet": 15
+    },
+    "2382": {
+      "foreignNet": -2279,
+      "trustNet": 673
+    },
+    "2820": {
+      "foreignNet": -1809,
+      "trustNet": 0
+    },
+    "2845": {
+      "foreignNet": -1838,
+      "trustNet": 6
+    },
+    "2633": {
+      "foreignNet": -1947,
+      "trustNet": 11
+    },
+    "3037": {
+      "foreignNet": -2625,
+      "trustNet": 591
+    },
+    "2352": {
+      "foreignNet": -1693,
+      "trustNet": -22
+    },
+    "3706": {
+      "foreignNet": -1856,
+      "trustNet": 0
+    },
+    "3049": {
+      "foreignNet": -1415,
+      "trustNet": 0
+    },
+    "2106": {
+      "foreignNet": -2011,
+      "trustNet": 0
+    },
+    "2327": {
+      "foreignNet": 2431,
+      "trustNet": -4656
+    },
+    "2355": {
+      "foreignNet": -2484,
+      "trustNet": 0
+    },
+    "1301": {
+      "foreignNet": -1821,
+      "trustNet": -441
+    },
+    "2308": {
+      "foreignNet": -3144,
+      "trustNet": 788
+    },
+    "6112": {
+      "foreignNet": -2397,
+      "trustNet": 0
+    },
+    "3036": {
+      "foreignNet": -2333,
+      "trustNet": 123
+    },
+    "3576": {
+      "foreignNet": -2584,
+      "trustNet": 0
+    },
+    "3209": {
+      "foreignNet": -2530,
+      "trustNet": 0
+    },
+    "9904": {
+      "foreignNet": -2627,
+      "trustNet": 57
+    },
+    "2897": {
+      "foreignNet": -2794,
+      "trustNet": 0
+    },
+    "1314": {
+      "foreignNet": -2500,
+      "trustNet": 0
+    },
+    "2312": {
+      "foreignNet": -2972,
+      "trustNet": 0
+    },
+    "6269": {
+      "foreignNet": -3119,
+      "trustNet": 0
+    },
+    "3189": {
+      "foreignNet": -1027,
+      "trustNet": -3752
+    },
+    "2332": {
+      "foreignNet": -3756,
+      "trustNet": 0
+    },
+    "0056": {
+      "foreignNet": -3838,
+      "trustNet": 944
+    },
+    "2609": {
+      "foreignNet": -4104,
+      "trustNet": 4
+    },
+    "2615": {
+      "foreignNet": -3896,
+      "trustNet": -517
+    },
+    "6278": {
+      "foreignNet": -5279,
+      "trustNet": 291
+    },
+    "2344": {
+      "foreignNet": -5875,
+      "trustNet": 336
+    },
+    "4526": {
+      "foreignNet": -6203,
+      "trustNet": 0
+    },
+    "2002": {
+      "foreignNet": -6162,
+      "trustNet": -4
+    },
+    "2492": {
+      "foreignNet": -5268,
+      "trustNet": -1706
+    },
+    "2353": {
+      "foreignNet": -7568,
+      "trustNet": 31
+    },
+    "2356": {
+      "foreignNet": -11482,
+      "trustNet": 416
+    },
+    "2324": {
+      "foreignNet": -24004,
+      "trustNet": 14
+    },
+    "6770": {
+      "foreignNet": -31067,
+      "trustNet": -4987
+    }
+  },
   "20261111": {
     "0050": {
       "foreignNet": 22452,
@@ -17425,4372 +21755,6 @@
     "0050": {
       "foreignNet": -88714,
       "trustNet": 8361
-    }
-  },
-  "20261105": {
-    "2610": {
-      "foreignNet": 47825,
-      "trustNet": 37
-    },
-    "2618": {
-      "foreignNet": 16794,
-      "trustNet": 350
-    },
-    "2891": {
-      "foreignNet": -6329,
-      "trustNet": 16516
-    },
-    "9904": {
-      "foreignNet": 10700,
-      "trustNet": 108
-    },
-    "2412": {
-      "foreignNet": 4839,
-      "trustNet": 2336
-    },
-    "2884": {
-      "foreignNet": -365,
-      "trustNet": 1450
-    },
-    "5880": {
-      "foreignNet": 1357,
-      "trustNet": 1752
-    },
-    "2886": {
-      "foreignNet": -7460,
-      "trustNet": 8161
-    },
-    "2885": {
-      "foreignNet": -1980,
-      "trustNet": 3372
-    },
-    "2887": {
-      "foreignNet": -14531,
-      "trustNet": 11441
-    },
-    "1102": {
-      "foreignNet": 4517,
-      "trustNet": -306
-    },
-    "1216": {
-      "foreignNet": 2186,
-      "trustNet": 183
-    },
-    "2882": {
-      "foreignNet": -4103,
-      "trustNet": 5752
-    },
-    "3576": {
-      "foreignNet": 4417,
-      "trustNet": 0
-    },
-    "2353": {
-      "foreignNet": 3595,
-      "trustNet": 23
-    },
-    "2542": {
-      "foreignNet": 3854,
-      "trustNet": 217
-    },
-    "2501": {
-      "foreignNet": 3026,
-      "trustNet": 590
-    },
-    "6443": {
-      "foreignNet": 2908,
-      "trustNet": 0
-    },
-    "2881": {
-      "foreignNet": -1374,
-      "trustNet": 1714
-    },
-    "1402": {
-      "foreignNet": 2742,
-      "trustNet": -39
-    },
-    "2646": {
-      "foreignNet": 2425,
-      "trustNet": 2
-    },
-    "1477": {
-      "foreignNet": 2499,
-      "trustNet": 0
-    },
-    "5871": {
-      "foreignNet": 1802,
-      "trustNet": 296
-    },
-    "2548": {
-      "foreignNet": 1832,
-      "trustNet": 0
-    },
-    "2892": {
-      "foreignNet": -4309,
-      "trustNet": 2523
-    },
-    "4763": {
-      "foreignNet": 1391,
-      "trustNet": 282
-    },
-    "9945": {
-      "foreignNet": 991,
-      "trustNet": 414
-    },
-    "3406": {
-      "foreignNet": 1326,
-      "trustNet": 157
-    },
-    "4904": {
-      "foreignNet": -1364,
-      "trustNet": 1655
-    },
-    "4977": {
-      "foreignNet": 1299,
-      "trustNet": 0
-    },
-    "2201": {
-      "foreignNet": 1323,
-      "trustNet": 1
-    },
-    "5876": {
-      "foreignNet": -594,
-      "trustNet": 1096
-    },
-    "2204": {
-      "foreignNet": 1250,
-      "trustNet": 32
-    },
-    "3045": {
-      "foreignNet": -1370,
-      "trustNet": 1702
-    },
-    "1416": {
-      "foreignNet": 1216,
-      "trustNet": 0
-    },
-    "3006": {
-      "foreignNet": 1295,
-      "trustNet": 3
-    },
-    "6757": {
-      "foreignNet": 1117,
-      "trustNet": 0
-    },
-    "9914": {
-      "foreignNet": 1080,
-      "trustNet": 0
-    },
-    "3532": {
-      "foreignNet": 742,
-      "trustNet": 292
-    },
-    "2472": {
-      "foreignNet": 1044,
-      "trustNet": 0
-    },
-    "2360": {
-      "foreignNet": 732,
-      "trustNet": 105
-    },
-    "1476": {
-      "foreignNet": 852,
-      "trustNet": 74
-    },
-    "2812": {
-      "foreignNet": 1002,
-      "trustNet": -4
-    },
-    "2880": {
-      "foreignNet": -7776,
-      "trustNet": 3596
-    },
-    "9921": {
-      "foreignNet": 932,
-      "trustNet": 0
-    },
-    "2382": {
-      "foreignNet": -1182,
-      "trustNet": 1075
-    },
-    "9938": {
-      "foreignNet": 797,
-      "trustNet": 66
-    },
-    "9910": {
-      "foreignNet": 841,
-      "trustNet": 7
-    },
-    "2492": {
-      "foreignNet": 906,
-      "trustNet": 2
-    },
-    "3023": {
-      "foreignNet": -827,
-      "trustNet": 1569
-    },
-    "6226": {
-      "foreignNet": 765,
-      "trustNet": 4
-    },
-    "2101": {
-      "foreignNet": 760,
-      "trustNet": 0
-    },
-    "3596": {
-      "foreignNet": 702,
-      "trustNet": 0
-    },
-    "2905": {
-      "foreignNet": 569,
-      "trustNet": 1
-    },
-    "1904": {
-      "foreignNet": 717,
-      "trustNet": 0
-    },
-    "6213": {
-      "foreignNet": 484,
-      "trustNet": 42
-    },
-    "2897": {
-      "foreignNet": 577,
-      "trustNet": 0
-    },
-    "2539": {
-      "foreignNet": 621,
-      "trustNet": 0
-    },
-    "2838": {
-      "foreignNet": 608,
-      "trustNet": 6
-    },
-    "6805": {
-      "foreignNet": 516,
-      "trustNet": 140
-    },
-    "6451": {
-      "foreignNet": 583,
-      "trustNet": 0
-    },
-    "2395": {
-      "foreignNet": 360,
-      "trustNet": 90
-    },
-    "9941": {
-      "foreignNet": 532,
-      "trustNet": 6
-    },
-    "4915": {
-      "foreignNet": 701,
-      "trustNet": 44
-    },
-    "2637": {
-      "foreignNet": 647,
-      "trustNet": -144
-    },
-    "2027": {
-      "foreignNet": 280,
-      "trustNet": -3
-    },
-    "3005": {
-      "foreignNet": 397,
-      "trustNet": -3
-    },
-    "2351": {
-      "foreignNet": 687,
-      "trustNet": -161
-    },
-    "2474": {
-      "foreignNet": 383,
-      "trustNet": -4
-    },
-    "3703": {
-      "foreignNet": 527,
-      "trustNet": 0
-    },
-    "1319": {
-      "foreignNet": 485,
-      "trustNet": 8
-    },
-    "2915": {
-      "foreignNet": 461,
-      "trustNet": 1
-    },
-    "9802": {
-      "foreignNet": 483,
-      "trustNet": 0
-    },
-    "1810": {
-      "foreignNet": 419,
-      "trustNet": 0
-    },
-    "1201": {
-      "foreignNet": 461,
-      "trustNet": 0
-    },
-    "2540": {
-      "foreignNet": 624,
-      "trustNet": 0
-    },
-    "9939": {
-      "foreignNet": 465,
-      "trustNet": -1
-    },
-    "7711": {
-      "foreignNet": 433,
-      "trustNet": 0
-    },
-    "2206": {
-      "foreignNet": 444,
-      "trustNet": 2
-    },
-    "2385": {
-      "foreignNet": 285,
-      "trustNet": 16
-    },
-    "2543": {
-      "foreignNet": 394,
-      "trustNet": 0
-    },
-    "2406": {
-      "foreignNet": 328,
-      "trustNet": 0
-    },
-    "2511": {
-      "foreignNet": 413,
-      "trustNet": 0
-    },
-    "2465": {
-      "foreignNet": -122,
-      "trustNet": 0
-    },
-    "1229": {
-      "foreignNet": 384,
-      "trustNet": 12
-    },
-    "2504": {
-      "foreignNet": 488,
-      "trustNet": -72
-    },
-    "6415": {
-      "foreignNet": 354,
-      "trustNet": 40
-    },
-    "1795": {
-      "foreignNet": 287,
-      "trustNet": 0
-    },
-    "6176": {
-      "foreignNet": 343,
-      "trustNet": 0
-    },
-    "4306": {
-      "foreignNet": 347,
-      "trustNet": 0
-    },
-    "4755": {
-      "foreignNet": 344,
-      "trustNet": 0
-    },
-    "6177": {
-      "foreignNet": 355,
-      "trustNet": 0
-    },
-    "6472": {
-      "foreignNet": 296,
-      "trustNet": 0
-    },
-    "2376": {
-      "foreignNet": 85,
-      "trustNet": 189
-    },
-    "6214": {
-      "foreignNet": 242,
-      "trustNet": 0
-    },
-    "9907": {
-      "foreignNet": 122,
-      "trustNet": 201
-    },
-    "6116": {
-      "foreignNet": 579,
-      "trustNet": 0
-    },
-    "6278": {
-      "foreignNet": -1350,
-      "trustNet": 1863
-    },
-    "8261": {
-      "foreignNet": 308,
-      "trustNet": 0
-    },
-    "2528": {
-      "foreignNet": 313,
-      "trustNet": 0
-    },
-    "2468": {
-      "foreignNet": 227,
-      "trustNet": 0
-    },
-    "2903": {
-      "foreignNet": 269,
-      "trustNet": 0
-    },
-    "2010": {
-      "foreignNet": 314,
-      "trustNet": 1
-    },
-    "6669": {
-      "foreignNet": 654,
-      "trustNet": -418
-    },
-    "2254": {
-      "foreignNet": 283,
-      "trustNet": 0
-    },
-    "6005": {
-      "foreignNet": 279,
-      "trustNet": -1
-    },
-    "3017": {
-      "foreignNet": 17,
-      "trustNet": 244
-    },
-    "2534": {
-      "foreignNet": 204,
-      "trustNet": 0
-    },
-    "6197": {
-      "foreignNet": 332,
-      "trustNet": 1
-    },
-    "1316": {
-      "foreignNet": 269,
-      "trustNet": 0
-    },
-    "1210": {
-      "foreignNet": 249,
-      "trustNet": 2
-    },
-    "1104": {
-      "foreignNet": 252,
-      "trustNet": 0
-    },
-    "2520": {
-      "foreignNet": 263,
-      "trustNet": 0
-    },
-    "2455": {
-      "foreignNet": 73,
-      "trustNet": 118
-    },
-    "4967": {
-      "foreignNet": 158,
-      "trustNet": -2
-    },
-    "3055": {
-      "foreignNet": 228,
-      "trustNet": 2
-    },
-    "1712": {
-      "foreignNet": 206,
-      "trustNet": 1
-    },
-    "8033": {
-      "foreignNet": 167,
-      "trustNet": 0
-    },
-    "2606": {
-      "foreignNet": 172,
-      "trustNet": 6
-    },
-    "2059": {
-      "foreignNet": 121,
-      "trustNet": 66
-    },
-    "2607": {
-      "foreignNet": 218,
-      "trustNet": 0
-    },
-    "2340": {
-      "foreignNet": 357,
-      "trustNet": 0
-    },
-    "4566": {
-      "foreignNet": 209,
-      "trustNet": 3
-    },
-    "2530": {
-      "foreignNet": 211,
-      "trustNet": -3
-    },
-    "1736": {
-      "foreignNet": 195,
-      "trustNet": 0
-    },
-    "2368": {
-      "foreignNet": 157,
-      "trustNet": 227
-    },
-    "6592": {
-      "foreignNet": 194,
-      "trustNet": 0
-    },
-    "2849": {
-      "foreignNet": 178,
-      "trustNet": 0
-    },
-    "1447": {
-      "foreignNet": 190,
-      "trustNet": 0
-    },
-    "1907": {
-      "foreignNet": 227,
-      "trustNet": 3
-    },
-    "2836": {
-      "foreignNet": 147,
-      "trustNet": 0
-    },
-    "4746": {
-      "foreignNet": 173,
-      "trustNet": 0
-    },
-    "3019": {
-      "foreignNet": 632,
-      "trustNet": 0
-    },
-    "1218": {
-      "foreignNet": 170,
-      "trustNet": 0
-    },
-    "2258": {
-      "foreignNet": 189,
-      "trustNet": 0
-    },
-    "2547": {
-      "foreignNet": 167,
-      "trustNet": 0
-    },
-    "6715": {
-      "foreignNet": -193,
-      "trustNet": 360
-    },
-    "9917": {
-      "foreignNet": 146,
-      "trustNet": 1
-    },
-    "1789": {
-      "foreignNet": 162,
-      "trustNet": 0
-    },
-    "2106": {
-      "foreignNet": 197,
-      "trustNet": 0
-    },
-    "2723": {
-      "foreignNet": 160,
-      "trustNet": 0
-    },
-    "2478": {
-      "foreignNet": 197,
-      "trustNet": 0
-    },
-    "5534": {
-      "foreignNet": 140,
-      "trustNet": 0
-    },
-    "2536": {
-      "foreignNet": 162,
-      "trustNet": 0
-    },
-    "2707": {
-      "foreignNet": 153,
-      "trustNet": 0
-    },
-    "1442": {
-      "foreignNet": 156,
-      "trustNet": 0
-    },
-    "2923": {
-      "foreignNet": 119,
-      "trustNet": 0
-    },
-    "3024": {
-      "foreignNet": 145,
-      "trustNet": 0
-    },
-    "1515": {
-      "foreignNet": 135,
-      "trustNet": 0
-    },
-    "8404": {
-      "foreignNet": 140,
-      "trustNet": 0
-    },
-    "7769": {
-      "foreignNet": 109,
-      "trustNet": 7
-    },
-    "3056": {
-      "foreignNet": 106,
-      "trustNet": 0
-    },
-    "2442": {
-      "foreignNet": 136,
-      "trustNet": 0
-    },
-    "2630": {
-      "foreignNet": 149,
-      "trustNet": 0
-    },
-    "2356": {
-      "foreignNet": -2074,
-      "trustNet": 2040
-    },
-    "5519": {
-      "foreignNet": 134,
-      "trustNet": 0
-    },
-    "1786": {
-      "foreignNet": 131,
-      "trustNet": 0
-    },
-    "1532": {
-      "foreignNet": 132,
-      "trustNet": 0
-    },
-    "1504": {
-      "foreignNet": 194,
-      "trustNet": 18
-    },
-    "1707": {
-      "foreignNet": 117,
-      "trustNet": 0
-    },
-    "8454": {
-      "foreignNet": 114,
-      "trustNet": 0
-    },
-    "4764": {
-      "foreignNet": 143,
-      "trustNet": 0
-    },
-    "1617": {
-      "foreignNet": 121,
-      "trustNet": 4
-    },
-    "6919": {
-      "foreignNet": 107,
-      "trustNet": 0
-    },
-    "3090": {
-      "foreignNet": -286,
-      "trustNet": 406
-    },
-    "1616": {
-      "foreignNet": 127,
-      "trustNet": 0
-    },
-    "2485": {
-      "foreignNet": 125,
-      "trustNet": 0
-    },
-    "6605": {
-      "foreignNet": 118,
-      "trustNet": 0
-    },
-    "3504": {
-      "foreignNet": 114,
-      "trustNet": 0
-    },
-    "2453": {
-      "foreignNet": 111,
-      "trustNet": 0
-    },
-    "5284": {
-      "foreignNet": 117,
-      "trustNet": 0
-    },
-    "1720": {
-      "foreignNet": 113,
-      "trustNet": 0
-    },
-    "6467": {
-      "foreignNet": 87,
-      "trustNet": 0
-    },
-    "6781": {
-      "foreignNet": 105,
-      "trustNet": 1
-    },
-    "6426": {
-      "foreignNet": 113,
-      "trustNet": 2
-    },
-    "7780": {
-      "foreignNet": 107,
-      "trustNet": 0
-    },
-    "2365": {
-      "foreignNet": 107,
-      "trustNet": 0
-    },
-    "2633": {
-      "foreignNet": 220,
-      "trustNet": -36
-    },
-    "6541": {
-      "foreignNet": 103,
-      "trustNet": 0
-    },
-    "1219": {
-      "foreignNet": 105,
-      "trustNet": 0
-    },
-    "2301": {
-      "foreignNet": -694,
-      "trustNet": 234
-    },
-    "3652": {
-      "foreignNet": 105,
-      "trustNet": 0
-    },
-    "6533": {
-      "foreignNet": 138,
-      "trustNet": -18
-    },
-    "3008": {
-      "foreignNet": 171,
-      "trustNet": -7
-    },
-    "1725": {
-      "foreignNet": 108,
-      "trustNet": 0
-    },
-    "9940": {
-      "foreignNet": 134,
-      "trustNet": 0
-    },
-    "6449": {
-      "foreignNet": 112,
-      "trustNet": 0
-    },
-    "3694": {
-      "foreignNet": 102,
-      "trustNet": 0
-    },
-    "2484": {
-      "foreignNet": 110,
-      "trustNet": 0
-    },
-    "6830": {
-      "foreignNet": 60,
-      "trustNet": 0
-    },
-    "6589": {
-      "foreignNet": 102,
-      "trustNet": 0
-    },
-    "2727": {
-      "foreignNet": 48,
-      "trustNet": 50
-    },
-    "6831": {
-      "foreignNet": 116,
-      "trustNet": 0
-    },
-    "2497": {
-      "foreignNet": 86,
-      "trustNet": 0
-    },
-    "4551": {
-      "foreignNet": 91,
-      "trustNet": 0
-    },
-    "2419": {
-      "foreignNet": 132,
-      "trustNet": 0
-    },
-    "2375": {
-      "foreignNet": 116,
-      "trustNet": 0
-    },
-    "2883": {
-      "foreignNet": -8154,
-      "trustNet": 1855
-    },
-    "6890": {
-      "foreignNet": 2,
-      "trustNet": 80
-    },
-    "4722": {
-      "foreignNet": 101,
-      "trustNet": 0
-    },
-    "2359": {
-      "foreignNet": 83,
-      "trustNet": 0
-    },
-    "6768": {
-      "foreignNet": 212,
-      "trustNet": -136
-    },
-    "1702": {
-      "foreignNet": 76,
-      "trustNet": 0
-    },
-    "5388": {
-      "foreignNet": 92,
-      "trustNet": 0
-    },
-    "1227": {
-      "foreignNet": 103,
-      "trustNet": 0
-    },
-    "1231": {
-      "foreignNet": 37,
-      "trustNet": 0
-    },
-    "6957": {
-      "foreignNet": 63,
-      "trustNet": 0
-    },
-    "7827": {
-      "foreignNet": 68,
-      "trustNet": 0
-    },
-    "7812": {
-      "foreignNet": 6,
-      "trustNet": 0
-    },
-    "1232": {
-      "foreignNet": 72,
-      "trustNet": 0
-    },
-    "2636": {
-      "foreignNet": 70,
-      "trustNet": 0
-    },
-    "3705": {
-      "foreignNet": 69,
-      "trustNet": 0
-    },
-    "1522": {
-      "foreignNet": 70,
-      "trustNet": 0
-    },
-    "6024": {
-      "foreignNet": 68,
-      "trustNet": 0
-    },
-    "2505": {
-      "foreignNet": 68,
-      "trustNet": 0
-    },
-    "2348": {
-      "foreignNet": 72,
-      "trustNet": 0
-    },
-    "8462": {
-      "foreignNet": 66,
-      "trustNet": 0
-    },
-    "7855": {
-      "foreignNet": 65,
-      "trustNet": 0
-    },
-    "1234": {
-      "foreignNet": 60,
-      "trustNet": 0
-    },
-    "1337": {
-      "foreignNet": 64,
-      "trustNet": 0
-    },
-    "2753": {
-      "foreignNet": 65,
-      "trustNet": 2
-    },
-    "6782": {
-      "foreignNet": -17,
-      "trustNet": 2
-    },
-    "4532": {
-      "foreignNet": 25,
-      "trustNet": 45
-    },
-    "3257": {
-      "foreignNet": 61,
-      "trustNet": 0
-    },
-    "3622": {
-      "foreignNet": 63,
-      "trustNet": 0
-    },
-    "6277": {
-      "foreignNet": 63,
-      "trustNet": 0
-    },
-    "6743": {
-      "foreignNet": 59,
-      "trustNet": 0
-    },
-    "1603": {
-      "foreignNet": 59,
-      "trustNet": 0
-    },
-    "6414": {
-      "foreignNet": 66,
-      "trustNet": 0
-    },
-    "9946": {
-      "foreignNet": 59,
-      "trustNet": -1
-    },
-    "2020": {
-      "foreignNet": 66,
-      "trustNet": 0
-    },
-    "1506": {
-      "foreignNet": 52,
-      "trustNet": 0
-    },
-    "1108": {
-      "foreignNet": 44,
-      "trustNet": 0
-    },
-    "2028": {
-      "foreignNet": 52,
-      "trustNet": 0
-    },
-    "2007": {
-      "foreignNet": 55,
-      "trustNet": 0
-    },
-    "2413": {
-      "foreignNet": 53,
-      "trustNet": 2
-    },
-    "7795": {
-      "foreignNet": -165,
-      "trustNet": 213
-    },
-    "4104": {
-      "foreignNet": 56,
-      "trustNet": 0
-    },
-    "3716": {
-      "foreignNet": 52,
-      "trustNet": 0
-    },
-    "4155": {
-      "foreignNet": 42,
-      "trustNet": 0
-    },
-    "6142": {
-      "foreignNet": 52,
-      "trustNet": 0
-    },
-    "2038": {
-      "foreignNet": 39,
-      "trustNet": 0
-    },
-    "2535": {
-      "foreignNet": 19,
-      "trustNet": 0
-    },
-    "9943": {
-      "foreignNet": 50,
-      "trustNet": 0
-    },
-    "3021": {
-      "foreignNet": 49,
-      "trustNet": 2
-    },
-    "6776": {
-      "foreignNet": 49,
-      "trustNet": 0
-    },
-    "9930": {
-      "foreignNet": 48,
-      "trustNet": 0
-    },
-    "2013": {
-      "foreignNet": 48,
-      "trustNet": 0
-    },
-    "2207": {
-      "foreignNet": 52,
-      "trustNet": 1
-    },
-    "2611": {
-      "foreignNet": -5,
-      "trustNet": 0
-    },
-    "3665": {
-      "foreignNet": -319,
-      "trustNet": 288
-    },
-    "2015": {
-      "foreignNet": 45,
-      "trustNet": 1
-    },
-    "4441": {
-      "foreignNet": 46,
-      "trustNet": 0
-    },
-    "5525": {
-      "foreignNet": 46,
-      "trustNet": 0
-    },
-    "6698": {
-      "foreignNet": 42,
-      "trustNet": 0
-    },
-    "6962": {
-      "foreignNet": 48,
-      "trustNet": 7
-    },
-    "8103": {
-      "foreignNet": 13,
-      "trustNet": 0
-    },
-    "4736": {
-      "foreignNet": 25,
-      "trustNet": 20
-    },
-    "1225": {
-      "foreignNet": 44,
-      "trustNet": 0
-    },
-    "2477": {
-      "foreignNet": 47,
-      "trustNet": 0
-    },
-    "4426": {
-      "foreignNet": 46,
-      "trustNet": 0
-    },
-    "2524": {
-      "foreignNet": 44,
-      "trustNet": 0
-    },
-    "4536": {
-      "foreignNet": 43,
-      "trustNet": -1
-    },
-    "2612": {
-      "foreignNet": 38,
-      "trustNet": 0
-    },
-    "5007": {
-      "foreignNet": 42,
-      "trustNet": 0
-    },
-    "2029": {
-      "foreignNet": 64,
-      "trustNet": 0
-    },
-    "5515": {
-      "foreignNet": -151,
-      "trustNet": 180
-    },
-    "4583": {
-      "foreignNet": 42,
-      "trustNet": -2
-    },
-    "5607": {
-      "foreignNet": 46,
-      "trustNet": 0
-    },
-    "2851": {
-      "foreignNet": 55,
-      "trustNet": 5
-    },
-    "3135": {
-      "foreignNet": 33,
-      "trustNet": 0
-    },
-    "2489": {
-      "foreignNet": 208,
-      "trustNet": 0
-    },
-    "2608": {
-      "foreignNet": 43,
-      "trustNet": 0
-    },
-    "6412": {
-      "foreignNet": 35,
-      "trustNet": 0
-    },
-    "2107": {
-      "foreignNet": 37,
-      "trustNet": 0
-    },
-    "6958": {
-      "foreignNet": 35,
-      "trustNet": 0
-    },
-    "2908": {
-      "foreignNet": 36,
-      "trustNet": 0
-    },
-    "9935": {
-      "foreignNet": 36,
-      "trustNet": 0
-    },
-    "1614": {
-      "foreignNet": 36,
-      "trustNet": 0
-    },
-    "6887": {
-      "foreignNet": 28,
-      "trustNet": 0
-    },
-    "1512": {
-      "foreignNet": 35,
-      "trustNet": 0
-    },
-    "6215": {
-      "foreignNet": 37,
-      "trustNet": 0
-    },
-    "2247": {
-      "foreignNet": -15,
-      "trustNet": 50
-    },
-    "2816": {
-      "foreignNet": 36,
-      "trustNet": 0
-    },
-    "2706": {
-      "foreignNet": 34,
-      "trustNet": 0
-    },
-    "2537": {
-      "foreignNet": 34,
-      "trustNet": 0
-    },
-    "1533": {
-      "foreignNet": 29,
-      "trustNet": 0
-    },
-    "9908": {
-      "foreignNet": 33,
-      "trustNet": 0
-    },
-    "4106": {
-      "foreignNet": 37,
-      "trustNet": 0
-    },
-    "4766": {
-      "foreignNet": 37,
-      "trustNet": 0
-    },
-    "1103": {
-      "foreignNet": 66,
-      "trustNet": 0
-    },
-    "2832": {
-      "foreignNet": 30,
-      "trustNet": 0
-    },
-    "9927": {
-      "foreignNet": 27,
-      "trustNet": 0
-    },
-    "3266": {
-      "foreignNet": 32,
-      "trustNet": 0
-    },
-    "2645": {
-      "foreignNet": -75,
-      "trustNet": 0
-    },
-    "1203": {
-      "foreignNet": 28,
-      "trustNet": 0
-    },
-    "1731": {
-      "foreignNet": 31,
-      "trustNet": 0
-    },
-    "1903": {
-      "foreignNet": 30,
-      "trustNet": 0
-    },
-    "6115": {
-      "foreignNet": 26,
-      "trustNet": 0
-    },
-    "5306": {
-      "foreignNet": 12,
-      "trustNet": 0
-    },
-    "5288": {
-      "foreignNet": 29,
-      "trustNet": 0
-    },
-    "3645": {
-      "foreignNet": 32,
-      "trustNet": 0
-    },
-    "1457": {
-      "foreignNet": 30,
-      "trustNet": 0
-    },
-    "6409": {
-      "foreignNet": 30,
-      "trustNet": -1
-    },
-    "1737": {
-      "foreignNet": 28,
-      "trustNet": 0
-    },
-    "8081": {
-      "foreignNet": -22,
-      "trustNet": 54
-    },
-    "1537": {
-      "foreignNet": 31,
-      "trustNet": 0
-    },
-    "1604": {
-      "foreignNet": 27,
-      "trustNet": 0
-    },
-    "1906": {
-      "foreignNet": 31,
-      "trustNet": 0
-    },
-    "1452": {
-      "foreignNet": 7,
-      "trustNet": 0
-    },
-    "2423": {
-      "foreignNet": 28,
-      "trustNet": 0
-    },
-    "1110": {
-      "foreignNet": 30,
-      "trustNet": 0
-    },
-    "1414": {
-      "foreignNet": 11,
-      "trustNet": 0
-    },
-    "1531": {
-      "foreignNet": 35,
-      "trustNet": 0
-    },
-    "7721": {
-      "foreignNet": 26,
-      "trustNet": 0
-    },
-    "2597": {
-      "foreignNet": 24,
-      "trustNet": 0
-    },
-    "8341": {
-      "foreignNet": 24,
-      "trustNet": 0
-    },
-    "6931": {
-      "foreignNet": 24,
-      "trustNet": 0
-    },
-    "2450": {
-      "foreignNet": 24,
-      "trustNet": 0
-    },
-    "2506": {
-      "foreignNet": 22,
-      "trustNet": 0
-    },
-    "2417": {
-      "foreignNet": 21,
-      "trustNet": 0
-    },
-    "2231": {
-      "foreignNet": 22,
-      "trustNet": 0
-    },
-    "2428": {
-      "foreignNet": 19,
-      "trustNet": 0
-    },
-    "6155": {
-      "foreignNet": 67,
-      "trustNet": 0
-    },
-    "2227": {
-      "foreignNet": 26,
-      "trustNet": 0
-    },
-    "3413": {
-      "foreignNet": 30,
-      "trustNet": 0
-    },
-    "6579": {
-      "foreignNet": 22,
-      "trustNet": 0
-    },
-    "1734": {
-      "foreignNet": 12,
-      "trustNet": 0
-    },
-    "1459": {
-      "foreignNet": 23,
-      "trustNet": 0
-    },
-    "2022": {
-      "foreignNet": 22,
-      "trustNet": 0
-    },
-    "1466": {
-      "foreignNet": 22,
-      "trustNet": 0
-    },
-    "2062": {
-      "foreignNet": 7,
-      "trustNet": 0
-    },
-    "1236": {
-      "foreignNet": 13,
-      "trustNet": 0
-    },
-    "8908": {
-      "foreignNet": 22,
-      "trustNet": 0
-    },
-    "1451": {
-      "foreignNet": 20,
-      "trustNet": 0
-    },
-    "1438": {
-      "foreignNet": 16,
-      "trustNet": 0
-    },
-    "2433": {
-      "foreignNet": 19,
-      "trustNet": 0
-    },
-    "2906": {
-      "foreignNet": 13,
-      "trustNet": 0
-    },
-    "4414": {
-      "foreignNet": 20,
-      "trustNet": 0
-    },
-    "2850": {
-      "foreignNet": 21,
-      "trustNet": -1
-    },
-    "4142": {
-      "foreignNet": 20,
-      "trustNet": 0
-    },
-    "9937": {
-      "foreignNet": 20,
-      "trustNet": 0
-    },
-    "9136": {
-      "foreignNet": 20,
-      "trustNet": 0
-    },
-    "2380": {
-      "foreignNet": 14,
-      "trustNet": 0
-    },
-    "2460": {
-      "foreignNet": 22,
-      "trustNet": 0
-    },
-    "2228": {
-      "foreignNet": 9,
-      "trustNet": 0
-    },
-    "6201": {
-      "foreignNet": 19,
-      "trustNet": 0
-    },
-    "9931": {
-      "foreignNet": 19,
-      "trustNet": 0
-    },
-    "1432": {
-      "foreignNet": 19,
-      "trustNet": 0
-    },
-    "2008": {
-      "foreignNet": 19,
-      "trustNet": 0
-    },
-    "6491": {
-      "foreignNet": -8,
-      "trustNet": 0
-    },
-    "2545": {
-      "foreignNet": 18,
-      "trustNet": 0
-    },
-    "8271": {
-      "foreignNet": 15,
-      "trustNet": -3
-    },
-    "8201": {
-      "foreignNet": 17,
-      "trustNet": 0
-    },
-    "1471": {
-      "foreignNet": 13,
-      "trustNet": 0
-    },
-    "1730": {
-      "foreignNet": 18,
-      "trustNet": 0
-    },
-    "6582": {
-      "foreignNet": 18,
-      "trustNet": 0
-    },
-    "6969": {
-      "foreignNet": 1,
-      "trustNet": 0
-    },
-    "5225": {
-      "foreignNet": -7,
-      "trustNet": 0
-    },
-    "4989": {
-      "foreignNet": 19,
-      "trustNet": 0
-    },
-    "3708": {
-      "foreignNet": 26,
-      "trustNet": 0
-    },
-    "3004": {
-      "foreignNet": 22,
-      "trustNet": 0
-    },
-    "4564": {
-      "foreignNet": 21,
-      "trustNet": 0
-    },
-    "3706": {
-      "foreignNet": 138,
-      "trustNet": -9
-    },
-    "6464": {
-      "foreignNet": 16,
-      "trustNet": 0
-    },
-    "6909": {
-      "foreignNet": -3,
-      "trustNet": 0
-    },
-    "1535": {
-      "foreignNet": 16,
-      "trustNet": 0
-    },
-    "9919": {
-      "foreignNet": -8,
-      "trustNet": 0
-    },
-    "6790": {
-      "foreignNet": 15,
-      "trustNet": 0
-    },
-    "8463": {
-      "foreignNet": 13,
-      "trustNet": 0
-    },
-    "1321": {
-      "foreignNet": 15,
-      "trustNet": 0
-    },
-    "1524": {
-      "foreignNet": 14,
-      "trustNet": 0
-    },
-    "2702": {
-      "foreignNet": 13,
-      "trustNet": 0
-    },
-    "9905": {
-      "foreignNet": 14,
-      "trustNet": 0
-    },
-    "2012": {
-      "foreignNet": 17,
-      "trustNet": 0
-    },
-    "3533": {
-      "foreignNet": 54,
-      "trustNet": -26
-    },
-    "1587": {
-      "foreignNet": 11,
-      "trustNet": 0
-    },
-    "3094": {
-      "foreignNet": -1,
-      "trustNet": 2
-    },
-    "3296": {
-      "foreignNet": 16,
-      "trustNet": 0
-    },
-    "9906": {
-      "foreignNet": 15,
-      "trustNet": 0
-    },
-    "7705": {
-      "foreignNet": 13,
-      "trustNet": 0
-    },
-    "2514": {
-      "foreignNet": 11,
-      "trustNet": 0
-    },
-    "1449": {
-      "foreignNet": 11,
-      "trustNet": 0
-    },
-    "1437": {
-      "foreignNet": 14,
-      "trustNet": 0
-    },
-    "6625": {
-      "foreignNet": 9,
-      "trustNet": 0
-    },
-    "2415": {
-      "foreignNet": -5,
-      "trustNet": 0
-    },
-    "1465": {
-      "foreignNet": 12,
-      "trustNet": 0
-    },
-    "1752": {
-      "foreignNet": 8,
-      "trustNet": 0
-    },
-    "1235": {
-      "foreignNet": 12,
-      "trustNet": 0
-    },
-    "9926": {
-      "foreignNet": 12,
-      "trustNet": 0
-    },
-    "3058": {
-      "foreignNet": -18,
-      "trustNet": 0
-    },
-    "3607": {
-      "foreignNet": 13,
-      "trustNet": 0
-    },
-    "6722": {
-      "foreignNet": 9,
-      "trustNet": 0
-    },
-    "5538": {
-      "foreignNet": 12,
-      "trustNet": 0
-    },
-    "2466": {
-      "foreignNet": 7,
-      "trustNet": 5
-    },
-    "7722": {
-      "foreignNet": 8,
-      "trustNet": 0
-    },
-    "5283": {
-      "foreignNet": 11,
-      "trustNet": 0
-    },
-    "6965": {
-      "foreignNet": 10,
-      "trustNet": 0
-    },
-    "2109": {
-      "foreignNet": 11,
-      "trustNet": 0
-    },
-    "2616": {
-      "foreignNet": 11,
-      "trustNet": 0
-    },
-    "5484": {
-      "foreignNet": 9,
-      "trustNet": 0
-    },
-    "6719": {
-      "foreignNet": 23,
-      "trustNet": 0
-    },
-    "6885": {
-      "foreignNet": -26,
-      "trustNet": 0
-    },
-    "9918": {
-      "foreignNet": 10,
-      "trustNet": 0
-    },
-    "7689": {
-      "foreignNet": 10,
-      "trustNet": 0
-    },
-    "8442": {
-      "foreignNet": 10,
-      "trustNet": 0
-    },
-    "6573": {
-      "foreignNet": 11,
-      "trustNet": 0
-    },
-    "5706": {
-      "foreignNet": 17,
-      "trustNet": 0
-    },
-    "5907": {
-      "foreignNet": 10,
-      "trustNet": 0
-    },
-    "4557": {
-      "foreignNet": 6,
-      "trustNet": 0
-    },
-    "2430": {
-      "foreignNet": 9,
-      "trustNet": 0
-    },
-    "8222": {
-      "foreignNet": -2,
-      "trustNet": 0
-    },
-    "1612": {
-      "foreignNet": -35,
-      "trustNet": 44
-    },
-    "7765": {
-      "foreignNet": 6,
-      "trustNet": 0
-    },
-    "1626": {
-      "foreignNet": 10,
-      "trustNet": 0
-    },
-    "1530": {
-      "foreignNet": 6,
-      "trustNet": 0
-    },
-    "1445": {
-      "foreignNet": 8,
-      "trustNet": 0
-    },
-    "1417": {
-      "foreignNet": 4,
-      "trustNet": 0
-    },
-    "2910": {
-      "foreignNet": 9,
-      "trustNet": 0
-    },
-    "6534": {
-      "foreignNet": 2,
-      "trustNet": 0
-    },
-    "1413": {
-      "foreignNet": 9,
-      "trustNet": 0
-    },
-    "2705": {
-      "foreignNet": 9,
-      "trustNet": 0
-    },
-    "2023": {
-      "foreignNet": 38,
-      "trustNet": 2
-    },
-    "1726": {
-      "foreignNet": 8,
-      "trustNet": 0
-    },
-    "1762": {
-      "foreignNet": 9,
-      "trustNet": 0
-    },
-    "1783": {
-      "foreignNet": 8,
-      "trustNet": 0
-    },
-    "1468": {
-      "foreignNet": 8,
-      "trustNet": 0
-    },
-    "1474": {
-      "foreignNet": 8,
-      "trustNet": 0
-    },
-    "1583": {
-      "foreignNet": 9,
-      "trustNet": 0
-    },
-    "7760": {
-      "foreignNet": 2,
-      "trustNet": 0
-    },
-    "9944": {
-      "foreignNet": 8,
-      "trustNet": 0
-    },
-    "6908": {
-      "foreignNet": 5,
-      "trustNet": 0
-    },
-    "4195": {
-      "foreignNet": 5,
-      "trustNet": 0
-    },
-    "2722": {
-      "foreignNet": 9,
-      "trustNet": 0
-    },
-    "1315": {
-      "foreignNet": 6,
-      "trustNet": 0
-    },
-    "4930": {
-      "foreignNet": 5,
-      "trustNet": 0
-    },
-    "8213": {
-      "foreignNet": -3,
-      "trustNet": 0
-    },
-    "8482": {
-      "foreignNet": 7,
-      "trustNet": 0
-    },
-    "7732": {
-      "foreignNet": 7,
-      "trustNet": 0
-    },
-    "8940": {
-      "foreignNet": 7,
-      "trustNet": 0
-    },
-    "1456": {
-      "foreignNet": 8,
-      "trustNet": 0
-    },
-    "2509": {
-      "foreignNet": 4,
-      "trustNet": 0
-    },
-    "2364": {
-      "foreignNet": 3,
-      "trustNet": 0
-    },
-    "3419": {
-      "foreignNet": 7,
-      "trustNet": 0
-    },
-    "4572": {
-      "foreignNet": 6,
-      "trustNet": 0
-    },
-    "6183": {
-      "foreignNet": 6,
-      "trustNet": 0
-    },
-    "6581": {
-      "foreignNet": 7,
-      "trustNet": 0
-    },
-    "1806": {
-      "foreignNet": 11,
-      "trustNet": 0
-    },
-    "1323": {
-      "foreignNet": 11,
-      "trustNet": 0
-    },
-    "6706": {
-      "foreignNet": 63,
-      "trustNet": 0
-    },
-    "6606": {
-      "foreignNet": 17,
-      "trustNet": 0
-    },
-    "2432": {
-      "foreignNet": 3,
-      "trustNet": 0
-    },
-    "6431": {
-      "foreignNet": 6,
-      "trustNet": 0
-    },
-    "4942": {
-      "foreignNet": 6,
-      "trustNet": 0
-    },
-    "2855": {
-      "foreignNet": 355,
-      "trustNet": -349
-    },
-    "2929": {
-      "foreignNet": 6,
-      "trustNet": 0
-    },
-    "1521": {
-      "foreignNet": 6,
-      "trustNet": 0
-    },
-    "1817": {
-      "foreignNet": 6,
-      "trustNet": 0
-    },
-    "6923": {
-      "foreignNet": 5,
-      "trustNet": 0
-    },
-    "9924": {
-      "foreignNet": 6,
-      "trustNet": 0
-    },
-    "9912": {
-      "foreignNet": 6,
-      "trustNet": 0
-    },
-    "7791": {
-      "foreignNet": 6,
-      "trustNet": 0
-    },
-    "1256": {
-      "foreignNet": 5,
-      "trustNet": 0
-    },
-    "1419": {
-      "foreignNet": 2,
-      "trustNet": 0
-    },
-    "6835": {
-      "foreignNet": 5,
-      "trustNet": 0
-    },
-    "2314": {
-      "foreignNet": 5,
-      "trustNet": 0
-    },
-    "4545": {
-      "foreignNet": -2,
-      "trustNet": 0
-    },
-    "6552": {
-      "foreignNet": -6,
-      "trustNet": 0
-    },
-    "1598": {
-      "foreignNet": 5,
-      "trustNet": 0
-    },
-    "9929": {
-      "foreignNet": 6,
-      "trustNet": 0
-    },
-    "4119": {
-      "foreignNet": 5,
-      "trustNet": 0
-    },
-    "1905": {
-      "foreignNet": 5,
-      "trustNet": 0
-    },
-    "3501": {
-      "foreignNet": 1,
-      "trustNet": 0
-    },
-    "3494": {
-      "foreignNet": 1,
-      "trustNet": 0
-    },
-    "3679": {
-      "foreignNet": 4,
-      "trustNet": 0
-    },
-    "4737": {
-      "foreignNet": 4,
-      "trustNet": 0
-    },
-    "6671": {
-      "foreignNet": 2,
-      "trustNet": 0
-    },
-    "6281": {
-      "foreignNet": 4,
-      "trustNet": 0
-    },
-    "6184": {
-      "foreignNet": 4,
-      "trustNet": 0
-    },
-    "2373": {
-      "foreignNet": 4,
-      "trustNet": 0
-    },
-    "2712": {
-      "foreignNet": 4,
-      "trustNet": 0
-    },
-    "2911": {
-      "foreignNet": 4,
-      "trustNet": 0
-    },
-    "6794": {
-      "foreignNet": 1,
-      "trustNet": 0
-    },
-    "6924": {
-      "foreignNet": 3,
-      "trustNet": 0
-    },
-    "8443": {
-      "foreignNet": 3,
-      "trustNet": 0
-    },
-    "8467": {
-      "foreignNet": 4,
-      "trustNet": 0
-    },
-    "8367": {
-      "foreignNet": 4,
-      "trustNet": 0
-    },
-    "1423": {
-      "foreignNet": 4,
-      "trustNet": 0
-    },
-    "2024": {
-      "foreignNet": 3,
-      "trustNet": 0
-    },
-    "1454": {
-      "foreignNet": 0,
-      "trustNet": 0
-    },
-    "6952": {
-      "foreignNet": 4,
-      "trustNet": 0
-    },
-    "3018": {
-      "foreignNet": 4,
-      "trustNet": 0
-    },
-    "2546": {
-      "foreignNet": 7,
-      "trustNet": 0
-    },
-    "3583": {
-      "foreignNet": 7,
-      "trustNet": 0
-    },
-    "3557": {
-      "foreignNet": -1,
-      "trustNet": 0
-    },
-    "3593": {
-      "foreignNet": 3,
-      "trustNet": 0
-    },
-    "4148": {
-      "foreignNet": 3,
-      "trustNet": 0
-    },
-    "6666": {
-      "foreignNet": 3,
-      "trustNet": 0
-    },
-    "2901": {
-      "foreignNet": 3,
-      "trustNet": 0
-    },
-    "3054": {
-      "foreignNet": -1,
-      "trustNet": 0
-    },
-    "3168": {
-      "foreignNet": 3,
-      "trustNet": 0
-    },
-    "2704": {
-      "foreignNet": 3,
-      "trustNet": 0
-    },
-    "2239": {
-      "foreignNet": 3,
-      "trustNet": 0
-    },
-    "1435": {
-      "foreignNet": 3,
-      "trustNet": 0
-    },
-    "1541": {
-      "foreignNet": 1,
-      "trustNet": 0
-    },
-    "1339": {
-      "foreignNet": 4,
-      "trustNet": 0
-    },
-    "8466": {
-      "foreignNet": -1,
-      "trustNet": 0
-    },
-    "8481": {
-      "foreignNet": 3,
-      "trustNet": 0
-    },
-    "7736": {
-      "foreignNet": 5,
-      "trustNet": 0
-    },
-    "6928": {
-      "foreignNet": 3,
-      "trustNet": 0
-    },
-    "1516": {
-      "foreignNet": 2,
-      "trustNet": 0
-    },
-    "1529": {
-      "foreignNet": 3,
-      "trustNet": 0
-    },
-    "6807": {
-      "foreignNet": 3,
-      "trustNet": 0
-    },
-    "6771": {
-      "foreignNet": 7,
-      "trustNet": 0
-    },
-    "3130": {
-      "foreignNet": 2,
-      "trustNet": 0
-    },
-    "2642": {
-      "foreignNet": 2,
-      "trustNet": 0
-    },
-    "2030": {
-      "foreignNet": 23,
-      "trustNet": 8
-    },
-    "3545": {
-      "foreignNet": 5,
-      "trustNet": 4
-    },
-    "2516": {
-      "foreignNet": 3,
-      "trustNet": 0
-    },
-    "4190": {
-      "foreignNet": 0,
-      "trustNet": 0
-    },
-    "8478": {
-      "foreignNet": 2,
-      "trustNet": 0
-    },
-    "8488": {
-      "foreignNet": 2,
-      "trustNet": 0
-    },
-    "8429": {
-      "foreignNet": 2,
-      "trustNet": 0
-    },
-    "7821": {
-      "foreignNet": 1,
-      "trustNet": 0
-    },
-    "9902": {
-      "foreignNet": 8,
-      "trustNet": 0
-    },
-    "6916": {
-      "foreignNet": 2,
-      "trustNet": 0
-    },
-    "6955": {
-      "foreignNet": 1,
-      "trustNet": 0
-    },
-    "1439": {
-      "foreignNet": 5,
-      "trustNet": 0
-    },
-    "1475": {
-      "foreignNet": 2,
-      "trustNet": 0
-    },
-    "2488": {
-      "foreignNet": 0,
-      "trustNet": 0
-    },
-    "3150": {
-      "foreignNet": 0,
-      "trustNet": 0
-    },
-    "1341": {
-      "foreignNet": 2,
-      "trustNet": 0
-    },
-    "5234": {
-      "foreignNet": -2,
-      "trustNet": 11
-    },
-    "6947": {
-      "foreignNet": -10,
-      "trustNet": 0
-    },
-    "6235": {
-      "foreignNet": 2,
-      "trustNet": 0
-    },
-    "6128": {
-      "foreignNet": 1,
-      "trustNet": 0
-    },
-    "1470": {
-      "foreignNet": 1,
-      "trustNet": 0
-    },
-    "6641": {
-      "foreignNet": 1,
-      "trustNet": 0
-    },
-    "4994": {
-      "foreignNet": 1,
-      "trustNet": 0
-    },
-    "4581": {
-      "foreignNet": 1,
-      "trustNet": 0
-    },
-    "4439": {
-      "foreignNet": 1,
-      "trustNet": 0
-    },
-    "3164": {
-      "foreignNet": -1,
-      "trustNet": 0
-    },
-    "2904": {
-      "foreignNet": 1,
-      "trustNet": 0
-    },
-    "6921": {
-      "foreignNet": 0,
-      "trustNet": 0
-    },
-    "7835": {
-      "foreignNet": 5,
-      "trustNet": 0
-    },
-    "7867": {
-      "foreignNet": 1,
-      "trustNet": 0
-    },
-    "8072": {
-      "foreignNet": -10,
-      "trustNet": 0
-    },
-    "1467": {
-      "foreignNet": 1,
-      "trustNet": 0
-    },
-    "1805": {
-      "foreignNet": 1,
-      "trustNet": 0
-    },
-    "1324": {
-      "foreignNet": 1,
-      "trustNet": 0
-    },
-    "1233": {
-      "foreignNet": 1,
-      "trustNet": 0
-    },
-    "1443": {
-      "foreignNet": 1,
-      "trustNet": 0
-    },
-    "1418": {
-      "foreignNet": -1,
-      "trustNet": 0
-    },
-    "7631": {
-      "foreignNet": -1,
-      "trustNet": 0
-    },
-    "6951": {
-      "foreignNet": -3,
-      "trustNet": 0
-    },
-    "2034": {
-      "foreignNet": -12,
-      "trustNet": 15
-    },
-    "6668": {
-      "foreignNet": 0,
-      "trustNet": 0
-    },
-    "6754": {
-      "foreignNet": 0,
-      "trustNet": 0
-    },
-    "2114": {
-      "foreignNet": 0,
-      "trustNet": 0
-    },
-    "2115": {
-      "foreignNet": 1,
-      "trustNet": 0
-    },
-    "1517": {
-      "foreignNet": 0,
-      "trustNet": 0
-    },
-    "2248": {
-      "foreignNet": 0,
-      "trustNet": 0
-    },
-    "6504": {
-      "foreignNet": 2,
-      "trustNet": 0
-    },
-    "7823": {
-      "foreignNet": -3,
-      "trustNet": 0
-    },
-    "3057": {
-      "foreignNet": -2,
-      "trustNet": 0
-    },
-    "2429": {
-      "foreignNet": -4,
-      "trustNet": 0
-    },
-    "1558": {
-      "foreignNet": 1,
-      "trustNet": 0
-    },
-    "1615": {
-      "foreignNet": 0,
-      "trustNet": 0
-    },
-    "1526": {
-      "foreignNet": -1,
-      "trustNet": 0
-    },
-    "1441": {
-      "foreignNet": -1,
-      "trustNet": 0
-    },
-    "1453": {
-      "foreignNet": -1,
-      "trustNet": 0
-    },
-    "6796": {
-      "foreignNet": -1,
-      "trustNet": 0
-    },
-    "8487": {
-      "foreignNet": -1,
-      "trustNet": 0
-    },
-    "8249": {
-      "foreignNet": 1,
-      "trustNet": 0
-    },
-    "2496": {
-      "foreignNet": -1,
-      "trustNet": 0
-    },
-    "6645": {
-      "foreignNet": 4,
-      "trustNet": 0
-    },
-    "6655": {
-      "foreignNet": -1,
-      "trustNet": 0
-    },
-    "5546": {
-      "foreignNet": -3,
-      "trustNet": 0
-    },
-    "2438": {
-      "foreignNet": -1,
-      "trustNet": 0
-    },
-    "8499": {
-      "foreignNet": -2,
-      "trustNet": 0
-    },
-    "9928": {
-      "foreignNet": 0,
-      "trustNet": 0
-    },
-    "6918": {
-      "foreignNet": -2,
-      "trustNet": 0
-    },
-    "6936": {
-      "foreignNet": -2,
-      "trustNet": 0
-    },
-    "1472": {
-      "foreignNet": -2,
-      "trustNet": 0
-    },
-    "1525": {
-      "foreignNet": -2,
-      "trustNet": 0
-    },
-    "3432": {
-      "foreignNet": -2,
-      "trustNet": 0
-    },
-    "2762": {
-      "foreignNet": -3,
-      "trustNet": 0
-    },
-    "3042": {
-      "foreignNet": 148,
-      "trustNet": 34
-    },
-    "6869": {
-      "foreignNet": -2,
-      "trustNet": 0
-    },
-    "2731": {
-      "foreignNet": -3,
-      "trustNet": 0
-    },
-    "1342": {
-      "foreignNet": -12,
-      "trustNet": 0
-    },
-    "1623": {
-      "foreignNet": -3,
-      "trustNet": 0
-    },
-    "1217": {
-      "foreignNet": -3,
-      "trustNet": 0
-    },
-    "1340": {
-      "foreignNet": -3,
-      "trustNet": 0
-    },
-    "6670": {
-      "foreignNet": 34,
-      "trustNet": -42
-    },
-    "4588": {
-      "foreignNet": -3,
-      "trustNet": 0
-    },
-    "6189": {
-      "foreignNet": -9,
-      "trustNet": 8
-    },
-    "6861": {
-      "foreignNet": 1,
-      "trustNet": 1
-    },
-    "6901": {
-      "foreignNet": -124,
-      "trustNet": 0
-    },
-    "6792": {
-      "foreignNet": -5,
-      "trustNet": 0
-    },
-    "3308": {
-      "foreignNet": -1,
-      "trustNet": 0
-    },
-    "8011": {
-      "foreignNet": -4,
-      "trustNet": 0
-    },
-    "4137": {
-      "foreignNet": -3,
-      "trustNet": 0
-    },
-    "6224": {
-      "foreignNet": -8,
-      "trustNet": 0
-    },
-    "5533": {
-      "foreignNet": -5,
-      "trustNet": 0
-    },
-    "6674": {
-      "foreignNet": -5,
-      "trustNet": 0
-    },
-    "1446": {
-      "foreignNet": -5,
-      "trustNet": 0
-    },
-    "1338": {
-      "foreignNet": -7,
-      "trustNet": 0
-    },
-    "1590": {
-      "foreignNet": 8,
-      "trustNet": -1
-    },
-    "1460": {
-      "foreignNet": -6,
-      "trustNet": 0
-    },
-    "4585": {
-      "foreignNet": -1,
-      "trustNet": 0
-    },
-    "0057": {
-      "foreignNet": -29,
-      "trustNet": 0
-    },
-    "3052": {
-      "foreignNet": -6,
-      "trustNet": 0
-    },
-    "6906": {
-      "foreignNet": -11,
-      "trustNet": 0
-    },
-    "6225": {
-      "foreignNet": -6,
-      "trustNet": 0
-    },
-    "2939": {
-      "foreignNet": -6,
-      "trustNet": 0
-    },
-    "2237": {
-      "foreignNet": -4,
-      "trustNet": 0
-    },
-    "1410": {
-      "foreignNet": -12,
-      "trustNet": 0
-    },
-    "4164": {
-      "foreignNet": -7,
-      "trustNet": 0
-    },
-    "7749": {
-      "foreignNet": -6,
-      "trustNet": 0
-    },
-    "3686": {
-      "foreignNet": -11,
-      "trustNet": 0
-    },
-    "7818": {
-      "foreignNet": -8,
-      "trustNet": 0
-    },
-    "1733": {
-      "foreignNet": -8,
-      "trustNet": 0
-    },
-    "4935": {
-      "foreignNet": -9,
-      "trustNet": 0
-    },
-    "6614": {
-      "foreignNet": -10,
-      "trustNet": 0
-    },
-    "2250": {
-      "foreignNet": -14,
-      "trustNet": 0
-    },
-    "5522": {
-      "foreignNet": -10,
-      "trustNet": -2
-    },
-    "7786": {
-      "foreignNet": -26,
-      "trustNet": 0
-    },
-    "8438": {
-      "foreignNet": -24,
-      "trustNet": 0
-    },
-    "6914": {
-      "foreignNet": -11,
-      "trustNet": 0
-    },
-    "6230": {
-      "foreignNet": -9,
-      "trustNet": 0
-    },
-    "2459": {
-      "foreignNet": -9,
-      "trustNet": 0
-    },
-    "1444": {
-      "foreignNet": -7,
-      "trustNet": 0
-    },
-    "3022": {
-      "foreignNet": -2,
-      "trustNet": 0
-    },
-    "9958": {
-      "foreignNet": 178,
-      "trustNet": -168
-    },
-    "6988": {
-      "foreignNet": -3,
-      "trustNet": 0
-    },
-    "6243": {
-      "foreignNet": -10,
-      "trustNet": 0
-    },
-    "4133": {
-      "foreignNet": -8,
-      "trustNet": 0
-    },
-    "3447": {
-      "foreignNet": -13,
-      "trustNet": 0
-    },
-    "1463": {
-      "foreignNet": -17,
-      "trustNet": 0
-    },
-    "2414": {
-      "foreignNet": -4,
-      "trustNet": 0
-    },
-    "4569": {
-      "foreignNet": -12,
-      "trustNet": 0
-    },
-    "4999": {
-      "foreignNet": -10,
-      "trustNet": 0
-    },
-    "2345": {
-      "foreignNet": -74,
-      "trustNet": -22
-    },
-    "5222": {
-      "foreignNet": -8,
-      "trustNet": 0
-    },
-    "1464": {
-      "foreignNet": -21,
-      "trustNet": 0
-    },
-    "8162": {
-      "foreignNet": -18,
-      "trustNet": 0
-    },
-    "6863": {
-      "foreignNet": -12,
-      "trustNet": 0
-    },
-    "4807": {
-      "foreignNet": -19,
-      "trustNet": 0
-    },
-    "6558": {
-      "foreignNet": -13,
-      "trustNet": 0
-    },
-    "1760": {
-      "foreignNet": -11,
-      "trustNet": 0
-    },
-    "8039": {
-      "foreignNet": -1,
-      "trustNet": 8
-    },
-    "4961": {
-      "foreignNet": 2,
-      "trustNet": 2
-    },
-    "1540": {
-      "foreignNet": -13,
-      "trustNet": 0
-    },
-    "1713": {
-      "foreignNet": -21,
-      "trustNet": 0
-    },
-    "6934": {
-      "foreignNet": -16,
-      "trustNet": 0
-    },
-    "3669": {
-      "foreignNet": -11,
-      "trustNet": 0
-    },
-    "2424": {
-      "foreignNet": -13,
-      "trustNet": 0
-    },
-    "3011": {
-      "foreignNet": -13,
-      "trustNet": 0
-    },
-    "4438": {
-      "foreignNet": -12,
-      "trustNet": 0
-    },
-    "3592": {
-      "foreignNet": -25,
-      "trustNet": 13
-    },
-    "2404": {
-      "foreignNet": -24,
-      "trustNet": 12
-    },
-    "4440": {
-      "foreignNet": -7,
-      "trustNet": 0
-    },
-    "5215": {
-      "foreignNet": -14,
-      "trustNet": 0
-    },
-    "4771": {
-      "foreignNet": -13,
-      "trustNet": 0
-    },
-    "4552": {
-      "foreignNet": -15,
-      "trustNet": 0
-    },
-    "4169": {
-      "foreignNet": -31,
-      "trustNet": 0
-    },
-    "6283": {
-      "foreignNet": -13,
-      "trustNet": 0
-    },
-    "2390": {
-      "foreignNet": -15,
-      "trustNet": 0
-    },
-    "1735": {
-      "foreignNet": -34,
-      "trustNet": 0
-    },
-    "7822": {
-      "foreignNet": 29,
-      "trustNet": -43
-    },
-    "6944": {
-      "foreignNet": -19,
-      "trustNet": 0
-    },
-    "2017": {
-      "foreignNet": -18,
-      "trustNet": 0
-    },
-    "6192": {
-      "foreignNet": -16,
-      "trustNet": 0
-    },
-    "7803": {
-      "foreignNet": -20,
-      "trustNet": 0
-    },
-    "6164": {
-      "foreignNet": -42,
-      "trustNet": 0
-    },
-    "7740": {
-      "foreignNet": -17,
-      "trustNet": 0
-    },
-    "6550": {
-      "foreignNet": -20,
-      "trustNet": 0
-    },
-    "3043": {
-      "foreignNet": -19,
-      "trustNet": 0
-    },
-    "7750": {
-      "foreignNet": 116,
-      "trustNet": -137
-    },
-    "6591": {
-      "foreignNet": -19,
-      "trustNet": 0
-    },
-    "1220": {
-      "foreignNet": -16,
-      "trustNet": 0
-    },
-    "1563": {
-      "foreignNet": -26,
-      "trustNet": 0
-    },
-    "5471": {
-      "foreignNet": -20,
-      "trustNet": 0
-    },
-    "2701": {
-      "foreignNet": -23,
-      "trustNet": 0
-    },
-    "1436": {
-      "foreignNet": -18,
-      "trustNet": 0
-    },
-    "2748": {
-      "foreignNet": -17,
-      "trustNet": 0
-    },
-    "6216": {
-      "foreignNet": -21,
-      "trustNet": 0
-    },
-    "6862": {
-      "foreignNet": -22,
-      "trustNet": 0
-    },
-    "5203": {
-      "foreignNet": -49,
-      "trustNet": 0
-    },
-    "1109": {
-      "foreignNet": -22,
-      "trustNet": 0
-    },
-    "6272": {
-      "foreignNet": -25,
-      "trustNet": 0
-    },
-    "2613": {
-      "foreignNet": -18,
-      "trustNet": 0
-    },
-    "3528": {
-      "foreignNet": -22,
-      "trustNet": 0
-    },
-    "2462": {
-      "foreignNet": -39,
-      "trustNet": 0
-    },
-    "1776": {
-      "foreignNet": -19,
-      "trustNet": 0
-    },
-    "6108": {
-      "foreignNet": -30,
-      "trustNet": 0
-    },
-    "1519": {
-      "foreignNet": -69,
-      "trustNet": 58
-    },
-    "3002": {
-      "foreignNet": -30,
-      "trustNet": 0
-    },
-    "6902": {
-      "foreignNet": -25,
-      "trustNet": 0
-    },
-    "2357": {
-      "foreignNet": -517,
-      "trustNet": 247
-    },
-    "2243": {
-      "foreignNet": -32,
-      "trustNet": 0
-    },
-    "6657": {
-      "foreignNet": -36,
-      "trustNet": 0
-    },
-    "1539": {
-      "foreignNet": -28,
-      "trustNet": 0
-    },
-    "3229": {
-      "foreignNet": -47,
-      "trustNet": 0
-    },
-    "8476": {
-      "foreignNet": -31,
-      "trustNet": 0
-    },
-    "2431": {
-      "foreignNet": -30,
-      "trustNet": 0
-    },
-    "3712": {
-      "foreignNet": -32,
-      "trustNet": 0
-    },
-    "3025": {
-      "foreignNet": -40,
-      "trustNet": 0
-    },
-    "2739": {
-      "foreignNet": -30,
-      "trustNet": 0
-    },
-    "5292": {
-      "foreignNet": -35,
-      "trustNet": 0
-    },
-    "7799": {
-      "foreignNet": -27,
-      "trustNet": 0
-    },
-    "8374": {
-      "foreignNet": -29,
-      "trustNet": 0
-    },
-    "3530": {
-      "foreignNet": -32,
-      "trustNet": 0
-    },
-    "3032": {
-      "foreignNet": -51,
-      "trustNet": 0
-    },
-    "3038": {
-      "foreignNet": -37,
-      "trustNet": 0
-    },
-    "2482": {
-      "foreignNet": -35,
-      "trustNet": 0
-    },
-    "9955": {
-      "foreignNet": -35,
-      "trustNet": 0
-    },
-    "6854": {
-      "foreignNet": -50,
-      "trustNet": 0
-    },
-    "6658": {
-      "foreignNet": -42,
-      "trustNet": 0
-    },
-    "2434": {
-      "foreignNet": -37,
-      "trustNet": 0
-    },
-    "8411": {
-      "foreignNet": 16,
-      "trustNet": 0
-    },
-    "1568": {
-      "foreignNet": -35,
-      "trustNet": 0
-    },
-    "6994": {
-      "foreignNet": -37,
-      "trustNet": 0
-    },
-    "3092": {
-      "foreignNet": -52,
-      "trustNet": 0
-    },
-    "4560": {
-      "foreignNet": -37,
-      "trustNet": 0
-    },
-    "1473": {
-      "foreignNet": -43,
-      "trustNet": 0
-    },
-    "6691": {
-      "foreignNet": -222,
-      "trustNet": 183
-    },
-    "2852": {
-      "foreignNet": -41,
-      "trustNet": 0
-    },
-    "3027": {
-      "foreignNet": -68,
-      "trustNet": 0
-    },
-    "8114": {
-      "foreignNet": -42,
-      "trustNet": 0
-    },
-    "3338": {
-      "foreignNet": -69,
-      "trustNet": 0
-    },
-    "4571": {
-      "foreignNet": -40,
-      "trustNet": 0
-    },
-    "8045": {
-      "foreignNet": -41,
-      "trustNet": 0
-    },
-    "2515": {
-      "foreignNet": -13,
-      "trustNet": 0
-    },
-    "5258": {
-      "foreignNet": -41,
-      "trustNet": 0
-    },
-    "6165": {
-      "foreignNet": -105,
-      "trustNet": 0
-    },
-    "2617": {
-      "foreignNet": -92,
-      "trustNet": 0
-    },
-    "1732": {
-      "foreignNet": -56,
-      "trustNet": 0
-    },
-    "4582": {
-      "foreignNet": -53,
-      "trustNet": 0
-    },
-    "2072": {
-      "foreignNet": -47,
-      "trustNet": 0
-    },
-    "5244": {
-      "foreignNet": -47,
-      "trustNet": 0
-    },
-    "4178": {
-      "foreignNet": -58,
-      "trustNet": 0
-    },
-    "2461": {
-      "foreignNet": -56,
-      "trustNet": 0
-    },
-    "9942": {
-      "foreignNet": -49,
-      "trustNet": 0
-    },
-    "2425": {
-      "foreignNet": -58,
-      "trustNet": 0
-    },
-    "3346": {
-      "foreignNet": -49,
-      "trustNet": 0
-    },
-    "6838": {
-      "foreignNet": -50,
-      "trustNet": 0
-    },
-    "7768": {
-      "foreignNet": -51,
-      "trustNet": 0
-    },
-    "3515": {
-      "foreignNet": -49,
-      "trustNet": 0
-    },
-    "2208": {
-      "foreignNet": -173,
-      "trustNet": 0
-    },
-    "8210": {
-      "foreignNet": 91,
-      "trustNet": -140
-    },
-    "2233": {
-      "foreignNet": -65,
-      "trustNet": 0
-    },
-    "3138": {
-      "foreignNet": -48,
-      "trustNet": 0
-    },
-    "3715": {
-      "foreignNet": 79,
-      "trustNet": 0
-    },
-    "2471": {
-      "foreignNet": -47,
-      "trustNet": 0
-    },
-    "6442": {
-      "foreignNet": -78,
-      "trustNet": 1
-    },
-    "1325": {
-      "foreignNet": -56,
-      "trustNet": 0
-    },
-    "8473": {
-      "foreignNet": -89,
-      "trustNet": 0
-    },
-    "4952": {
-      "foreignNet": -54,
-      "trustNet": 0
-    },
-    "3617": {
-      "foreignNet": -63,
-      "trustNet": 0
-    },
-    "9911": {
-      "foreignNet": -48,
-      "trustNet": -1
-    },
-    "6585": {
-      "foreignNet": -63,
-      "trustNet": 0
-    },
-    "6136": {
-      "foreignNet": 8,
-      "trustNet": 0
-    },
-    "4555": {
-      "foreignNet": -59,
-      "trustNet": 0
-    },
-    "1527": {
-      "foreignNet": -57,
-      "trustNet": 0
-    },
-    "2362": {
-      "foreignNet": -86,
-      "trustNet": 0
-    },
-    "1536": {
-      "foreignNet": -59,
-      "trustNet": 0
-    },
-    "3040": {
-      "foreignNet": -77,
-      "trustNet": 0
-    },
-    "2493": {
-      "foreignNet": -32,
-      "trustNet": 12
-    },
-    "6873": {
-      "foreignNet": -79,
-      "trustNet": 0
-    },
-    "6139": {
-      "foreignNet": 18,
-      "trustNet": -3
-    },
-    "3588": {
-      "foreignNet": -61,
-      "trustNet": 0
-    },
-    "2440": {
-      "foreignNet": -48,
-      "trustNet": 0
-    },
-    "3034": {
-      "foreignNet": -573,
-      "trustNet": 507
-    },
-    "2031": {
-      "foreignNet": -39,
-      "trustNet": -7
-    },
-    "6405": {
-      "foreignNet": -65,
-      "trustNet": 2
-    },
-    "4590": {
-      "foreignNet": -78,
-      "trustNet": 0
-    },
-    "2374": {
-      "foreignNet": -54,
-      "trustNet": 0
-    },
-    "2236": {
-      "foreignNet": -66,
-      "trustNet": 0
-    },
-    "6742": {
-      "foreignNet": -65,
-      "trustNet": 0
-    },
-    "6598": {
-      "foreignNet": -67,
-      "trustNet": 0
-    },
-    "5269": {
-      "foreignNet": -118,
-      "trustNet": 72
-    },
-    "6117": {
-      "foreignNet": -68,
-      "trustNet": 0
-    },
-    "1808": {
-      "foreignNet": -71,
-      "trustNet": 0
-    },
-    "5608": {
-      "foreignNet": -71,
-      "trustNet": 0
-    },
-    "9934": {
-      "foreignNet": 4,
-      "trustNet": 0
-    },
-    "8016": {
-      "foreignNet": -17,
-      "trustNet": -52
-    },
-    "6949": {
-      "foreignNet": -131,
-      "trustNet": 0
-    },
-    "1440": {
-      "foreignNet": 47,
-      "trustNet": 0
-    },
-    "3049": {
-      "foreignNet": -10,
-      "trustNet": 0
-    },
-    "4108": {
-      "foreignNet": -75,
-      "trustNet": 0
-    },
-    "1215": {
-      "foreignNet": -68,
-      "trustNet": 0
-    },
-    "8926": {
-      "foreignNet": -85,
-      "trustNet": 10
-    },
-    "6416": {
-      "foreignNet": -68,
-      "trustNet": 0
-    },
-    "4956": {
-      "foreignNet": -79,
-      "trustNet": 3
-    },
-    "4968": {
-      "foreignNet": -77,
-      "trustNet": 0
-    },
-    "2387": {
-      "foreignNet": -103,
-      "trustNet": 0
-    },
-    "3209": {
-      "foreignNet": -84,
-      "trustNet": 0
-    },
-    "4770": {
-      "foreignNet": -68,
-      "trustNet": 2
-    },
-    "6515": {
-      "foreignNet": -71,
-      "trustNet": -6
-    },
-    "2302": {
-      "foreignNet": -106,
-      "trustNet": 0
-    },
-    "3356": {
-      "foreignNet": -52,
-      "trustNet": 0
-    },
-    "3046": {
-      "foreignNet": -80,
-      "trustNet": 0
-    },
-    "6937": {
-      "foreignNet": -75,
-      "trustNet": 0
-    },
-    "2305": {
-      "foreignNet": -47,
-      "trustNet": 4
-    },
-    "2392": {
-      "foreignNet": -62,
-      "trustNet": 0
-    },
-    "7610": {
-      "foreignNet": -81,
-      "trustNet": 0
-    },
-    "2025": {
-      "foreignNet": -92,
-      "trustNet": 6
-    },
-    "7730": {
-      "foreignNet": -88,
-      "trustNet": 0
-    },
-    "1582": {
-      "foreignNet": -83,
-      "trustNet": 0
-    },
-    "1307": {
-      "foreignNet": -151,
-      "trustNet": 50
-    },
-    "3003": {
-      "foreignNet": -85,
-      "trustNet": 0
-    },
-    "6446": {
-      "foreignNet": -169,
-      "trustNet": 15
-    },
-    "3380": {
-      "foreignNet": -68,
-      "trustNet": 10
-    },
-    "2069": {
-      "foreignNet": -93,
-      "trustNet": 0
-    },
-    "4739": {
-      "foreignNet": -83,
-      "trustNet": 0
-    },
-    "1455": {
-      "foreignNet": 46,
-      "trustNet": 0
-    },
-    "2379": {
-      "foreignNet": -413,
-      "trustNet": 310
-    },
-    "3050": {
-      "foreignNet": -99,
-      "trustNet": 0
-    },
-    "6205": {
-      "foreignNet": -120,
-      "trustNet": 0
-    },
-    "2102": {
-      "foreignNet": -102,
-      "trustNet": 0
-    },
-    "6525": {
-      "foreignNet": 19,
-      "trustNet": -128
-    },
-    "3015": {
-      "foreignNet": -101,
-      "trustNet": 0
-    },
-    "0051": {
-      "foreignNet": -28,
-      "trustNet": 0
-    },
-    "8028": {
-      "foreignNet": -64,
-      "trustNet": 0
-    },
-    "2444": {
-      "foreignNet": -137,
-      "trustNet": 0
-    },
-    "8104": {
-      "foreignNet": -115,
-      "trustNet": 0
-    },
-    "2329": {
-      "foreignNet": -167,
-      "trustNet": 0
-    },
-    "1618": {
-      "foreignNet": -98,
-      "trustNet": 0
-    },
-    "6799": {
-      "foreignNet": -110,
-      "trustNet": 0
-    },
-    "2397": {
-      "foreignNet": -107,
-      "trustNet": 0
-    },
-    "6753": {
-      "foreignNet": -110,
-      "trustNet": 0
-    },
-    "2464": {
-      "foreignNet": -61,
-      "trustNet": 130
-    },
-    "3518": {
-      "foreignNet": -147,
-      "trustNet": 0
-    },
-    "2913": {
-      "foreignNet": -26,
-      "trustNet": 0
-    },
-    "3443": {
-      "foreignNet": -212,
-      "trustNet": 100
-    },
-    "7788": {
-      "foreignNet": -122,
-      "trustNet": 0
-    },
-    "6789": {
-      "foreignNet": -114,
-      "trustNet": 8
-    },
-    "3059": {
-      "foreignNet": -101,
-      "trustNet": 0
-    },
-    "3029": {
-      "foreignNet": -169,
-      "trustNet": -14
-    },
-    "2538": {
-      "foreignNet": -130,
-      "trustNet": 0
-    },
-    "9103": {
-      "foreignNet": -130,
-      "trustNet": 0
-    },
-    "6166": {
-      "foreignNet": -127,
-      "trustNet": 6
-    },
-    "8105": {
-      "foreignNet": -131,
-      "trustNet": 0
-    },
-    "3550": {
-      "foreignNet": -160,
-      "trustNet": 0
-    },
-    "2480": {
-      "foreignNet": -61,
-      "trustNet": -80
-    },
-    "6206": {
-      "foreignNet": -15,
-      "trustNet": -109
-    },
-    "1909": {
-      "foreignNet": -177,
-      "trustNet": 0
-    },
-    "7710": {
-      "foreignNet": -136,
-      "trustNet": 0
-    },
-    "8070": {
-      "foreignNet": -1083,
-      "trustNet": 909
-    },
-    "2331": {
-      "foreignNet": -245,
-      "trustNet": 0
-    },
-    "3416": {
-      "foreignNet": -144,
-      "trustNet": 0
-    },
-    "8422": {
-      "foreignNet": -148,
-      "trustNet": 1
-    },
-    "3311": {
-      "foreignNet": -159,
-      "trustNet": 0
-    },
-    "3535": {
-      "foreignNet": -121,
-      "trustNet": 0
-    },
-    "5236": {
-      "foreignNet": -151,
-      "trustNet": 0
-    },
-    "2241": {
-      "foreignNet": -155,
-      "trustNet": 0
-    },
-    "1773": {
-      "foreignNet": -169,
-      "trustNet": 1
-    },
-    "9925": {
-      "foreignNet": -157,
-      "trustNet": 0
-    },
-    "6477": {
-      "foreignNet": -165,
-      "trustNet": 0
-    },
-    "3591": {
-      "foreignNet": -165,
-      "trustNet": 5
-    },
-    "3312": {
-      "foreignNet": -166,
-      "trustNet": 0
-    },
-    "2420": {
-      "foreignNet": -167,
-      "trustNet": 0
-    },
-    "4949": {
-      "foreignNet": -183,
-      "trustNet": 0
-    },
-    "8215": {
-      "foreignNet": -170,
-      "trustNet": 11
-    },
-    "3013": {
-      "foreignNet": -152,
-      "trustNet": 1
-    },
-    "1597": {
-      "foreignNet": -138,
-      "trustNet": 0
-    },
-    "6526": {
-      "foreignNet": -170,
-      "trustNet": 34
-    },
-    "6438": {
-      "foreignNet": -155,
-      "trustNet": 0
-    },
-    "2457": {
-      "foreignNet": -155,
-      "trustNet": 0
-    },
-    "4562": {
-      "foreignNet": -176,
-      "trustNet": 0
-    },
-    "2427": {
-      "foreignNet": -177,
-      "trustNet": 0
-    },
-    "3030": {
-      "foreignNet": -155,
-      "trustNet": 5
-    },
-    "2912": {
-      "foreignNet": -166,
-      "trustNet": -5
-    },
-    "1611": {
-      "foreignNet": -161,
-      "trustNet": 0
-    },
-    "2458": {
-      "foreignNet": -145,
-      "trustNet": -31
-    },
-    "1514": {
-      "foreignNet": -184,
-      "trustNet": 0
-    },
-    "3051": {
-      "foreignNet": -185,
-      "trustNet": 0
-    },
-    "3563": {
-      "foreignNet": -114,
-      "trustNet": 2
-    },
-    "2614": {
-      "foreignNet": -185,
-      "trustNet": 0
-    },
-    "3048": {
-      "foreignNet": -145,
-      "trustNet": 0
-    },
-    "2491": {
-      "foreignNet": -190,
-      "trustNet": 0
-    },
-    "1560": {
-      "foreignNet": -200,
-      "trustNet": 34
-    },
-    "1727": {
-      "foreignNet": -182,
-      "trustNet": 0
-    },
-    "3014": {
-      "foreignNet": -211,
-      "trustNet": 15
-    },
-    "2388": {
-      "foreignNet": -195,
-      "trustNet": 12
-    },
-    "2377": {
-      "foreignNet": -1232,
-      "trustNet": 1198
-    },
-    "3016": {
-      "foreignNet": -141,
-      "trustNet": 5
-    },
-    "3437": {
-      "foreignNet": -201,
-      "trustNet": 0
-    },
-    "2104": {
-      "foreignNet": -161,
-      "trustNet": 0
-    },
-    "2820": {
-      "foreignNet": -176,
-      "trustNet": 0
-    },
-    "2347": {
-      "foreignNet": -497,
-      "trustNet": -20
-    },
-    "6202": {
-      "foreignNet": -217,
-      "trustNet": 5
-    },
-    "8464": {
-      "foreignNet": -212,
-      "trustNet": -1
-    },
-    "1308": {
-      "foreignNet": -201,
-      "trustNet": 0
-    },
-    "1708": {
-      "foreignNet": -205,
-      "trustNet": 0
-    },
-    "2439": {
-      "foreignNet": -154,
-      "trustNet": 0
-    },
-    "2349": {
-      "foreignNet": -212,
-      "trustNet": 0
-    },
-    "1722": {
-      "foreignNet": -194,
-      "trustNet": -53
-    },
-    "4912": {
-      "foreignNet": -237,
-      "trustNet": 0
-    },
-    "3717": {
-      "foreignNet": -312,
-      "trustNet": 6
-    },
-    "6196": {
-      "foreignNet": -252,
-      "trustNet": 24
-    },
-    "5285": {
-      "foreignNet": -236,
-      "trustNet": 3
-    },
-    "2605": {
-      "foreignNet": -158,
-      "trustNet": 1
-    },
-    "2476": {
-      "foreignNet": -242,
-      "trustNet": 0
-    },
-    "6834": {
-      "foreignNet": -217,
-      "trustNet": 2
-    },
-    "2405": {
-      "foreignNet": -246,
-      "trustNet": 0
-    },
-    "6756": {
-      "foreignNet": -247,
-      "trustNet": 0
-    },
-    "3028": {
-      "foreignNet": -252,
-      "trustNet": 0
-    },
-    "6141": {
-      "foreignNet": -282,
-      "trustNet": 0
-    },
-    "1309": {
-      "foreignNet": -247,
-      "trustNet": 0
-    },
-    "8110": {
-      "foreignNet": -248,
-      "trustNet": 0
-    },
-    "2354": {
-      "foreignNet": -127,
-      "trustNet": 10
-    },
-    "1409": {
-      "foreignNet": -252,
-      "trustNet": 1
-    },
-    "6933": {
-      "foreignNet": -187,
-      "trustNet": 0
-    },
-    "6133": {
-      "foreignNet": -312,
-      "trustNet": 4
-    },
-    "2312": {
-      "foreignNet": -22,
-      "trustNet": 2
-    },
-    "2211": {
-      "foreignNet": 144,
-      "trustNet": 40
-    },
-    "5434": {
-      "foreignNet": -514,
-      "trustNet": 233
-    },
-    "3044": {
-      "foreignNet": -890,
-      "trustNet": 506
-    },
-    "2105": {
-      "foreignNet": -878,
-      "trustNet": 30
-    },
-    "1503": {
-      "foreignNet": -259,
-      "trustNet": 1
-    },
-    "3060": {
-      "foreignNet": -285,
-      "trustNet": 0
-    },
-    "2481": {
-      "foreignNet": -204,
-      "trustNet": 0
-    },
-    "6695": {
-      "foreignNet": -291,
-      "trustNet": 0
-    },
-    "2032": {
-      "foreignNet": -278,
-      "trustNet": 0
-    },
-    "3010": {
-      "foreignNet": -289,
-      "trustNet": 0
-    },
-    "5243": {
-      "foreignNet": -289,
-      "trustNet": 0
-    },
-    "5531": {
-      "foreignNet": -304,
-      "trustNet": 0
-    },
-    "4576": {
-      "foreignNet": -234,
-      "trustNet": 0
-    },
-    "3047": {
-      "foreignNet": -297,
-      "trustNet": 0
-    },
-    "4976": {
-      "foreignNet": -314,
-      "trustNet": 0
-    },
-    "2316": {
-      "foreignNet": -345,
-      "trustNet": -2
-    },
-    "4938": {
-      "foreignNet": -2170,
-      "trustNet": 1672
-    },
-    "3041": {
-      "foreignNet": -330,
-      "trustNet": 0
-    },
-    "6689": {
-      "foreignNet": -335,
-      "trustNet": 0
-    },
-    "2451": {
-      "foreignNet": -425,
-      "trustNet": 75
-    },
-    "2601": {
-      "foreignNet": -308,
-      "trustNet": 0
-    },
-    "3376": {
-      "foreignNet": -353,
-      "trustNet": 0
-    },
-    "0061": {
-      "foreignNet": 127,
-      "trustNet": 0
-    },
-    "0053": {
-      "foreignNet": -47,
-      "trustNet": 0
-    },
-    "2009": {
-      "foreignNet": -389,
-      "trustNet": 0
-    },
-    "2393": {
-      "foreignNet": -392,
-      "trustNet": 19
-    },
-    "6168": {
-      "foreignNet": -388,
-      "trustNet": 6
-    },
-    "3031": {
-      "foreignNet": -378,
-      "trustNet": 3
-    },
-    "2495": {
-      "foreignNet": -376,
-      "trustNet": 0
-    },
-    "1434": {
-      "foreignNet": -295,
-      "trustNet": 2
-    },
-    "2108": {
-      "foreignNet": -332,
-      "trustNet": 1
-    },
-    "8996": {
-      "foreignNet": -303,
-      "trustNet": 9
-    },
-    "2498": {
-      "foreignNet": -200,
-      "trustNet": -8
-    },
-    "2342": {
-      "foreignNet": -472,
-      "trustNet": 0
-    },
-    "4526": {
-      "foreignNet": -218,
-      "trustNet": 0
-    },
-    "6112": {
-      "foreignNet": -401,
-      "trustNet": 0
-    },
-    "1721": {
-      "foreignNet": -450,
-      "trustNet": 0
-    },
-    "6191": {
-      "foreignNet": -401,
-      "trustNet": 11
-    },
-    "3321": {
-      "foreignNet": -412,
-      "trustNet": 0
-    },
-    "3653": {
-      "foreignNet": -579,
-      "trustNet": 112
-    },
-    "3704": {
-      "foreignNet": -402,
-      "trustNet": 0
-    },
-    "3149": {
-      "foreignNet": -416,
-      "trustNet": 0
-    },
-    "2421": {
-      "foreignNet": -407,
-      "trustNet": 1
-    },
-    "3543": {
-      "foreignNet": -437,
-      "trustNet": 0
-    },
-    "2399": {
-      "foreignNet": -423,
-      "trustNet": 0
-    },
-    "2401": {
-      "foreignNet": -394,
-      "trustNet": 12
-    },
-    "3450": {
-      "foreignNet": -92,
-      "trustNet": -327
-    },
-    "1305": {
-      "foreignNet": -379,
-      "trustNet": 0
-    },
-    "2006": {
-      "foreignNet": -404,
-      "trustNet": -1
-    },
-    "1723": {
-      "foreignNet": -455,
-      "trustNet": 0
-    },
-    "3305": {
-      "foreignNet": -392,
-      "trustNet": 0
-    },
-    "1310": {
-      "foreignNet": -559,
-      "trustNet": 0
-    },
-    "1313": {
-      "foreignNet": -392,
-      "trustNet": 0
-    },
-    "8131": {
-      "foreignNet": -449,
-      "trustNet": 0
-    },
-    "1513": {
-      "foreignNet": -457,
-      "trustNet": 6
-    },
-    "3701": {
-      "foreignNet": -520,
-      "trustNet": 0
-    },
-    "3661": {
-      "foreignNet": -451,
-      "trustNet": 12
-    },
-    "2369": {
-      "foreignNet": -488,
-      "trustNet": 0
-    },
-    "3033": {
-      "foreignNet": -325,
-      "trustNet": -32
-    },
-    "4934": {
-      "foreignNet": -490,
-      "trustNet": 0
-    },
-    "3062": {
-      "foreignNet": -498,
-      "trustNet": 0
-    },
-    "5469": {
-      "foreignNet": -535,
-      "trustNet": 0
-    },
-    "6531": {
-      "foreignNet": -517,
-      "trustNet": 36
-    },
-    "3167": {
-      "foreignNet": -571,
-      "trustNet": 9
-    },
-    "2467": {
-      "foreignNet": -553,
-      "trustNet": 0
-    },
-    "2049": {
-      "foreignNet": -483,
-      "trustNet": 1
-    },
-    "1304": {
-      "foreignNet": -452,
-      "trustNet": 0
-    },
-    "2483": {
-      "foreignNet": -582,
-      "trustNet": 0
-    },
-    "1809": {
-      "foreignNet": -537,
-      "trustNet": 6
-    },
-    "2367": {
-      "foreignNet": -527,
-      "trustNet": 0
-    },
-    "2332": {
-      "foreignNet": -490,
-      "trustNet": 0
-    },
-    "4540": {
-      "foreignNet": -656,
-      "trustNet": 0
-    },
-    "6271": {
-      "foreignNet": -531,
-      "trustNet": 0
-    },
-    "2486": {
-      "foreignNet": -696,
-      "trustNet": 30
-    },
-    "2383": {
-      "foreignNet": -711,
-      "trustNet": -14
-    },
-    "2338": {
-      "foreignNet": -692,
-      "trustNet": 0
-    },
-    "0055": {
-      "foreignNet": -127,
-      "trustNet": 0
-    },
-    "8112": {
-      "foreignNet": -892,
-      "trustNet": 1
-    },
-    "9933": {
-      "foreignNet": -974,
-      "trustNet": 22
-    },
-    "2355": {
-      "foreignNet": -2681,
-      "trustNet": 2025
-    },
-    "2634": {
-      "foreignNet": -767,
-      "trustNet": 10
-    },
-    "2426": {
-      "foreignNet": -788,
-      "trustNet": 0
-    },
-    "2527": {
-      "foreignNet": -830,
-      "trustNet": 3
-    },
-    "4919": {
-      "foreignNet": -715,
-      "trustNet": 39
-    },
-    "2889": {
-      "foreignNet": -894,
-      "trustNet": 0
-    },
-    "8163": {
-      "foreignNet": -810,
-      "trustNet": 0
-    },
-    "4916": {
-      "foreignNet": -850,
-      "trustNet": 0
-    },
-    "6120": {
-      "foreignNet": -878,
-      "trustNet": 0
-    },
-    "2402": {
-      "foreignNet": -799,
-      "trustNet": 0
-    },
-    "2890": {
-      "foreignNet": -5604,
-      "trustNet": 1772
-    },
-    "2441": {
-      "foreignNet": -801,
-      "trustNet": 23
-    },
-    "1717": {
-      "foreignNet": -807,
-      "trustNet": 3
-    },
-    "6285": {
-      "foreignNet": -903,
-      "trustNet": 18
-    },
-    "3605": {
-      "foreignNet": -882,
-      "trustNet": 8
-    },
-    "6152": {
-      "foreignNet": -1007,
-      "trustNet": 0
-    },
-    "2324": {
-      "foreignNet": -1940,
-      "trustNet": 96
-    },
-    "2103": {
-      "foreignNet": -1080,
-      "trustNet": 0
-    },
-    "1608": {
-      "foreignNet": -1054,
-      "trustNet": -17
-    },
-    "3026": {
-      "foreignNet": 219,
-      "trustNet": -1280
-    },
-    "2603": {
-      "foreignNet": -2441,
-      "trustNet": 1087
-    },
-    "4906": {
-      "foreignNet": -980,
-      "trustNet": 0
-    },
-    "2436": {
-      "foreignNet": -1107,
-      "trustNet": 5
-    },
-    "2033": {
-      "foreignNet": -1180,
-      "trustNet": 4
-    },
-    "6257": {
-      "foreignNet": -619,
-      "trustNet": -473
-    },
-    "5521": {
-      "foreignNet": -1208,
-      "trustNet": 0
-    },
-    "4958": {
-      "foreignNet": -3192,
-      "trustNet": 2176
-    },
-    "2363": {
-      "foreignNet": -927,
-      "trustNet": 9
-    },
-    "1710": {
-      "foreignNet": -1320,
-      "trustNet": 0
-    },
-    "8046": {
-      "foreignNet": -962,
-      "trustNet": -264
-    },
-    "2845": {
-      "foreignNet": -1335,
-      "trustNet": 0
-    },
-    "8021": {
-      "foreignNet": -1443,
-      "trustNet": 82
-    },
-    "3673": {
-      "foreignNet": -1145,
-      "trustNet": 0
-    },
-    "3036": {
-      "foreignNet": -1692,
-      "trustNet": 60
-    },
-    "2014": {
-      "foreignNet": -1541,
-      "trustNet": 0
-    },
-    "1709": {
-      "foreignNet": -1517,
-      "trustNet": 21
-    },
-    "4927": {
-      "foreignNet": -1574,
-      "trustNet": 0
-    },
-    "2308": {
-      "foreignNet": -2026,
-      "trustNet": 83
-    },
-    "6282": {
-      "foreignNet": -1606,
-      "trustNet": -4
-    },
-    "2615": {
-      "foreignNet": -1566,
-      "trustNet": 5
-    },
-    "6209": {
-      "foreignNet": -1474,
-      "trustNet": 0
-    },
-    "3702": {
-      "foreignNet": -1907,
-      "trustNet": 1124
-    },
-    "2454": {
-      "foreignNet": -2876,
-      "trustNet": 919
-    },
-    "1711": {
-      "foreignNet": -1993,
-      "trustNet": 0
-    },
-    "6153": {
-      "foreignNet": -2101,
-      "trustNet": 0
-    },
-    "4720": {
-      "foreignNet": -2151,
-      "trustNet": 0
-    },
-    "6269": {
-      "foreignNet": -935,
-      "trustNet": 0
-    },
-    "2330": {
-      "foreignNet": -10253,
-      "trustNet": 2717
-    },
-    "2834": {
-      "foreignNet": -2252,
-      "trustNet": 26
-    },
-    "2352": {
-      "foreignNet": -1735,
-      "trustNet": 20
-    },
-    "6239": {
-      "foreignNet": -2384,
-      "trustNet": 189
-    },
-    "2609": {
-      "foreignNet": -2262,
-      "trustNet": 6
-    },
-    "6456": {
-      "foreignNet": -2218,
-      "trustNet": 0
-    },
-    "1714": {
-      "foreignNet": -2348,
-      "trustNet": 1
-    },
-    "2449": {
-      "foreignNet": -2608,
-      "trustNet": 145
-    },
-    "2323": {
-      "foreignNet": -2728,
-      "trustNet": 1
-    },
-    "3035": {
-      "foreignNet": -2597,
-      "trustNet": 14
-    },
-    "2313": {
-      "foreignNet": -2587,
-      "trustNet": 223
-    },
-    "3037": {
-      "foreignNet": -3826,
-      "trustNet": 834
-    },
-    "1609": {
-      "foreignNet": -2659,
-      "trustNet": 0
-    },
-    "6672": {
-      "foreignNet": -3072,
-      "trustNet": 2
-    },
-    "9105": {
-      "foreignNet": -2708,
-      "trustNet": 0
-    },
-    "2002": {
-      "foreignNet": -2972,
-      "trustNet": 79
-    },
-    "1718": {
-      "foreignNet": -3050,
-      "trustNet": 0
-    },
-    "3189": {
-      "foreignNet": -2948,
-      "trustNet": -338
-    },
-    "2337": {
-      "foreignNet": -4026,
-      "trustNet": 96
-    },
-    "8150": {
-      "foreignNet": -4498,
-      "trustNet": 30
-    },
-    "2371": {
-      "foreignNet": -4404,
-      "trustNet": 23
-    },
-    "1326": {
-      "foreignNet": -4420,
-      "trustNet": 15
-    },
-    "1312": {
-      "foreignNet": -4907,
-      "trustNet": 0
-    },
-    "2801": {
-      "foreignNet": -4940,
-      "trustNet": -101
-    },
-    "2317": {
-      "foreignNet": -11174,
-      "trustNet": 2349
-    },
-    "2328": {
-      "foreignNet": -5592,
-      "trustNet": 0
-    },
-    "1303": {
-      "foreignNet": -13437,
-      "trustNet": 6391
-    },
-    "1301": {
-      "foreignNet": -5412,
-      "trustNet": 143
-    },
-    "4960": {
-      "foreignNet": -5958,
-      "trustNet": 0
-    },
-    "1101": {
-      "foreignNet": -5782,
-      "trustNet": 54
-    },
-    "1528": {
-      "foreignNet": -6463,
-      "trustNet": 0
-    },
-    "3231": {
-      "foreignNet": -9614,
-      "trustNet": 2376
-    },
-    "3711": {
-      "foreignNet": -10593,
-      "trustNet": 2222
-    },
-    "2327": {
-      "foreignNet": -8102,
-      "trustNet": -943
-    },
-    "3481": {
-      "foreignNet": -9317,
-      "trustNet": 63
-    },
-    "2409": {
-      "foreignNet": -7153,
-      "trustNet": 330
-    },
-    "6505": {
-      "foreignNet": 10254,
-      "trustNet": -19734
-    },
-    "1314": {
-      "foreignNet": -10821,
-      "trustNet": 0
-    },
-    "2408": {
-      "foreignNet": -9986,
-      "trustNet": -2674
-    },
-    "2344": {
-      "foreignNet": -13222,
-      "trustNet": -1310
-    },
-    "0052": {
-      "foreignNet": -4233,
-      "trustNet": -1660
-    },
-    "6770": {
-      "foreignNet": -16053,
-      "trustNet": 201
-    },
-    "1605": {
-      "foreignNet": -18679,
-      "trustNet": 46
-    },
-    "2303": {
-      "foreignNet": -29249,
-      "trustNet": 3363
-    },
-    "1802": {
-      "foreignNet": -34713,
-      "trustNet": 40
-    },
-    "0056": {
-      "foreignNet": -4577,
-      "trustNet": 190
-    },
-    "0050": {
-      "foreignNet": -72290,
-      "trustNet": 4051
     }
   }
 }
