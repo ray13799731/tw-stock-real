@@ -27,7 +27,7 @@
             <h1 class="text-xl font-bold tracking-tight text-white">台股全市場 100% 真實量價籌碼選股系統</h1>
             <span class="text-xs bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2 py-0.5 rounded-full font-mono">100% 真實資料庫</span>
           </div>
-          <p class="text-xs text-slate-400">官方三大法人日報・外資與投信連買・TDCC 集保千張大戶人數與持股比・個人專屬自選股追蹤</p>
+          <p class="text-xs text-slate-400">官方三大法人日報・外資與投信連買・TDCC 集保千張大戶人數與持股比・三重記憶專屬自選追蹤</p>
         </div>
       </div>
 
@@ -46,7 +46,7 @@
 
   <main class="max-w-7xl mx-auto px-6 py-6 space-y-6">
 
-    <!-- 策略控制看板 (6 欄均勻配置，含「我的自選」) -->
+    <!-- 策略控制看板 (6 欄均勻配置) -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-3">
       <!-- 條件一：主力土洋雙買鎖碼 (投信連買 >= 1 日) -->
       <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between space-y-2.5">
@@ -104,16 +104,22 @@
         </button>
       </div>
 
-      <!-- 我的自選清單 (新增功能按鈕) -->
+      <!-- 我的自選清單 (支援三重持久化 + 備份/匯入) -->
       <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between space-y-2.5">
         <div>
-          <span class="text-[11px] font-semibold uppercase tracking-wider text-yellow-400">個人收藏</span>
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-semibold uppercase tracking-wider text-yellow-400">個人收藏</span>
+            <div class="flex items-center gap-2 text-[11px]">
+              <button onclick="exportWatchlistPrompt()" title="複製備份自選代碼" class="text-slate-400 hover:text-yellow-300 transition"><i class="fa-solid fa-copy"></i> 備份</button>
+              <button onclick="importWatchlistPrompt()" title="貼上匯入自選代碼" class="text-slate-400 hover:text-yellow-300 transition"><i class="fa-solid fa-paste"></i> 匯入</button>
+            </div>
+          </div>
           <h3 class="font-bold text-white text-sm mt-0.5">我的自選清單</h3>
-          <p class="text-[11px] text-slate-400 mt-0.5">點擊標的旁的星號收藏</p>
+          <p class="text-[11px] text-slate-400 mt-0.5">自動同步網址與快取，加入書籤永不遺失</p>
         </div>
         <button id="btn-filter-watchlist" onclick="toggleFilter('watchlist')" 
                 class="w-full py-2 px-2.5 rounded-xl font-medium text-xs transition flex items-center justify-center gap-1.5 border bg-slate-800 hover:bg-slate-750 text-slate-300 border-slate-700">
-          <i class="fa-solid fa-star"></i>
+          <i class="fa-regular fa-star"></i>
           我的自選 (<span id="stat-watchlist-count">0</span>)
         </button>
       </div>
@@ -149,7 +155,6 @@
         <table class="w-full text-left text-xs">
           <thead class="bg-slate-950/70 text-slate-400 uppercase tracking-wider border-b border-slate-800 select-none">
             <tr>
-              <!-- 自選星號欄 -->
               <th class="py-3 px-3 text-center w-10">自選</th>
               <th class="py-3 px-4 cursor-pointer hover:text-white" onclick="sortBy('code')">股票代號 / 名稱 <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3 px-3 cursor-pointer hover:text-white" onclick="sortBy('price')">收盤價 (漲跌) <i class="fa-solid fa-sort ml-1"></i></th>
@@ -191,8 +196,91 @@
     let pageSize = 50;
     let currentSort = { key: 'yesterdayVol', asc: false };
 
-    // 從 localStorage 讀取個人自選清單 (儲存代號陣列，如 ["2330", "2610"])
-    let userWatchlist = new Set(JSON.parse(localStorage.getItem('tw_stock_watchlist') || '[]'));
+    // -------------------------------------------------------------------------
+    // 三重持久化自選清單讀取：網址書籤 Hash -> localStorage -> 365天長效 Cookie
+    // -------------------------------------------------------------------------
+    function loadWatchlistFromStorage() {
+      let codes = [];
+      try {
+        // 1. 優先讀取網址 Hash 參數 (例如 #wl=2330,2610)
+        const hash = window.location.hash;
+        if (hash && hash.includes('wl=')) {
+          const match = hash.match(/wl=([0-9,]+)/);
+          if (match && match[1]) {
+            codes = match[1].split(',').filter(c => c.length === 4);
+          }
+        }
+        // 2. 次要讀取 localStorage
+        if (codes.length === 0) {
+          const lsData = localStorage.getItem('tw_stock_watchlist');
+          if (lsData) codes = JSON.parse(lsData);
+        }
+        // 3. 備援讀取 365 天長效 Cookie
+        if (codes.length === 0) {
+          const cookieMatch = document.cookie.match(/(?:^|;\s*)tw_stock_watchlist=([^;]*)/);
+          if (cookieMatch && cookieMatch[1]) {
+            codes = decodeURIComponent(cookieMatch[1]).split(',').filter(c => c.length === 4);
+          }
+        }
+      } catch (e) {
+        console.warn("讀取自選快取異常:", e);
+      }
+      return new Set(codes.map(String));
+    }
+
+    let userWatchlist = loadWatchlistFromStorage();
+
+    function saveWatchlist() {
+      const arr = Array.from(userWatchlist);
+      const joined = arr.join(',');
+      
+      // 1. 同步寫入 localStorage
+      try {
+        localStorage.setItem('tw_stock_watchlist', JSON.stringify(arr));
+      } catch (e) {}
+
+      // 2. 同步寫入 365 天長效 Cookie
+      try {
+        const expires = new Date(Date.now() + 365 * 864e5).toUTCString();
+        document.cookie = `tw_stock_watchlist=${encodeURIComponent(joined)}; expires=${expires}; path=/; SameSite=Lax`;
+      } catch (e) {}
+
+      // 3. 同步更新至網址列 Hash (加入書籤即可永久跨裝置帶著走)
+      try {
+        if (arr.length > 0) {
+          history.replaceState(null, '', `#wl=${joined}`);
+        } else {
+          history.replaceState(null, '', window.location.pathname + window.location.search);
+        }
+      } catch (e) {}
+
+      updateWatchlistBadge();
+    }
+
+    function exportWatchlistPrompt() {
+      const arr = Array.from(userWatchlist);
+      if (arr.length === 0) {
+        alert("目前自選清單為空，請先點擊股票旁的星號加入收藏！");
+        return;
+      }
+      const text = arr.join(',');
+      navigator.clipboard?.writeText(text).catch(() => {});
+      prompt("已為您複製自選股票代碼（可貼至記事本備份）：", text);
+    }
+
+    function importWatchlistPrompt() {
+      const input = prompt("請貼上要匯入的股票代號（以逗號或空格分隔，例如：2330, 2610, 2382）：");
+      if (!input) return;
+      const newCodes = input.split(/[\s,，、]+/).map(c => c.trim()).filter(c => /^\d{4}$/.test(c));
+      if (newCodes.length === 0) {
+        alert("未偵測到有效的 4 位數股票代號！");
+        return;
+      }
+      newCodes.forEach(c => userWatchlist.add(c));
+      saveWatchlist();
+      executeFiltering();
+      alert(`成功匯入 ${newCodes.length} 檔股票至自選清單！`);
+    }
 
     // 篩選條件
     const filters = {
@@ -200,18 +288,18 @@
       vol: false,
       tech: false,
       limitup: false,
-      watchlist: false // 自選清單快篩
+      watchlist: false
     };
 
     window.addEventListener('DOMContentLoaded', async () => {
-      updateWatchlistBadge();
+      // 啟動時立即回寫一次確保三層儲存同步
+      if (userWatchlist.size > 0) {
+        saveWatchlist();
+      } else {
+        updateWatchlistBadge();
+      }
       await fetchMarketData();
     });
-
-    function saveWatchlist() {
-      localStorage.setItem('tw_stock_watchlist', JSON.stringify(Array.from(userWatchlist)));
-      updateWatchlistBadge();
-    }
 
     function updateWatchlistBadge() {
       const badge = document.getElementById('stat-watchlist-count');
@@ -228,7 +316,6 @@
       }
       saveWatchlist();
       
-      // 若當前正處於「我的自選」篩選模式下，即時重整篩選結果
       if (filters.watchlist) {
         executeFiltering();
       } else {
@@ -300,7 +387,6 @@
       filteredData = rawMarketData.filter(stock => {
         const strCode = String(stock.code);
 
-        // 自選清單快篩
         if (filters.watchlist) {
           if (!userWatchlist.has(strCode)) return false;
         }
@@ -442,7 +528,7 @@
       const pageData = filteredData.slice(startIdx, startIdx + pageSize);
 
       if (filteredData.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="14" class="py-12 text-center text-slate-500">查無符合條件的股票。若處於「我的自選」模式，請先點擊股票旁的星號加入自選。</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="14" class="py-12 text-center text-slate-500">查無符合條件的股票。若處於「我的自選」模式，請先點擊股票旁的星號加入自選，或點擊右上角「匯入」代碼。</td></tr>`;
         document.getElementById('page-info').innerText = "0 筆";
         return;
       }
@@ -498,7 +584,6 @@
           ? `<div class="text-[11px]"><span class="text-indigo-300 font-bold">+${item.bigHolderStreak} 週</span> <span class="${diffColor} text-[10px] font-sans">(${diffSign}${item.bigHolderDiff.toFixed(2)}%)</span></div>`
           : `<div class="text-[11px] text-slate-500">0 週 <span class="${diffColor} text-[10px] font-sans">(${diffSign}${item.bigHolderDiff.toFixed(2)}%)</span></div>`;
 
-        // 自選星號按鈕判定
         const isStarred = userWatchlist.has(String(item.code));
         const starBtn = isStarred
           ? `<button onclick="toggleWatchlist('${item.code}', event)" title="從自選移除" class="text-yellow-400 hover:scale-125 transition text-sm"><i class="fa-solid fa-star"></i></button>`
