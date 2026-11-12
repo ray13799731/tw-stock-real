@@ -27,7 +27,7 @@
             <h1 class="text-xl font-bold tracking-tight text-white">台股全市場 100% 真實量價籌碼選股系統</h1>
             <span class="text-xs bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2 py-0.5 rounded-full font-mono">100% 真實資料庫</span>
           </div>
-          <p class="text-xs text-slate-400">官方三大法人日報・外資與投信連買・TDCC 集保千張大戶人數與持股比・三重記憶專屬自選追蹤</p>
+          <p class="text-xs text-slate-400">官方三大法人日報・外資與投信連買・TDCC 集保千張大戶人數與持股比・雙重快取專屬自選追蹤</p>
         </div>
       </div>
 
@@ -104,7 +104,7 @@
         </button>
       </div>
 
-      <!-- 我的自選清單 (支援三重持久化 + 備份/匯入) -->
+      <!-- 我的自選清單 (雙重快取 + 備份/匯入，保持網址列簡潔) -->
       <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between space-y-2.5">
         <div>
           <div class="flex items-center justify-between">
@@ -115,7 +115,7 @@
             </div>
           </div>
           <h3 class="font-bold text-white text-sm mt-0.5">我的自選清單</h3>
-          <p class="text-[11px] text-slate-400 mt-0.5">自動同步網址與快取，加入書籤永不遺失</p>
+          <p class="text-[11px] text-slate-400 mt-0.5">自動雙重儲存於瀏覽器，並支援代碼備份還原</p>
         </div>
         <button id="btn-filter-watchlist" onclick="toggleFilter('watchlist')" 
                 class="w-full py-2 px-2.5 rounded-xl font-medium text-xs transition flex items-center justify-center gap-1.5 border bg-slate-800 hover:bg-slate-750 text-slate-300 border-slate-700">
@@ -197,25 +197,17 @@
     let currentSort = { key: 'yesterdayVol', asc: false };
 
     // -------------------------------------------------------------------------
-    // 三重持久化自選清單讀取：網址書籤 Hash -> localStorage -> 365天長效 Cookie
+    // 雙重持久化自選清單讀取：localStorage -> 365天長效 Cookie (保持網址列乾淨)
     // -------------------------------------------------------------------------
     function loadWatchlistFromStorage() {
       let codes = [];
       try {
-        // 1. 優先讀取網址 Hash 參數 (例如 #wl=2330,2610)
-        const hash = window.location.hash;
-        if (hash && hash.includes('wl=')) {
-          const match = hash.match(/wl=([0-9,]+)/);
-          if (match && match[1]) {
-            codes = match[1].split(',').filter(c => c.length === 4);
-          }
+        // 1. 優先讀取 localStorage
+        const lsData = localStorage.getItem('tw_stock_watchlist');
+        if (lsData) {
+          codes = JSON.parse(lsData);
         }
-        // 2. 次要讀取 localStorage
-        if (codes.length === 0) {
-          const lsData = localStorage.getItem('tw_stock_watchlist');
-          if (lsData) codes = JSON.parse(lsData);
-        }
-        // 3. 備援讀取 365 天長效 Cookie
+        // 2. 備援讀取 365 天長效 Cookie
         if (codes.length === 0) {
           const cookieMatch = document.cookie.match(/(?:^|;\s*)tw_stock_watchlist=([^;]*)/);
           if (cookieMatch && cookieMatch[1]) {
@@ -243,15 +235,6 @@
       try {
         const expires = new Date(Date.now() + 365 * 864e5).toUTCString();
         document.cookie = `tw_stock_watchlist=${encodeURIComponent(joined)}; expires=${expires}; path=/; SameSite=Lax`;
-      } catch (e) {}
-
-      // 3. 同步更新至網址列 Hash (加入書籤即可永久跨裝置帶著走)
-      try {
-        if (arr.length > 0) {
-          history.replaceState(null, '', `#wl=${joined}`);
-        } else {
-          history.replaceState(null, '', window.location.pathname + window.location.search);
-        }
       } catch (e) {}
 
       updateWatchlistBadge();
@@ -292,7 +275,7 @@
     };
 
     window.addEventListener('DOMContentLoaded', async () => {
-      // 啟動時立即回寫一次確保三層儲存同步
+      // 啟動時立即回寫一次確保雙重儲存同步
       if (userWatchlist.size > 0) {
         saveWatchlist();
       } else {
