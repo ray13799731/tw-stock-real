@@ -27,7 +27,7 @@
             <h1 class="text-xl font-bold tracking-tight text-white">台股全市場 100% 真實量價籌碼選股系統</h1>
             <span class="text-xs bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2 py-0.5 rounded-full font-mono">100% 真實資料庫</span>
           </div>
-          <p class="text-xs text-slate-400">官方三大法人日報・外資與投信連買・TDCC 集保千張大戶人數與持股比・雙重快取專屬自選追蹤</p>
+          <p class="text-xs text-slate-400">官方三大法人日報・外資與投信連買・TDCC 集保千張大戶・MACD (12,26,9) 柱狀圖動能</p>
         </div>
       </div>
 
@@ -48,7 +48,7 @@
 
     <!-- 策略控制看板 (6 欄均勻配置) -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-3">
-      <!-- 條件一：主力土洋雙買鎖碼 (投信連買 >= 1 日) -->
+      <!-- 條件一：主力土洋雙買鎖碼 -->
       <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between space-y-2.5">
         <div>
           <span class="text-[11px] font-semibold uppercase tracking-wider text-indigo-400">條件一</span>
@@ -104,7 +104,7 @@
         </button>
       </div>
 
-      <!-- 我的自選清單 (雙重快取 + 備份/匯入，保持網址列簡潔) -->
+      <!-- 我的自選清單 (支援雲端 watchlist.json + 雙重快取 + 備份/匯入) -->
       <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between space-y-2.5">
         <div>
           <div class="flex items-center justify-between">
@@ -115,7 +115,7 @@
             </div>
           </div>
           <h3 class="font-bold text-white text-sm mt-0.5">我的自選清單</h3>
-          <p class="text-[11px] text-slate-400 mt-0.5">自動雙重儲存於瀏覽器，並支援代碼備份還原</p>
+          <p class="text-[11px] text-slate-400 mt-0.5">自動雙重儲存與雲端同步，隨時檢視觀察名單</p>
         </div>
         <button id="btn-filter-watchlist" onclick="toggleFilter('watchlist')" 
                 class="w-full py-2 px-2.5 rounded-xl font-medium text-xs transition flex items-center justify-center gap-1.5 border bg-slate-800 hover:bg-slate-750 text-slate-300 border-slate-700">
@@ -162,6 +162,8 @@
               <th class="py-3 px-3 cursor-pointer hover:text-emerald-300 text-emerald-400" onclick="sortBy('eps')">官方財報 EPS <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3 px-3 text-emerald-400 font-semibold cursor-pointer hover:text-emerald-300" onclick="sortBy('eps4Q')">近4季累計EPS > 0 <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3 px-3 cursor-pointer hover:text-cyan-300 text-cyan-400" onclick="sortBy('bias20')">月線乖離 (Bias) <i class="fa-solid fa-sort ml-1"></i></th>
+              <!-- 新增 MACD 柱狀圖欄位 -->
+              <th class="py-3 px-3 cursor-pointer hover:text-amber-300 text-amber-400" onclick="sortBy('macdHist')">MACD 柱狀圖 <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3 px-3 cursor-pointer hover:text-white" onclick="sortBy('volumeRatio')">量比 (昨日/MA20) <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3 px-3 cursor-pointer hover:text-white" onclick="sortBy('yesterdayVol')">昨日量 (張) <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3 px-3 cursor-pointer hover:text-white text-indigo-300 font-semibold" onclick="sortBy('foreignNet3d')">土洋近3日買超 <i class="fa-solid fa-sort ml-1"></i></th>
@@ -196,18 +198,13 @@
     let pageSize = 50;
     let currentSort = { key: 'yesterdayVol', asc: false };
 
-    // -------------------------------------------------------------------------
-    // 雙重持久化自選清單讀取：localStorage -> 365天長效 Cookie (保持網址列乾淨)
-    // -------------------------------------------------------------------------
     function loadWatchlistFromStorage() {
       let codes = [];
       try {
-        // 1. 優先讀取 localStorage
         const lsData = localStorage.getItem('tw_stock_watchlist');
         if (lsData) {
           codes = JSON.parse(lsData);
         }
-        // 2. 備援讀取 365 天長效 Cookie
         if (codes.length === 0) {
           const cookieMatch = document.cookie.match(/(?:^|;\s*)tw_stock_watchlist=([^;]*)/);
           if (cookieMatch && cookieMatch[1]) {
@@ -226,12 +223,10 @@
       const arr = Array.from(userWatchlist);
       const joined = arr.join(',');
       
-      // 1. 同步寫入 localStorage
       try {
         localStorage.setItem('tw_stock_watchlist', JSON.stringify(arr));
       } catch (e) {}
 
-      // 2. 同步寫入 365 天長效 Cookie
       try {
         const expires = new Date(Date.now() + 365 * 864e5).toUTCString();
         document.cookie = `tw_stock_watchlist=${encodeURIComponent(joined)}; expires=${expires}; path=/; SameSite=Lax`;
@@ -248,7 +243,7 @@
       }
       const text = arr.join(',');
       navigator.clipboard?.writeText(text).catch(() => {});
-      prompt("已為您複製自選股票代碼（可貼至記事本備份）：", text);
+      prompt("已為您複製自選股票代碼（可貼至記事本或雲端 watchlist.json 備份）：", text);
     }
 
     function importWatchlistPrompt() {
@@ -265,7 +260,6 @@
       alert(`成功匯入 ${newCodes.length} 檔股票至自選清單！`);
     }
 
-    // 篩選條件
     const filters = {
       chips: false,
       vol: false,
@@ -275,7 +269,6 @@
     };
 
     window.addEventListener('DOMContentLoaded', async () => {
-      // 啟動時立即回寫一次確保雙重儲存同步
       if (userWatchlist.size > 0) {
         saveWatchlist();
       } else {
@@ -309,6 +302,18 @@
     async function fetchMarketData() {
       const statusEl = document.getElementById('data-status');
       try {
+        // 若儲存庫中存在雲端預設自選檔 watchlist.json，自動讀取合併
+        try {
+          const wlRes = await fetch('./watchlist.json?t=' + Date.now());
+          if (wlRes.ok) {
+            const cloudList = await wlRes.json();
+            if (Array.isArray(cloudList)) {
+              cloudList.forEach(c => userWatchlist.add(String(c).trim()));
+              saveWatchlist();
+            }
+          }
+        } catch (e) {}
+
         const response = await fetch('./market_stocks.json');
         if (!response.ok) throw new Error("JSON not found");
         rawMarketData = await response.json();
@@ -353,6 +358,9 @@
         item.ma60 = parseFloat(item.ma60) || item.price;
         item.ma20_prev20 = parseFloat(item.ma20_prev20) || item.price;
 
+        item.macdHist = parseFloat(item.macdHist) || 0.0;
+        item.macdHistPrev = parseFloat(item.macdHistPrev) || 0.0;
+
         if (item.ma20 > 0) {
           item.bias20 = parseFloat((((item.price - item.ma20) / item.ma20) * 100).toFixed(2));
         } else {
@@ -381,7 +389,6 @@
           if (query.length >= 4 && matchCode) return true;
         }
 
-        // 條件一：主力土洋雙買鎖碼 (投信連買 >= 1 日)
         if (filters.chips) {
           const passTrustStreak = (stock.trustStreak >= 1);
           const passDualBuy = (stock.foreignNet3d > 0 && stock.trustNet3d > 0);
@@ -392,7 +399,6 @@
           }
         }
 
-        // 條件二：帶量紅K突破 (量增門檻 >= 1.39 且 收紅上漲)
         if (filters.vol) {
           const volRatio = parseFloat(stock.volumeRatio) || 0;
           const changeRate = parseFloat(stock.changeRate) || 0;
@@ -402,7 +408,6 @@
           }
         }
 
-        // 條件三：均線多頭起漲點 (乖離率 <= 8% 且收紅)
         if (filters.tech) {
           const isUpToday = (stock.changeRate > 0 || stock.change > 0);
           const isBiasSafe = (stock.bias20 > 0 && stock.bias20 <= 8.0);
@@ -413,7 +418,6 @@
           }
         }
 
-        // 條件：昨日漲停股 (漲幅 >= 9.0%)
         if (filters.limitup) {
           const changeRate = parseFloat(stock.changeRate) || 0;
           if (changeRate < 9.0) {
@@ -511,7 +515,7 @@
       const pageData = filteredData.slice(startIdx, startIdx + pageSize);
 
       if (filteredData.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="14" class="py-12 text-center text-slate-500">查無符合條件的股票。若處於「我的自選」模式，請先點擊股票旁的星號加入自選，或點擊右上角「匯入」代碼。</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="15" class="py-12 text-center text-slate-500">查無符合條件的股票。若處於「我的自選」模式，請先點擊股票旁的星號加入自選，或點擊右上角「匯入」代碼。</td></tr>`;
         document.getElementById('page-info').innerText = "0 筆";
         return;
       }
@@ -533,6 +537,34 @@
         const biasBadge = (item.bias20 > 0 && item.bias20 <= 8.0)
           ? `<span class="text-cyan-300 font-bold bg-cyan-950/80 border border-cyan-800 px-1.5 py-0.5 rounded text-[11px] font-sans">+${item.bias20.toFixed(1)}%</span>`
           : `<span class="${item.bias20 > 8 ? 'text-amber-400' : 'text-slate-400'} text-[11px]">${item.bias20 > 0 ? '+' : ''}${item.bias20.toFixed(1)}%</span>`;
+
+        // MACD 柱狀圖視覺化與多空動能標籤
+        const histVal = item.macdHist || 0;
+        const histPrev = item.macdHistPrev || 0;
+        const isRedBar = histVal >= 0;
+        const isGrowing = histVal > histPrev;
+        const arrowIcon = isGrowing ? '▲' : (histVal < histPrev ? '▼' : '▬');
+        // 依照股價比例換算能量條寬度 (最大 100%)
+        const barWidthPct = item.price > 0 ? Math.min(100, Math.max(12, Math.round((Math.abs(histVal) / (item.price * 0.02)) * 100))) : 15;
+        const macdBadge = isRedBar
+          ? `<div class="flex flex-col gap-0.5 w-20">
+               <div class="flex items-center justify-between text-[11px] text-rose-400 font-bold">
+                 <span>+${histVal.toFixed(2)}</span>
+                 <span class="text-[9px]">${arrowIcon}</span>
+               </div>
+               <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                 <div class="h-full bg-rose-500 rounded-full" style="width: ${barWidthPct}%"></div>
+               </div>
+             </div>`
+          : `<div class="flex flex-col gap-0.5 w-20">
+               <div class="flex items-center justify-between text-[11px] text-emerald-400 font-bold">
+                 <span>${histVal.toFixed(2)}</span>
+                 <span class="text-[9px]">${arrowIcon}</span>
+               </div>
+               <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                 <div class="h-full bg-emerald-500 rounded-full" style="width: ${barWidthPct}%"></div>
+               </div>
+             </div>`;
 
         const eps4QBadge = item.eps4Q > 0
           ? `<span class="text-emerald-400 font-bold bg-emerald-950/80 border border-emerald-800 px-1.5 py-0.5 rounded text-[11px] font-sans">是 ($${item.eps4Q.toFixed(2)})</span>`
@@ -602,6 +634,9 @@
               ${biasBadge}
             </td>
             <td class="py-3 px-3">
+              ${macdBadge}
+            </td>
+            <td class="py-3 px-3">
               ${volumeBadge}
             </td>
             <td class="py-3 px-3 text-slate-300">${item.yesterdayVol.toLocaleString()}</td>
@@ -639,10 +674,10 @@
     function exportCSV() {
       if (filteredData.length === 0) return alert("無資料可匯出！");
       const isWatchlistMode = filters.watchlist;
-      let csv = "自選,市場,股票代號,股票名稱,產業別,收盤價,漲跌幅,當前PE,官方財報EPS,近4季累計EPS,近4季EPS大於0,月線乖離率(%),量比,昨日成交量,外資近3日累買,投信近3日累買,外資連買日數,投信連買日數,大戶人數,大戶持股比例(%),TDCC大戶連增週數,大戶增減量(%)\n";
+      let csv = "自選,市場,股票代號,股票名稱,產業別,收盤價,漲跌幅,當前PE,官方財報EPS,近4季累計EPS,近4季EPS大於0,月線乖離率(%),MACD柱狀圖,前日MACD柱狀圖,量比,昨日成交量,外資近3日累買,投信近3日累買,外資連買日數,投信連買日數,大戶人數,大戶持股比例(%),TDCC大戶連增週數,大戶增減量(%)\n";
       filteredData.forEach(s => {
         const isStar = userWatchlist.has(String(s.code)) ? '是' : '否';
-        csv += `${isStar},${s.market},${s.code},${s.name},${s.industry},${s.price},${s.changeRate}%,${s.pe},${s.eps},${s.eps4Q},${s.isEps4QPositive?'是':'否'},${s.bias20}%,${s.volumeRatio},${s.yesterdayVol},${s.foreignNet3d},${s.trustNet3d},${s.foreignStreak},${s.trustStreak},${s.bigHolderCount},${s.bigHolderRatio}%,${s.bigHolderStreak},${s.bigHolderDiff}%\n`;
+        csv += `${isStar},${s.market},${s.code},${s.name},${s.industry},${s.price},${s.changeRate}%,${s.pe},${s.eps},${s.eps4Q},${s.isEps4QPositive?'是':'否'},${s.bias20}%,${s.macdHist},${s.macdHistPrev},${s.volumeRatio},${s.yesterdayVol},${s.foreignNet3d},${s.trustNet3d},${s.foreignStreak},${s.trustStreak},${s.bigHolderCount},${s.bigHolderRatio}%,${s.bigHolderStreak},${s.bigHolderDiff}%\n`;
       });
       const blob = new Blob(["\uFEFF" + csv], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
