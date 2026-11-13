@@ -50,7 +50,6 @@ def fetch_all_quotes():
                 vol_shares = clean_number(row[2])
                 price = clean_number(row[8])
 
-                # row[9] 為符號 (+/-)，row[10] 為漲跌金額
                 sign_raw = str(row[9]).lower()
                 diff_val = clean_number(row[10])
 
@@ -102,7 +101,6 @@ def fetch_all_quotes():
     except Exception as e:
         print(f"上櫃行情抓取異常: {e}")
 
-    # 官方產業代碼中文名稱對照表
     INDUSTRY_CODE_MAP = {
         "01": "水泥", "02": "食品", "03": "塑膠", "04": "紡織",
         "05": "電機機械", "06": "電器電纜", "07": "化學生技", "08": "玻璃陶瓷",
@@ -137,7 +135,7 @@ def fetch_all_quotes():
     return stocks
 
 # -------------------------------------------------------------------------
-# 2. 抓取當日三大法人買賣超 (上市 TWSE T86 + 上櫃 TPEx 官方最新日報通道)
+# 2. 抓取當日三大法人買賣超 (上市 T86 + 上櫃：政府開放平台/OpenAPI 雲端防擋通道)
 # -------------------------------------------------------------------------
 def fetch_today_institutional_chips():
     chips_dict = {}
@@ -162,56 +160,59 @@ def fetch_today_institutional_chips():
     except Exception as e:
         print(f"上市三大法人抓取異常: {e}")
 
-    print("正在請求櫃買中心 (TPEx) 上櫃三大法人最新官方日報...")
+    print("正在請求上櫃三大法人日報 (政府資料開放平台官方鏡像通道)...")
     tpex_inst_count = 0
 
-    # 通道 1：櫃買官方最新 3insti/daily_trade JSON 接口
     try:
-        url_tpex_json = "https://www.tpex.org.tw/web/stock/3insti/daily_trade/3itrade_hedge_result.php?l=zh-tw&se=EW&t=D&response=json"
-        res = requests.get(url_tpex_json, headers=HEADERS, timeout=25)
-        if res.status_code == 200:
-            data = res.json()
-            rows = data.get('aaData', [])
-            for r in rows:
-                code = str(r[0]).strip()
-                if len(code) != 4 or not code.isdigit():
-                    continue
-                # r[7]: 外資及陸資合計買賣超股數, r[10]: 投信買賣超股數
-                foreign_shares = clean_number(r[7]) if len(r) > 7 else 0
-                trust_shares = clean_number(r[10]) if len(r) > 10 else 0
-                chips_dict[code] = {
-                    "foreignNet": int(foreign_shares // 1000),
-                    "trustNet": int(trust_shares // 1000)
-                }
-                tpex_inst_count += 1
+        gov_url = "https://quality.data.gov.tw/dq_download_csv.php?nid=24806&md5_url=bca594a87ad6ef29c5017fc4b78a9947"
+        res = requests.get(gov_url, headers=HEADERS, timeout=25)
+        if res.status_code == 200 and len(res.text) > 1000:
+            lines = res.text.split("\n")
+            for line in lines[1:]:
+                cols = [c.strip().replace('"', '').replace(',', '') for c in line.split(',')]
+                if len(cols) >= 11:
+                    code = cols[0]
+                    if len(code) == 4 and code.isdigit():
+                        foreign_shares = clean_number(cols[7])
+                        trust_shares = clean_number(cols[10])
+                        chips_dict[code] = {
+                            "foreignNet": int(foreign_shares // 1000),
+                            "trustNet": int(trust_shares // 1000)
+                        }
+                        tpex_inst_count += 1
             if tpex_inst_count > 0:
-                print(f"透過通道 1 成功取得上櫃三大法人資料，共 {tpex_inst_count} 檔。")
+                print(f"透過政府資料開放平台成功取得上櫃三大法人資料，共 {tpex_inst_count} 檔。")
     except Exception as e:
-        print(f"上櫃通道 1 異常: {e}")
+        print(f"上櫃通道 1 抓取異常: {e}")
 
-    # 通道 2 (備援)：官方 CSV 直接下載通道 (不經由 JS 渲染)
     if tpex_inst_count == 0:
-        print("切換至上櫃通道 2 (CSV 官方直連通道)...")
+        print("切換至通道 2 (TPEx OpenAPI 官方直連通道)...")
         try:
-            url_tpex_csv = "https://www.tpex.org.tw/web/stock/3insti/daily_trade/3itrade_hedge_download.php?l=zh-tw&se=EW&t=D"
-            res = requests.get(url_tpex_csv, headers=HEADERS, timeout=25)
+            open_headers = {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124.0.0.0 Safari/537.36',
+                'Accept': 'application/json'
+            }
+            url_tpex = "https://www.tpex.org.tw/openapi/v1/tpex_mainboard_institutional_investors"
+            res = requests.get(url_tpex, headers=open_headers, timeout=25)
             if res.status_code == 200:
-                lines = res.text.split("\n")
-                for line in lines:
-                    cols = [c.strip().replace('"', '').replace(',', '') for c in line.split(',')]
-                    if len(cols) >= 12:
-                        code = cols[0]
-                        if len(code) == 4 and code.isdigit():
-                            foreign_shares = clean_number(cols[7])
-                            trust_shares = clean_number(cols[10])
-                            chips_dict[code] = {
-                                "foreignNet": int(foreign_shares // 1000),
-                                "trustNet": int(trust_shares // 1000)
-                            }
-                            tpex_inst_count += 1
-                print(f"透過通道 2 成功取得上櫃三大法人資料，共 {tpex_inst_count} 檔。")
+                items = res.json()
+                if isinstance(items, list):
+                    for item in items:
+                        code = str(item.get("SecuritiesCompanyCode") or item.get("Code") or "").strip()
+                        if len(code) != 4 or not code.isdigit():
+                            continue
+
+                        foreign_shares = clean_number(item.get("ForeignInvestorsNetBuySell") or item.get("外資及陸資買賣超股數") or 0)
+                        trust_shares = clean_number(item.get("InvestmentTrustNetBuySell") or item.get("投信買賣超股數") or 0)
+
+                        chips_dict[code] = {
+                            "foreignNet": int(foreign_shares // 1000),
+                            "trustNet": int(trust_shares // 1000)
+                        }
+                        tpex_inst_count += 1
+                    print(f"透過通道 2 成功取得上櫃三大法人資料，共 {tpex_inst_count} 檔。")
         except Exception as e:
-            print(f"上櫃通道 2 異常: {e}")
+            print(f"上櫃通道 2 抓取異常: {e}")
 
     return chips_dict
 
@@ -439,10 +440,10 @@ def fetch_financial_metrics():
     return pe_dict, eps_dict
 
 # -------------------------------------------------------------------------
-# 6. yfinance 批次下載真實日 K 線 (MA20, MA60, 20日均量)
+# 6. yfinance 批次下載真實日 K 線 (MA20, MA60, 20日均量, MACD 12-26-9 柱狀圖)
 # -------------------------------------------------------------------------
 def fetch_real_kline_technicals(quotes):
-    print("\n[yfinance] 開始批次下載真實歷史日 K 線...")
+    print("\n[yfinance] 開始批次下載真實歷史日 K 線並計算 MACD...")
     results = {}
 
     ticker_map = {f"{c}{'.TW' if item['market']=='上市' else '.TWO'}": c for c, item in quotes.items()}
@@ -469,6 +470,16 @@ def fetch_real_kline_technicals(quotes):
                     ma60_s = closes.rolling(60).mean()
                     ma20_vol_s = vols.rolling(20).mean()
 
+                    # 標準 MACD (12, 26, 9) 柱狀圖計算
+                    ema12 = closes.ewm(span=12, adjust=False).mean()
+                    ema26 = closes.ewm(span=26, adjust=False).mean()
+                    dif = ema12 - ema26
+                    dea = dif.ewm(span=9, adjust=False).mean()
+                    macd_hist = dif - dea
+
+                    cur_macd_hist = round(float(macd_hist.iloc[-1]), 2) if pd.notnull(macd_hist.iloc[-1]) else 0.0
+                    prev_macd_hist = round(float(macd_hist.iloc[-2]), 2) if len(macd_hist) >= 2 and pd.notnull(macd_hist.iloc[-2]) else cur_macd_hist
+
                     cur_close = float(closes.iloc[-1])
                     cur_ma20 = float(ma20_s.iloc[-1]) if pd.notnull(ma20_s.iloc[-1]) else cur_close
                     cur_ma60 = float(ma60_s.iloc[-1]) if pd.notnull(ma60_s.iloc[-1]) else cur_ma20
@@ -481,7 +492,9 @@ def fetch_real_kline_technicals(quotes):
                         "ma20_prev20": round(ma20_prev20, 2),
                         "ma20Vol": max(50, cur_ma20_vol),
                         "isPriceGtMa20GtMa60": bool(cur_close > cur_ma20 > cur_ma60),
-                        "isMa20Rising": bool(cur_ma20 > ma20_prev20)
+                        "isMa20Rising": bool(cur_ma20 > ma20_prev20),
+                        "macdHist": cur_macd_hist,
+                        "macdHistPrev": prev_macd_hist
                     }
                 except Exception:
                     continue
@@ -489,7 +502,7 @@ def fetch_real_kline_technicals(quotes):
             print(f"批次異常: {e}")
             time.sleep(1)
 
-    print(f"歷史技術指標計算完畢，成功數: {len(results)} 檔\n")
+    print(f"歷史技術指標與 MACD 計算完畢，成功數: {len(results)} 檔\n")
     return results
 
 def main():
@@ -532,7 +545,8 @@ def main():
 
         t = tech_data.get(code, {
             "ma20": price, "ma60": price, "ma20_prev20": price,
-            "ma20Vol": max(50, vol), "isPriceGtMa20GtMa60": False, "isMa20Rising": False
+            "ma20Vol": max(50, vol), "isPriceGtMa20GtMa60": False, "isMa20Rising": False,
+            "macdHist": 0.0, "macdHistPrev": 0.0
         })
         vol_ratio = round(vol / t['ma20Vol'], 2) if t['ma20Vol'] > 0 else 1.0
 
@@ -565,6 +579,8 @@ def main():
             "ma20_prev20": t['ma20_prev20'],
             "isPriceGtMa20GtMa60": t['isPriceGtMa20GtMa60'],
             "isMa20Rising": t['isMa20Rising'],
+            "macdHist": t.get('macdHist', 0.0),
+            "macdHistPrev": t.get('macdHistPrev', 0.0),
             "yesterdayVol": vol,
             "ma20Vol": t['ma20Vol'],
             "volumeRatio": vol_ratio,
