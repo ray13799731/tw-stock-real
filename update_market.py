@@ -22,7 +22,7 @@ def clean_number(val_str):
         return 0.0
 
 # -------------------------------------------------------------------------
-# 1. 抓取上市 (TWSE) 與上櫃 (TPEx) 官方當日收盤行情與產業別
+# 1. 抓取上市 (TWSE) 與上櫃 (TPEx) 官方當日收盤行情、開盤價與產業別
 # -------------------------------------------------------------------------
 def fetch_all_quotes():
     stocks = {}
@@ -48,7 +48,10 @@ def fetch_all_quotes():
                     continue
 
                 vol_shares = clean_number(row[2])
+                open_price = clean_number(row[5])
                 price = clean_number(row[8])
+                if open_price <= 0:
+                    open_price = price
 
                 sign_raw = str(row[9]).lower()
                 diff_val = clean_number(row[10])
@@ -67,6 +70,7 @@ def fetch_all_quotes():
 
                 stocks[code] = {
                     'code': code, 'name': name, 'market': '上市',
+                    'openPrice': open_price,
                     'price': price, 'change': round(diff, 2), 'changeRate': change_rate,
                     'yesterdayVol': int(vol_shares // 1000)
                 }
@@ -86,7 +90,10 @@ def fetch_all_quotes():
                     name = str(item.get("CompanyName", item.get("Name", ""))).strip()
                     if len(code) != 4 or not code.isdigit():
                         continue
+                    open_price = clean_number(item.get("Open", 0))
                     price = clean_number(item.get("Close", 0))
+                    if open_price <= 0:
+                        open_price = price
                     diff = clean_number(item.get("Change", 0))
                     vol_shares = clean_number(item.get("TradingShares", 0))
                     pre_close = price - diff
@@ -94,6 +101,7 @@ def fetch_all_quotes():
 
                     stocks[code] = {
                         'code': code, 'name': name, 'market': '上櫃',
+                        'openPrice': open_price,
                         'price': price, 'change': round(diff, 2), 'changeRate': change_rate,
                         'yesterdayVol': int(vol_shares // 1000)
                     }
@@ -440,10 +448,10 @@ def fetch_financial_metrics():
     return pe_dict, eps_dict
 
 # -------------------------------------------------------------------------
-# 6. yfinance 批次下載真實日 K 線 (MA20, MA60, 20日均量, MACD 12-26-9 柱狀圖)
+# 6. yfinance 批次下載真實日 K 線 (MA20, MA60, 20日均量, MACD 12-26-9, KD 9-3-3)
 # -------------------------------------------------------------------------
 def fetch_real_kline_technicals(quotes):
-    print("\n[yfinance] 開始批次下載真實歷史日 K 線並計算 MACD...")
+    print("\n[yfinance] 開始批次下載真實歷史日 K 線並計算 MACD 與 KD...")
     results = {}
 
     ticker_map = {f"{c}{'.TW' if item['market']=='上市' else '.TWO'}": c for c, item in quotes.items()}
@@ -463,6 +471,9 @@ def fetch_real_kline_technicals(quotes):
                     if len(s_df) < 25:
                         continue
 
+                    opens = s_df['Open']
+                    highs = s_df['High']
+                    lows = s_df['Low']
                     closes = s_df['Close']
                     vols = s_df['Volume']
 
@@ -470,7 +481,7 @@ def fetch_real_kline_technicals(quotes):
                     ma60_s = closes.rolling(60).mean()
                     ma20_vol_s = vols.rolling(20).mean()
 
-                    # 標準 MACD (12, 26, 9) 柱狀圖計算
+                    # 1. 標準 MACD (12, 26, 9) 柱狀圖計算
                     ema12 = closes.ewm(span=12, adjust=False).mean()
                     ema26 = closes.ewm(span=26, adjust=False).mean()
                     dif = ema12 - ema26
@@ -480,6 +491,26 @@ def fetch_real_kline_technicals(quotes):
                     cur_macd_hist = round(float(macd_hist.iloc[-1]), 2) if pd.notnull(macd_hist.iloc[-1]) else 0.0
                     prev_macd_hist = round(float(macd_hist.iloc[-2]), 2) if len(macd_hist) >= 2 and pd.notnull(macd_hist.iloc[-2]) else cur_macd_hist
 
+                    # 2. 標準 9 日 KD (9, 3, 3) 計算
+                    low_9 = lows.rolling(9, min_periods=1).min()
+                    high_9 = highs.rolling(9, min_periods=1).max()
+                    denom = (high_9 - low_9).replace(0, pd.NA)
+                    rsv = ((closes - low_9) / denom * 100).fillna(50.0)
+
+                    k_vals = [50.0]
+                    d_vals = [50.0]
+                    for r in rsv.iloc[1:]:
+                        k_now = (2.0 / 3.0) * k_vals[-1] + (1.0 / 3.0) * float(r)
+                        d_now = (2.0 / 3.0) * d_vals[-1] + (1.0 / 3.0) * k_now
+                        k_vals.append(k_now)
+                        d_vals.append(d_now)
+
+                    cur_k = round(k_vals[-1], 1)
+                    cur_d = round(d_vals[-1], 1)
+                    prev_k = round(k_vals[-2], 1) if len(k_vals) >= 2 else cur_k
+                    prev_d = round(d_vals[-2], 1) if len(d_vals) >= 2 else cur_d
+
+                    cur_open = float(opens.iloc[-1]) if pd.notnull(opens.iloc[-1]) else float(closes.iloc[-1])
                     cur_close = float(closes.iloc[-1])
                     cur_ma20 = float(ma20_s.iloc[-1]) if pd.notnull(ma20_s.iloc[-1]) else cur_close
                     cur_ma60 = float(ma60_s.iloc[-1]) if pd.notnull(ma60_s.iloc[-1]) else cur_ma20
@@ -487,6 +518,7 @@ def fetch_real_kline_technicals(quotes):
                     cur_ma20_vol = int(ma20_vol_s.iloc[-1] // 1000) if pd.notnull(ma20_vol_s.iloc[-1]) else 100
 
                     results[code] = {
+                        "klineOpen": round(cur_open, 2),
                         "ma20": round(cur_ma20, 2),
                         "ma60": round(cur_ma60, 2),
                         "ma20_prev20": round(ma20_prev20, 2),
@@ -494,7 +526,11 @@ def fetch_real_kline_technicals(quotes):
                         "isPriceGtMa20GtMa60": bool(cur_close > cur_ma20 > cur_ma60),
                         "isMa20Rising": bool(cur_ma20 > ma20_prev20),
                         "macdHist": cur_macd_hist,
-                        "macdHistPrev": prev_macd_hist
+                        "macdHistPrev": prev_macd_hist,
+                        "k9": cur_k,
+                        "d9": cur_d,
+                        "k9Prev": prev_k,
+                        "d9Prev": prev_d
                     }
                 except Exception:
                     continue
@@ -502,7 +538,7 @@ def fetch_real_kline_technicals(quotes):
             print(f"批次異常: {e}")
             time.sleep(1)
 
-    print(f"歷史技術指標與 MACD 計算完畢，成功數: {len(results)} 檔\n")
+    print(f"歷史技術指標、MACD 與 KD 計算完畢，成功數: {len(results)} 檔\n")
     return results
 
 def main():
@@ -544,10 +580,17 @@ def main():
         is_eps4q_pos = (eps4q > 0)
 
         t = tech_data.get(code, {
+            "klineOpen": q.get('openPrice', price),
             "ma20": price, "ma60": price, "ma20_prev20": price,
             "ma20Vol": max(50, vol), "isPriceGtMa20GtMa60": False, "isMa20Rising": False,
-            "macdHist": 0.0, "macdHistPrev": 0.0
+            "macdHist": 0.0, "macdHistPrev": 0.0,
+            "k9": 50.0, "d9": 50.0, "k9Prev": 50.0, "d9Prev": 50.0
         })
+        
+        open_price = float(q.get('openPrice', 0))
+        if open_price <= 0:
+            open_price = float(t.get('klineOpen', price))
+
         vol_ratio = round(vol / t['ma20Vol'], 2) if t['ma20Vol'] > 0 else 1.0
 
         c = rolling_chips.get(code, {"foreignNet3d": 0, "trustNet3d": 0, "trustStreak": 0, "foreignStreak": 0})
@@ -567,6 +610,7 @@ def main():
             "name": q['name'],
             "market": q['market'],
             "industry": q.get('industry', '其他'),
+            "openPrice": open_price,
             "price": price,
             "change": float(q['change']),
             "changeRate": float(q['changeRate']),
@@ -581,6 +625,10 @@ def main():
             "isMa20Rising": t['isMa20Rising'],
             "macdHist": t.get('macdHist', 0.0),
             "macdHistPrev": t.get('macdHistPrev', 0.0),
+            "k9": t.get('k9', 50.0),
+            "d9": t.get('d9', 50.0),
+            "k9Prev": t.get('k9Prev', 50.0),
+            "d9Prev": t.get('d9Prev', 50.0),
             "yesterdayVol": vol,
             "ma20Vol": t['ma20Vol'],
             "volumeRatio": vol_ratio,
